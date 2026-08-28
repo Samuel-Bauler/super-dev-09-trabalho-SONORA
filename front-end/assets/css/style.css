@@ -1,0 +1,771 @@
+/* =========================================================
+   SONORA — TELA INICIAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green-dark: #102f27;
+    --green: #17604b;
+    --green-light: #dcebe2;
+
+    --cream: #f5f3ec;
+    --cream-dark: #ebe8dc;
+
+    --text: #19352c;
+    --muted: #7c8983;
+
+    --white: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(210, 229, 218, 0.8),
+            transparent 30%
+        ),
+        var(--cream);
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.landing {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(400px, 0.85fr);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DECORAÇÃO
+========================================================= */
+
+.background-shape {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.shape-one {
+    width: 500px;
+    height: 500px;
+
+    left: -280px;
+    bottom: -220px;
+
+    background: #dce9df;
+
+    opacity: 0.6;
+}
+
+.shape-two {
+    width: 280px;
+    height: 280px;
+
+    right: 20%;
+    top: -150px;
+
+    border: 1px solid rgba(23, 96, 75, 0.08);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding:
+        70px
+        clamp(40px, 7vw, 110px);
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.brand {
+    position: absolute;
+
+    top: 42px;
+    left: clamp(40px, 7vw, 110px);
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.brand-mark {
+    width: 39px;
+    height: 39px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: #fff;
+
+    background: var(--green);
+
+    font-size: 17px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 18px rgba(23, 96, 75, 0.16);
+}
+
+.brand-name {
+    color: var(--green-dark);
+
+    font-size: 20px;
+    font-weight: 800;
+
+    letter-spacing: -0.7px;
+}
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
+
+.hero-content {
+    max-width: 650px;
+
+    margin-top: 45px;
+}
+
+.eyebrow {
+    margin-bottom: 13px;
+
+    color: var(--green);
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+h1 {
+    max-width: 620px;
+
+    color: var(--green-dark);
+
+    font-size:
+        clamp(45px, 5vw, 76px);
+
+    font-weight: 900;
+
+    line-height: 0.98;
+
+    letter-spacing: -3px;
+}
+
+h1 span {
+    display: block;
+
+    color: var(--green);
+}
+
+.hero-description {
+    max-width: 500px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 15px;
+    font-weight: 500;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.enter-button {
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 32px;
+
+    padding: 15px 18px 15px 21px;
+
+    border-radius: 12px;
+
+    color: #fff;
+
+    background: var(--green);
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    box-shadow:
+        0 12px 25px rgba(23, 96, 75, 0.18);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.enter-button b {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    color: var(--green);
+
+    background: #fff;
+
+    font-size: 16px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.enter-button:hover {
+    transform: translateY(-3px);
+
+    background: #124f3e;
+
+    box-shadow:
+        0 16px 30px rgba(23, 96, 75, 0.22);
+}
+
+.enter-button:hover b {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.features {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 10px;
+
+    max-width: 650px;
+
+    margin-top: 65px;
+}
+
+.feature-card {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    border:
+        1px solid rgba(25, 42, 35, 0.06);
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.65);
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+
+    background: #fff;
+}
+
+.feature-icon {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    color: var(--green);
+
+    background: var(--green-light);
+
+    font-size: 17px;
+}
+
+.feature-card strong {
+    display: block;
+
+    color: var(--green-dark);
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.feature-card small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #929d98;
+
+    font-size: 8px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RODAPÉ
+========================================================= */
+
+footer {
+    position: absolute;
+
+    bottom: 30px;
+
+    left: clamp(40px, 7vw, 110px);
+
+    display: flex;
+
+    gap: 10px;
+
+    color: #9ba49f;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+}
+
+footer span:first-child {
+    color: var(--green);
+}
+
+
+/* =========================================================
+   PAINEL VISUAL
+========================================================= */
+
+.visual {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #dcebe2,
+            #c9ded2
+        );
+
+    overflow: hidden;
+}
+
+.visual::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    right: -200px;
+    bottom: -190px;
+
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.visual::after {
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+    height: 320px;
+
+    border-radius: 50%;
+
+    left: -170px;
+    top: -130px;
+
+    border:
+        1px solid rgba(23, 96, 75, 0.08);
+}
+
+
+/* =========================================================
+   CARD VISUAL
+========================================================= */
+
+.visual-card {
+    position: relative;
+    z-index: 2;
+
+    width: min(390px, 100%);
+
+    padding: 25px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.7);
+
+    border-radius: 24px;
+
+    background:
+        rgba(255, 255, 255, 0.82);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 70px rgba(23, 65, 50, 0.12);
+
+    transform: rotate(2deg);
+
+    transition:
+        transform 0.3s ease;
+}
+
+.visual-card:hover {
+    transform:
+        rotate(0deg)
+        translateY(-5px);
+}
+
+
+/* =========================================================
+   CABEÇALHO CARD
+========================================================= */
+
+.visual-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 20px;
+
+    border-bottom:
+        1px solid #edf0ed;
+}
+
+.visual-header span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--green);
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.visual-header strong {
+    color: var(--green-dark);
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #36a373;
+
+    box-shadow:
+        0 0 0 5px #e1f1e7;
+}
+
+
+/* =========================================================
+   CONTEÚDO CARD
+========================================================= */
+
+.visual-content {
+    padding: 27px 0;
+}
+
+.visual-label {
+    margin-bottom: 8px;
+
+    color: #89958f;
+
+    font-size: 8px;
+    font-weight: 900;
+
+    letter-spacing: 1.2px;
+}
+
+.visual-number {
+    color: var(--green-dark);
+
+    font-size: 52px;
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+.visual-text {
+    margin-top: 5px;
+
+    color: #8a9690;
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   GRÁFICO
+========================================================= */
+
+.mini-chart {
+    height: 115px;
+
+    display: flex;
+    align-items: flex-end;
+
+    gap: 9px;
+
+    margin-top: 25px;
+
+    padding:
+        15px 12px 0;
+
+    border-bottom:
+        1px solid #e9eeea;
+}
+
+.mini-chart div {
+    flex: 1;
+
+    border-radius:
+        6px 6px 0 0;
+
+    background:
+        #b9d4c5;
+
+    transition:
+        height 0.3s ease;
+}
+
+.mini-chart div:nth-child(4) {
+    background: var(--green);
+}
+
+
+/* =========================================================
+   RODAPÉ CARD
+========================================================= */
+
+.visual-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 17px;
+}
+
+.visual-bottom div {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: #718079;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.visual-bottom div span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #3b9b71;
+}
+
+.visual-bottom strong {
+    color: var(--green-dark);
+
+    font-size: 16px;
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .landing {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: auto;
+
+        padding:
+            120px
+            50px
+            100px;
+    }
+
+    .brand {
+        left: 50px;
+    }
+
+    .visual {
+        min-height: 550px;
+
+        padding: 70px 30px;
+    }
+
+    footer {
+        left: 50px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .hero {
+        padding:
+            105px
+            25px
+            80px;
+    }
+
+    .brand {
+        top: 30px;
+        left: 25px;
+    }
+
+    h1 {
+        font-size: 46px;
+
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .features {
+        grid-template-columns: 1fr;
+
+        margin-top: 45px;
+    }
+
+    .feature-card {
+        min-height: 60px;
+    }
+
+    footer {
+        left: 25px;
+        bottom: 25px;
+    }
+
+    .visual {
+        min-height: 470px;
+
+        padding: 45px 20px;
+    }
+
+    .visual-card {
+        width: 100%;
+
+        padding: 20px;
+    }
+}
+
+
+@media (max-width: 400px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .enter-button {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+}
