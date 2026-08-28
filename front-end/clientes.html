@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Painel de gerenciamento de clientes Sonora."
+    >
+
+    <title>Sonora — Clientes</title>
+
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <!-- CSS específico -->
+    <link rel="stylesheet" href="assets/css/clientes.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <a class="brand" href="cursos.html">
+            <span>S</span>
+            sonora
+        </a>
+
+        <p class="workspace">
+            GESTÃO ACADÊMICA
+        </p>
+
+        <nav aria-label="Navegação principal">
+
+            <a
+                class="nav-item"
+                href="cursos.html"
+                data-page="cursos"
+            >
+                <i>▣</i>
+                <span>Cursos</span>
+            </a>
+
+            <a
+                class="nav-item active"
+                href="clientes.html"
+                data-page="clientes"
+            >
+                <i>♙</i>
+                <span>Clientes</span>
+            </a>
+
+            <a
+                class="nav-item"
+                href="professores.html"
+                data-page="professores"
+            >
+                <i>♧</i>
+                <span>Professores</span>
+            </a>
+
+            <a
+                class="nav-item"
+                href="instrumentos.html"
+                data-page="instrumentos"
+            >
+                <i>♬</i>
+                <span>Instrumentos</span>
+            </a>
+
+            <a
+                class="nav-item"
+                href="aulas.html"
+                data-page="aulas"
+            >
+                <i>□</i>
+                <span>Aulas</span>
+            </a>
+
+        </nav>
+
+
+        <!-- ADMINISTRADOR -->
+
+        <button
+            class="admin"
+            type="button"
+            id="admin-button"
+        >
+
+            <span class="admin-avatar">
+                AC
+            </span>
+
+            <span class="admin-info">
+                <strong>Andrea Castro</strong>
+                <small>Administradora</small>
+            </span>
+
+            <b class="admin-arrow">
+                ⌄
+            </b>
+
+        </button>
+
+
+        <!-- MENU ADMIN -->
+
+        <div
+            class="admin-menu"
+            id="admin-menu"
+            hidden
+        >
+
+            <button type="button">
+                Meu perfil
+            </button>
+
+            <button type="button">
+                Configurações
+            </button>
+
+            <button
+                type="button"
+                id="logout-button"
+            >
+                Sair
+            </button>
+
+        </div>
+
+        <div class="side-orb"></div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main class="content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    PAINEL ADMINISTRATIVO
+                </p>
+
+                <h1 id="page-title">
+                    Clientes
+                </h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="search"
+                    type="button"
+                    aria-label="Pesquisar"
+                    id="search-button"
+                >
+                    ⌕
+                </button>
+
+                <button
+                    class="bell"
+                    type="button"
+                    aria-label="Notificações"
+                    id="notification-button"
+                >
+                    ♧
+                    <i></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             PÁGINA CLIENTES
+        ====================================================== -->
+
+        <section class="page-content clientes-page">
+
+
+            <!-- =================================================
+                 INTRO
+            ================================================== -->
+
+            <div class="page-intro clientes-intro">
+
+                <div>
+
+                    <p class="eyebrow">
+                        GESTÃO DE CLIENTES
+                    </p>
+
+                    <h2>
+                        Acompanhe seus alunos.
+                    </h2>
+
+                    <p>
+                        Gerencie clientes, matrículas e informações
+                        dos alunos da Sonora em um só lugar.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-action"
+                    type="button"
+                    id="new-client-button"
+                >
+                    + Novo cliente
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CABEÇALHO DA LISTA
+            ================================================== -->
+
+            <div class="clients-section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        BASE DE CLIENTES
+                    </p>
+
+                    <h2>
+                        Todos os clientes
+                    </h2>
+
+                </div>
+
+                <span class="clients-counter" id="clients-counter">
+                    326 clientes
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTROS
+            ================================================== -->
+
+            <div class="clients-toolbar">
+
+                <div class="client-search">
+
+                    <span>
+                        ⌕
+                    </span>
+
+                    <input
+                        type="search"
+                        id="client-search"
+                        placeholder="Buscar por nome ou e-mail..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="client-filters">
+
+                    
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TABELA
+            ================================================== -->
+
+            <div class="clients-table-wrapper">
+
+                <table class="clients-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                CLIENTE
+                            </th>
+
+                            <th>
+                                CURSO
+                            </th>
+
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                AÇÕES
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="clients-list">
+
+
+                        <!-- CLIENTE 1 -->
+
+                        <tr
+                            data-name="Mariana Oliveira"
+                            data-email="mariana@email.com"
+                            data-status="active"
+                            data-course="violao"
+                        >
+
+                            <td>
+
+                                <div class="client-person">
+
+                                    <span class="client-avatar avatar-green">
+                                        MO
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Mariana Oliveira
+                                        </strong>
+
+                                        <small>
+                                            mariana@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="course-tag green-tag">
+                                    Violão
+                                </span>
+
+                            </td>
+
+
+
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="client-actions">
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- CLIENTE 2 -->
+
+                        <tr
+                            data-name="Lucas Martins"
+                            data-email="lucas@email.com"
+                            data-status="active"
+                            data-course="piano"
+                        >
+
+                            <td>
+
+                                <div class="client-person">
+
+                                    <span class="client-avatar avatar-blue">
+                                        LM
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Lucas Martins
+                                        </strong>
+
+                                        <small>
+                                            lucas@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="course-tag blue-tag">
+                                    Piano
+                                </span>
+
+                            </td>
+
+
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="client-actions">
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="view"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="edit"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="more"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- CLIENTE 3 -->
+
+                        <tr
+                            data-name="Beatriz Souza"
+                            data-email="beatriz@email.com"
+                            data-status="active"
+                            data-course="canto"
+                        >
+
+                            <td>
+
+                                <div class="client-person">
+
+                                    <span class="client-avatar avatar-rose">
+                                        BS
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Beatriz Souza
+                                        </strong>
+
+                                        <small>
+                                            beatriz@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="course-tag rose-tag">
+                                    Canto
+                                </span>
+
+                            </td>
+
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="client-actions">
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="view"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="edit"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="more"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- CLIENTE 4 -->
+
+                        <tr
+                            data-name="Pedro Henrique"
+                            data-email="pedro@email.com"
+                            data-status="inactive"
+                            data-course="violao"
+                        >
+
+                            <td>
+
+                                <div class="client-person">
+
+                                    <span class="client-avatar avatar-sand">
+                                        PH
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Pedro Henrique
+                                        </strong>
+
+                                        <small>
+                                            pedro@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="course-tag green-tag">
+                                    Violão
+                                </span>
+
+                            </td>
+
+
+                            
+
+
+                            <td>
+
+                                <span class="status inactive-status">
+                                    <i></i>
+                                    Inativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="client-actions">
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="view"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="edit"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="more"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- CLIENTE 5 -->
+
+                        <tr
+                            data-name="Camila Ferreira"
+                            data-email="camila@email.com"
+                            data-status="active"
+                            data-course="piano"
+                        >
+
+                            <td>
+
+                                <div class="client-person">
+
+                                    <span class="client-avatar avatar-purple">
+                                        CF
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Camila Ferreira
+                                        </strong>
+
+                                        <small>
+                                            camila@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="course-tag blue-tag">
+                                    Piano
+                                </span>
+
+                            </td>
+
+
+                        
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="client-actions">
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="view"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="edit"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="client-action"
+                                        data-action="more"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- ESTADO SEM RESULTADOS -->
+
+                <div
+                    class="empty-state"
+                    id="empty-state"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        ⌕
+                    </div>
+
+                    <h3>
+                        Nenhum cliente encontrado
+                    </h3>
+
+                    <p>
+                        Tente alterar os filtros ou realizar
+                        uma nova busca.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+    </main>
+
+</div>
+
+
+<!-- JAVASCRIPT GLOBAL -->
+
+<script src="assets/js/dashboard.js"></script>
+
+<!-- JAVASCRIPT DA PÁGINA -->
+
+<script src="assets/js/clientes.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Painel administrativo Sonora — Gestão de cursos."
+    >
+
+    <title>Sonora — Cursos</title>
+
+    
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+
+    <!-- CSS da página -->
+    <link rel="stylesheet" href="assets/css/cursos.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+    <aside class="sidebar">
+
+        <a class="brand" href="cursos.html">
+            <span class="brand-symbol">S</span>
+            <strong>sonora</strong>
+        </a>
+
+        <p class="workspace">
+            GESTÃO ACADÊMICA
+        </p>
+
+        <nav class="main-nav">
+
+            <a class="nav-item active" href="cursos.html">
+                <i>▣</i>
+                <span>Cursos</span>
+            </a>
+
+            <a class="nav-item" href="clientes.html">
+                <i>♙</i>
+                <span>Clientes</span>
+            </a>
+
+            <a class="nav-item" href="professores.html">
+                <i>♧</i>
+                <span>Professores</span>
+            </a>
+
+            <a class="nav-item" href="instrumentos.html">
+                <i>♬</i>
+                <span>Instrumentos</span>
+            </a>
+
+            <a class="nav-item" href="aulas.html">
+                <i>□</i>
+                <span>Aulas</span>
+            </a>
+
+        </nav>
+
+        <!-- ADMIN -->
+
+        <button class="admin" id="admin-button" type="button">
+
+            <span class="admin-avatar">
+                AC
+            </span>
+
+            <span class="admin-info">
+                <strong>Andrea Castro</strong>
+                <small>Administradora</small>
+            </span>
+
+            <b>⌄</b>
+
+        </button>
+
+        <div class="admin-menu" id="admin-menu" hidden>
+
+            <button type="button">
+                Meu perfil
+            </button>
+
+            <button type="button">
+                Configurações
+            </button>
+
+            <button type="button" id="logout-button">
+                Sair
+            </button>
+
+        </div>
+
+        <div class="side-orb"></div>
+
+    </aside>
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================== -->
+
+    <main class="content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    PAINEL ADMINISTRATIVO
+                </p>
+
+                <h1>
+                    Cursos
+                </h1>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="top-icon"
+                    type="button"
+                    aria-label="Pesquisar"
+                >
+                    ⌕
+                </button>
+
+                <button
+                    class="top-icon notification"
+                    type="button"
+                    aria-label="Notificações"
+                >
+                    ♧
+                    <span></span>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+             INTRO
+        ========================================== -->
+
+        <section class="courses-page">
+
+            <div class="page-intro">
+
+                <div>
+
+                    <p class="eyebrow green">
+                        VISÃO GERAL
+                    </p>
+
+                    <h2>
+                        Gerencie a jornada de aprendizado.
+                    </h2>
+
+                    <p class="intro-description">
+                        Organize cursos, professores, instrumentos e turmas em um só lugar.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-action"
+                    id="new-course-button"
+                    type="button"
+                >
+                    <span>+</span>
+                    Novo curso
+                </button>
+
+            </div>
+
+
+            <!-- =========================================
+                 ESTATÍSTICAS
+            ========================================== -->
+
+            
+
+
+            <!-- =========================================
+                 CATÁLOGO
+            ========================================== -->
+
+            <div class="section-title">
+
+                <div>
+
+                    <p class="eyebrow green">
+                        CURSOS EM DESTAQUE
+                    </p>
+
+                    <h2>
+                        Seu catálogo
+                    </h2>
+
+                </div>
+
+                <a
+                    href="instrumentos.html"
+                    class="catalog-link"
+                >
+                    Ver instrumentos →
+                </a>
+
+            </div>
+
+
+            <!-- =========================================
+                 CURSOS
+            ========================================== -->
+
+            <div class="course-grid">
+
+
+                <!-- CURSO 1 -->
+
+                <article class="course-card">
+
+                    <div class="course-cover guitar">
+
+                        <span class="cover-symbol">
+                            ϟ
+                        </span>
+
+                        <b>
+                            ATIVO
+                        </b>
+
+                    </div>
+
+                    <div class="course-info">
+
+                        <p class="course-category">
+                            VIOLÃO · INICIANTE
+                        </p>
+
+                        <h3>
+                            Fundamentos do violão
+                        </h3>
+
+                        <div class="course-meta">
+
+                            <span>
+                                8 aulas
+                            </span>
+
+                            <span>•</span>
+
+                            <span>
+                                42 alunos
+                            </span>
+
+                        </div>
+
+                        <div class="teacher">
+
+                            <span class="teacher-avatar">
+                                RB
+                            </span>
+
+                            <strong>
+                                Rafael Bastos
+                            </strong>
+
+                            <a href="aulas.html">
+                                Ver aulas →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CURSO 2 -->
+
+                <article class="course-card">
+
+                    <div class="course-cover piano">
+
+                        <span class="cover-symbol">
+                            ♪
+                        </span>
+
+                        <b>
+                            ATIVO
+                        </b>
+
+                    </div>
+
+                    <div class="course-info">
+
+                        <p class="course-category">
+                            PIANO · INTERMEDIÁRIO
+                        </p>
+
+                        <h3>
+                            Harmonia e improviso
+                        </h3>
+
+                        <div class="course-meta">
+
+                            <span>
+                                12 aulas
+                            </span>
+
+                            <span>•</span>
+
+                            <span>
+                                28 alunos
+                            </span>
+
+                        </div>
+
+                        <div class="teacher">
+
+                            <span class="teacher-avatar">
+                                LS
+                            </span>
+
+                            <strong>
+                                Luiza Serra
+                            </strong>
+
+                            <a href="aulas.html">
+                                Ver aulas →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CURSO 3 -->
+
+                <article class="course-card">
+
+                    <div class="course-cover voice">
+
+                        <span class="cover-symbol">
+                            ♫
+                        </span>
+
+                        <b>
+                            ATIVO
+                        </b>
+
+                    </div>
+
+                    <div class="course-info">
+
+                        <p class="course-category">
+                            CANTO · TODOS OS NÍVEIS
+                        </p>
+
+                        <h3>
+                            A voz em movimento
+                        </h3>
+
+                        <div class="course-meta">
+
+                            <span>
+                                10 aulas
+                            </span>
+
+                            <span>•</span>
+
+                            <span>
+                                36 alunos
+                            </span>
+
+                        </div>
+
+                        <div class="teacher">
+
+                            <span class="teacher-avatar">
+                                CA
+                            </span>
+
+                            <strong>
+                                Clara Almeida
+                            </strong>
+
+                            <a href="aulas.html">
+                                Ver aulas →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- =========================================
+                 AÇÕES RÁPIDAS
+            ========================================== -->
+
+            <div class="quick-actions">
+
+                <button
+                    type="button"
+                    data-toast="Editor de cursos em breve."
+                >
+
+                    <span class="quick-icon green">
+                        +
+                    </span>
+
+                    <div>
+                        <strong>
+                            Criar curso
+                        </strong>
+
+                        <small>
+                            Adicionar novo curso ao catálogo
+                        </small>
+                    </div>
+
+                </button>
+
+
+                <a href="professores.html">
+
+                    <span class="quick-icon gold">
+                        ♧
+                    </span>
+
+                    <div>
+                        <strong>
+                            Gerenciar professores
+                        </strong>
+
+                        <small>
+                            Visualizar e gerenciar sua equipe
+                        </small>
+                    </div>
+
+                </a>
+
+
+                <a href="aulas.html">
+
+                    <span class="quick-icon rose">
+                        □
+                    </span>
+
+                    <div>
+                        <strong>
+                            Ver agenda
+                        </strong>
+
+                        <small>
+                            Acompanhe as aulas agendadas
+                        </small>
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOAST -->
+
+        <div
+            class="toast"
+            id="toast"
+            aria-live="polite"
+        ></div>
+
+    </main>
+
+</div>
+
+
+<script src="assets/js/global.js"></script>
+<script src="assets/js/cursos.js"></script>
+
+</body>
+</html>

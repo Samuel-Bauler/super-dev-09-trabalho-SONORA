@@ -1,0 +1,890 @@
+/* =========================================================
+   PROFESSORES
+========================================================= */
+
+.professores-page {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.professores-intro {
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   ESTATÍSTICAS
+========================================================= */
+
+.teacher-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 42px;
+}
+
+.teacher-stat {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    min-height: 120px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(25, 42, 35, 0.07);
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 14px rgba(20, 35, 29, 0.04),
+        0 15px 30px rgba(20, 35, 29, 0.04);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.teacher-stat:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 18px rgba(20, 35, 29, 0.06),
+        0 20px 35px rgba(20, 35, 29, 0.07);
+}
+
+
+/* =========================================================
+   ÍCONES
+========================================================= */
+
+.teacher-stat-icon {
+    width: 46px;
+    height: 46px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.teacher-stat-icon.green {
+    color: #126048;
+    background: #dcece2;
+}
+
+.teacher-stat-icon.blue {
+    color: #2167a5;
+    background: #dcebf6;
+}
+
+.teacher-stat-icon.sand {
+    color: #916d22;
+    background: #f3e6c6;
+}
+
+.teacher-stat-icon.rose {
+    color: #a44c5b;
+    background: #f4dfe2;
+}
+
+
+/* =========================================================
+   CONTEÚDO ESTATÍSTICA
+========================================================= */
+
+.teacher-stat-content {
+    min-width: 0;
+}
+
+.teacher-stat-content strong {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: #102d26;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    line-height: 1;
+}
+
+.teacher-stat-content p {
+    margin: 5px 0 8px;
+
+    color: #687872;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.teacher-stat-content em {
+    display: block;
+
+    color: #247054;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    font-style: normal;
+}
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.teachers-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 18px;
+}
+
+.teachers-section-header h2 {
+    margin: 5px 0 0;
+
+    color: #102f27;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    letter-spacing: -0.7px;
+}
+
+.teachers-counter {
+    padding-bottom: 4px;
+
+    color: #6f7d77;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.teachers-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 14px;
+
+    padding: 14px;
+
+    border: 1px solid rgba(25, 42, 35, 0.07);
+    border-radius: 15px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 5px 18px rgba(20, 35, 29, 0.035);
+}
+
+
+/* =========================================================
+   BUSCA
+========================================================= */
+
+.teacher-search {
+    width: min(420px, 100%);
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    height: 42px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e5e9e5;
+    border-radius: 10px;
+
+    background: #fafbf9;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.teacher-search:focus-within {
+    border-color: #8fb6a5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(40, 105, 81, 0.08);
+}
+
+.teacher-search span {
+    color: #82908a;
+
+    font-size: 18px;
+}
+
+.teacher-search input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    color: #182c26;
+    background: transparent;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.teacher-search input::placeholder {
+    color: #9ba6a1;
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.teacher-filters {
+    display: flex;
+    gap: 9px;
+}
+
+.teacher-filters select {
+    height: 42px;
+
+    padding:
+        0 30px
+        0 12px;
+
+    border: 1px solid #e5e9e5;
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #4d5d56;
+    background: #fafbf9;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.teacher-filters select:focus {
+    border-color: #8fb6a5;
+
+    box-shadow:
+        0 0 0 3px rgba(40, 105, 81, 0.07);
+}
+
+
+/* =========================================================
+   TABELA
+========================================================= */
+
+.teachers-table-wrapper {
+    overflow: hidden;
+
+    border: 1px solid rgba(25, 42, 35, 0.07);
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 22px rgba(20, 35, 29, 0.045);
+}
+
+.teachers-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    table-layout: auto;
+}
+
+
+/* =========================================================
+   CABEÇALHO DA TABELA
+========================================================= */
+
+.teachers-table thead {
+    background: #1f4c3e;
+}
+
+.teachers-table th {
+    padding: 15px 18px;
+
+    border-bottom:
+        1px solid #e7ece8;
+
+    color: #ffffff;
+
+    text-align: left;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 10px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LINHAS
+========================================================= */
+
+.teachers-table tbody tr {
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease;
+}
+
+.teachers-table tbody tr:hover {
+    background: #f9fbf9;
+}
+
+.teachers-table td {
+    padding: 17px 18px;
+
+    border-bottom:
+        1px solid #edf1ee;
+
+    color: #53645c;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.teachers-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   PESSOA
+========================================================= */
+
+.teacher-person {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 240px;
+}
+
+.teacher-person > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+
+    min-width: 0;
+}
+
+.teacher-person strong {
+    color: #142d25;
+
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.teacher-person small {
+    color: #8b9892;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.teacher-avatar {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 10px;
+    font-weight: 900;
+}
+
+.avatar-green {
+    color: #24634f;
+    background: #dcebe2;
+}
+
+.avatar-blue {
+    color: #24699f;
+    background: #deedf6;
+}
+
+.avatar-rose {
+    color: #9c4a59;
+    background: #f3dce0;
+}
+
+.avatar-sand {
+    color: #876b28;
+    background: #f2e5c6;
+}
+
+.avatar-purple {
+    color: #71518e;
+    background: #e9dff1;
+}
+
+
+/* =========================================================
+   ESPECIALIDADE
+========================================================= */
+
+.specialty-tag {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.green-tag {
+    color: #28634f;
+    background: #e3f0e8;
+}
+
+.blue-tag {
+    color: #27699e;
+    background: #e3eff7;
+}
+
+.rose-tag {
+    color: #9e4d5b;
+    background: #f5e1e4;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.status i {
+    width: 7px;
+    height: 7px;
+
+    display: block;
+
+    border-radius: 50%;
+}
+
+.active-status {
+    color: #267054;
+}
+
+.active-status i {
+    background: #2e9b6e;
+
+    box-shadow:
+        0 0 0 3px rgba(46, 155, 110, 0.10);
+}
+
+.inactive-status {
+    color: #9b6269;
+}
+
+.inactive-status i {
+    background: #d27a85;
+}
+
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.teacher-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.teacher-action {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 8px;
+
+    color: #64746d;
+
+    background: transparent;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.teacher-action:hover {
+    color: #17604b;
+
+    background: #eaf3ed;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+========================================================= */
+
+.empty-state {
+    padding: 65px 20px;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    border-radius: 14px;
+
+    color: #23644f;
+    background: #e2eee7;
+
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.empty-state h3 {
+    margin: 0 0 6px;
+
+    color: #19352c;
+
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.empty-state p {
+    margin: 0;
+
+    color: #7e8a85;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   AÇÕES RÁPIDAS
+========================================================= */
+
+.teacher-quick-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    margin-top: 18px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(25, 42, 35, 0.07);
+
+    border-radius: 17px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 7px 22px rgba(20, 35, 29, 0.04);
+}
+
+.teacher-quick-actions button,
+.teacher-quick-actions a {
+    min-height: 75px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 12px 18px;
+
+    border: 0;
+
+    color: #173b31;
+    background: transparent;
+
+    text-decoration: none;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+}
+
+.teacher-quick-actions button:not(:last-child)::after,
+.teacher-quick-actions a:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    top: 20px;
+    right: 0;
+
+    width: 1px;
+    height: 35px;
+
+    background: #e6ebe7;
+}
+
+.teacher-quick-actions button:hover,
+.teacher-quick-actions a:hover {
+    background: #f8faf7;
+}
+
+.teacher-quick-actions > button > span,
+.teacher-quick-actions > a > span {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: #17604b;
+    background: #dcebe2;
+
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.teacher-quick-actions > a:nth-child(2) > span {
+    color: #846724;
+    background: #f1e2bd;
+}
+
+.teacher-quick-actions > a:nth-child(3) > span {
+    color: #9b4b5a;
+    background: #f2dce0;
+}
+
+.teacher-quick-actions strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #182d26;
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.teacher-quick-actions small {
+    color: #87928d;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .teacher-stats {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .teachers-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .teachers-table {
+        min-width: 900px;
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .teacher-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .teachers-section-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .teachers-toolbar {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+    .teacher-search {
+        width: 100%;
+    }
+
+    .teacher-filters {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .teacher-filters select {
+        width: 100%;
+    }
+
+    .teacher-quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-quick-actions button,
+    .teacher-quick-actions a {
+        min-height: 65px;
+    }
+
+    .teacher-quick-actions button:not(:last-child)::after,
+    .teacher-quick-actions a:not(:last-child)::after {
+        top: auto;
+        right: 15px;
+        bottom: 0;
+
+        width: calc(100% - 30px);
+        height: 1px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .teacher-stat {
+        padding: 16px;
+    }
+
+    .teacher-stat-content strong {
+        font-size: 24px;
+    }
+
+    .teacher-filters {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-person {
+        min-width: 210px;
+    }
+}

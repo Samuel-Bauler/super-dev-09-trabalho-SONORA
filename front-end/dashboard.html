@@ -1,568 +1,256 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Painel de gerenciamento de cursos Sonora." />
-    <title>Sonora — Gestão de cursos</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
-      rel="stylesheet"
+    <meta
+        name="description"
+        content="Painel administrativo Sonora."
     />
 
+    <title>Sonora — Painel Administrativo</title>
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- CSS global -->
     <link rel="stylesheet" href="assets/css/dashboard.css" />
-  </head>
 
-  <body>
+    <!-- CSS específico da página -->
+    <!--
+    <link rel="stylesheet" href="assets/css/cursos.css" />
+    -->
+</head>
+
+<body>
+
     <div class="app">
-      <aside class="sidebar">
-        <a class="brand" href="#cursos">
-          <span>S</span>
-          sonora
-        </a>
 
-        <p class="workspace">GESTÃO ACADÊMICA</p>
+        <!-- =========================================
+             SIDEBAR
+        ========================================== -->
 
-        <nav aria-label="Navegação principal">
-          <button class="nav-item active" type="button" data-page="cursos">
-            <i>▣</i>
-            Cursos
-          </button>
+        <aside class="sidebar">
 
-          <button class="nav-item" type="button" data-page="clientes">
-            <i>♙</i>
-            Clientes
-          </button>
+            <a class="brand" href="cursos.html">
+                <span>S</span>
+                sonora
+            </a>
 
-          <button class="nav-item" type="button" data-page="professores">
-            <i>♧</i>
-            Professores
-          </button>
+            <p class="workspace">
+                GESTÃO ACADÊMICA
+            </p>
 
-          <button class="nav-item" type="button" data-page="instrumentos">
-            <i>♬</i>
-            Instrumentos
-          </button>
+            <nav aria-label="Navegação principal">
 
-          <button class="nav-item" type="button" data-page="aulas">
-            <i>□</i>
-            Aulas
-          </button>
-        </nav>
+                <a
+                    class="nav-item"
+                    href="cursos.html"
+                    data-page="cursos"
+                >
+                    <i>▣</i>
+                    <span>Cursos</span>
+                </a>
 
-        <div class="sidebar-flow">
-          <p>FLUXO DO CURSO</p>
-          <span>Clientes</span>
-          <b>↓</b>
-          <span>Professores</span>
-          <b>↓</b>
-          <strong>Cursos</strong>
-          <b>↓</b>
-          <span>Instrumentos · Aulas</span>
-        </div>
+                <a
+                    class="nav-item"
+                    href="clientes.html"
+                    data-page="clientes"
+                >
+                    <i>♙</i>
+                    <span>Clientes</span>
+                </a>
 
-        <button class="admin" type="button">
-          <span>AC</span>
+                <a
+                    class="nav-item"
+                    href="professores.html"
+                    data-page="professores"
+                >
+                    <i>♧</i>
+                    <span>Professores</span>
+                </a>
 
-          <span>
-            <strong>Andrea Castro</strong>
-            <small>Administradora</small>
-          </span>
+                <a
+                    class="nav-item"
+                    href="instrumentos.html"
+                    data-page="instrumentos"
+                >
+                    <i>♬</i>
+                    <span>Instrumentos</span>
+                </a>
 
-          <b>⌄</b>
-        </button>
+                <a
+                    class="nav-item"
+                    href="aulas.html"
+                    data-page="aulas"
+                >
+                    <i>□</i>
+                    <span>Aulas</span>
+                </a>
 
-        <div class="side-orb"></div>
-      </aside>
+            </nav>
 
-      <main class="content">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">PAINEL ADMINISTRATIVO</p>
-            <h1 id="page-title">Cursos</h1>
-          </div>
 
-          <div class="top-actions">
-            <button class="search" type="button" aria-label="Pesquisar">⌕</button>
-
-            <button class="bell" type="button" aria-label="Notificações">
-              ♧
-              <i></i>
-            </button>
-          </div>
-        </header>
-
-        <section class="page active" id="cursos">
-          <div class="page-intro">
-            <div>
-              <p class="eyebrow">VISÃO GERAL</p>
-              <h2>Gerencie a jornada de aprendizado.</h2>
-              <p>
-                Organize cursos, professores, instrumentos e turmas em um só
-                lugar.
-              </p>
-            </div>
+            <!-- ADMINISTRADOR -->
 
             <button
-              class="primary-action"
-              type="button"
-              data-toast="Novo curso criado com sucesso."
+                class="admin"
+                type="button"
+                id="admin-button"
             >
-              + Novo curso
+
+                <span class="admin-avatar">
+                    AC
+                </span>
+
+                <span class="admin-info">
+                    <strong>Andrea Castro</strong>
+                    <small>Administradora</small>
+                </span>
+
+                <b class="admin-arrow">
+                    ⌄
+                </b>
+
             </button>
-          </div>
 
-          <div class="stats">
-            <article>
-              <span class="stat-icon green">▣</span>
 
-              <div>
-                <strong>24</strong>
-                <p>Cursos ativos</p>
-              </div>
+            <!-- MENU DO ADMIN -->
 
-              <em>+ 3 este mês</em>
-            </article>
-
-            <article>
-              <span class="stat-icon sand">♧</span>
-
-              <div>
-                <strong>18</strong>
-                <p>Professores</p>
-              </div>
-
-              <em>2 disponíveis</em>
-            </article>
-
-            <article>
-              <span class="stat-icon blue">♙</span>
-
-              <div>
-                <strong>326</strong>
-                <p>Alunos matriculados</p>
-              </div>
-
-              <em>+ 12 esta semana</em>
-            </article>
-
-            <article>
-              <span class="stat-icon rose">□</span>
-
-              <div>
-                <strong>42</strong>
-                <p>Aulas esta semana</p>
-              </div>
-
-              <em>8 hoje</em>
-            </article>
-          </div>
-
-          <div class="section-title">
-            <div>
-              <p class="eyebrow">CURSOS EM DESTAQUE</p>
-              <h2>Seu catálogo</h2>
-            </div>
-
-            <button class="text-button" type="button" data-page="instrumentos">
-              Ver instrumentos →
-            </button>
-          </div>
-
-          <div class="course-grid">
-            <article class="course-card">
-              <div class="course-cover guitar">
-                <span>⌁</span>
-                <b>ATIVO</b>
-              </div>
-
-              <div class="course-info">
-                <p>VIOLÃO · INICIANTE</p>
-                <h3>Fundamentos do violão</h3>
-
-                <div class="course-meta">
-                  <span>8 aulas</span>
-                  <span>•</span>
-                  <span>42 alunos</span>
-                </div>
-
-                <div class="teacher">
-                  <i>RB</i>
-                  <span>Rafael Bastos</span>
-
-                  <button type="button" data-page="aulas">
-                    Ver aulas →
-                  </button>
-                </div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <div class="course-cover piano">
-                <span>♩</span>
-                <b>ATIVO</b>
-              </div>
-
-              <div class="course-info">
-                <p>PIANO · INTERMEDIÁRIO</p>
-                <h3>Harmonia e improviso</h3>
-
-                <div class="course-meta">
-                  <span>12 aulas</span>
-                  <span>•</span>
-                  <span>28 alunos</span>
-                </div>
-
-                <div class="teacher">
-                  <i>LS</i>
-                  <span>Luiza Serra</span>
-
-                  <button type="button" data-page="aulas">
-                    Ver aulas →
-                  </button>
-                </div>
-              </div>
-            </article>
-
-            <article class="course-card">
-              <div class="course-cover voice">
-                <span>◌</span>
-                <b>ATIVO</b>
-              </div>
-
-              <div class="course-info">
-                <p>CANTO · TODOS OS NÍVEIS</p>
-                <h3>A voz em movimento</h3>
-
-                <div class="course-meta">
-                  <span>10 aulas</span>
-                  <span>•</span>
-                  <span>36 alunos</span>
-                </div>
-
-                <div class="teacher">
-                  <i>CA</i>
-                  <span>Clara Almeida</span>
-
-                  <button type="button" data-page="aulas">
-                    Ver aulas →
-                  </button>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="flow-card">
-            <div>
-              <p class="eyebrow">MAPA DE RELACIONAMENTOS</p>
-              <h2>O curso conecta toda a sua operação.</h2>
-            </div>
-
-            <div class="flow-map">
-              <button data-page="clientes">Clientes</button>
-              <span>→</span>
-
-              <button data-page="professores">Professores</button>
-              <span>→</span>
-
-              <strong>Cursos</strong>
-              <span>→</span>
-
-              <button data-page="instrumentos">Instrumentos</button>
-              <span>→</span>
-
-              <button data-page="aulas">Aulas</button>
-            </div>
-          </div>
-        </section>
-
-        <section class="page" id="clientes">
-          <div class="page-intro compact">
-            <div>
-              <p class="eyebrow">CADASTRO</p>
-              <h2>Clientes e matrículas</h2>
-              <p>Controle os alunos conectados aos seus cursos.</p>
-            </div>
-
-            <button
-              class="primary-action"
-              type="button"
-              data-toast="Novo cliente adicionado."
+            <div
+                class="admin-menu"
+                id="admin-menu"
+                hidden
             >
-              + Novo cliente
-            </button>
-          </div>
 
-          <div class="toolbar">
-            <input type="search" placeholder="Buscar cliente" />
-            <button>Todos os cursos⌄</button>
-            <button>Ativos⌄</button>
-          </div>
+                <button type="button">
+                    Meu perfil
+                </button>
 
-          <div class="data-card">
-            <table>
-              <thead>
-                <tr>
-                  <th>CLIENTE</th>
-                  <th>CURSO</th>
-                  <th>PROGRESSO</th>
-                  <th>STATUS</th>
-                  <th></th>
-                </tr>
-              </thead>
+                <button type="button">
+                    Configurações
+                </button>
 
-              <tbody>
-                <tr>
-                  <td>
-                    <span class="person rose-bg">MF</span>
-                    Marina Ferreira
-                  </td>
-                  <td>Fundamentos do violão</td>
-                  <td>
-                    <span class="mini-progress"><i></i></span>
-                    68%
-                  </td>
-                  <td><b class="tag active-tag">Ativo</b></td>
-                  <td>•••</td>
-                </tr>
+                <button
+                    type="button"
+                    id="logout-button"
+                >
+                    Sair
+                </button>
 
-                <tr>
-                  <td>
-                    <span class="person blue-bg">JP</span>
-                    João Pedro Lima
-                  </td>
-                  <td>Harmonia e improviso</td>
-                  <td>
-                    <span class="mini-progress half"><i></i></span>
-                    42%
-                  </td>
-                  <td><b class="tag active-tag">Ativo</b></td>
-                  <td>•••</td>
-                </tr>
-
-                <tr>
-                  <td>
-                    <span class="person gold-bg">AS</span>
-                    Ana Souza
-                  </td>
-                  <td>A voz em movimento</td>
-                  <td>
-                    <span class="mini-progress high"><i></i></span>
-                    86%
-                  </td>
-                  <td><b class="tag pending-tag">Pendente</b></td>
-                  <td>•••</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="page" id="professores">
-          <div class="page-intro compact">
-            <div>
-              <p class="eyebrow">EQUIPE</p>
-              <h2>Professores</h2>
-              <p>Disponibilidade e especialidades da sua equipe.</p>
             </div>
 
-            <button
-              class="primary-action"
-              type="button"
-              data-toast="Novo professor adicionado."
-            >
-              + Novo professor
-            </button>
-          </div>
 
-          <div class="people-grid">
-            <article>
-              <span class="large-person sand-bg">RB</span>
-              <p>VIOLÃO · TEORIA</p>
-              <h3>Rafael Bastos</h3>
-              <small>4 cursos · 86 alunos</small>
+            <div class="side-orb"></div>
 
-              <div>
-                <b class="tag active-tag">Disponível</b>
-                <button data-page="cursos">Ver cursos →</button>
-              </div>
-            </article>
+        </aside>
 
-            <article>
-              <span class="large-person green-bg">LS</span>
-              <p>PIANO · HARMONIA</p>
-              <h3>Luiza Serra</h3>
-              <small>3 cursos · 64 alunos</small>
 
-              <div>
-                <b class="tag active-tag">Disponível</b>
-                <button data-page="cursos">Ver cursos →</button>
-              </div>
-            </article>
+        <!-- =========================================
+             CONTEÚDO PRINCIPAL
+        ========================================== -->
 
-            <article>
-              <span class="large-person rose-bg">CA</span>
-              <p>CANTO · PERFORMANCE</p>
-              <h3>Clara Almeida</h3>
-              <small>2 cursos · 51 alunos</small>
+        <main class="content">
 
-              <div>
-                <b class="tag pending-tag">Em aula</b>
-                <button data-page="cursos">Ver cursos →</button>
-              </div>
-            </article>
-          </div>
-        </section>
+            <!-- TOPBAR -->
 
-        <section class="page" id="instrumentos">
-          <div class="page-intro compact">
-            <div>
-              <p class="eyebrow">CATÁLOGO</p>
-              <h2>Instrumentos</h2>
-              <p>Organize os instrumentos disponíveis para cada curso.</p>
-            </div>
-
-            <button
-              class="primary-action"
-              type="button"
-              data-toast="Instrumento adicionado ao catálogo."
-            >
-              + Novo instrumento
-            </button>
-          </div>
-
-          <div class="instrument-grid">
-            <article>
-              <span>⌁</span>
-
-              <div>
-                <p>CORDAS</p>
-                <h3>Violão clássico</h3>
-                <small>Vinculado a 4 cursos</small>
-              </div>
-
-              <b class="tag active-tag">12 disponíveis</b>
-            </article>
-
-            <article>
-              <span>♩</span>
-
-              <div>
-                <p>TECLAS</p>
-                <h3>Piano digital</h3>
-                <small>Vinculado a 3 cursos</small>
-              </div>
-
-              <b class="tag active-tag">6 disponíveis</b>
-            </article>
-
-            <article>
-              <span>◌</span>
-
-              <div>
-                <p>SOPROS</p>
-                <h3>Flauta transversal</h3>
-                <small>Vinculado a 1 curso</small>
-              </div>
-
-              <b class="tag pending-tag">3 disponíveis</b>
-            </article>
-          </div>
-        </section>
-
-        <section class="page" id="aulas">
-          <div class="page-intro compact">
-            <div>
-              <p class="eyebrow">AGENDA ACADÊMICA</p>
-              <h2>Aulas</h2>
-              <p>Acompanhe as aulas vinculadas aos cursos ativos.</p>
-            </div>
-
-            <button
-              class="primary-action"
-              type="button"
-              data-toast="Nova aula agendada."
-            >
-              + Agendar aula
-            </button>
-          </div>
-
-          <div class="calendar-card">
-            <div class="calendar-head">
-              <button>‹</button>
-              <h3>Agosto 2026</h3>
-              <button>›</button>
-            </div>
-
-            <div class="lesson-list">
-              <article>
-                <time>
-                  <b>28</b>
-                  <span>QUI</span>
-                </time>
+            <header class="topbar">
 
                 <div>
-                  <p>18:30 — 19:20</p>
-                  <h3>Acordes com sétima</h3>
-                  <small>
-                    Fundamentos do violão · Prof. Rafael Bastos
-                  </small>
+
+                    <p class="eyebrow">
+                        PAINEL ADMINISTRATIVO
+                    </p>
+
+                    <h1 id="page-title">
+                        Cursos
+                    </h1>
+
                 </div>
 
-                <b class="tag active-tag">Confirmada</b>
 
-                <button data-toast="Aula aberta.">→</button>
-              </article>
+                <div class="top-actions">
 
-              <article>
-                <time>
-                  <b>29</b>
-                  <span>SEX</span>
-                </time>
+                    <button
+                        class="search"
+                        type="button"
+                        aria-label="Pesquisar"
+                        id="search-button"
+                    >
+                        ⌕
+                    </button>
 
-                <div>
-                  <p>16:00 — 17:00</p>
-                  <h3>Campo harmônico maior</h3>
-                  <small>
-                    Harmonia e improviso · Profa. Luiza Serra
-                  </small>
+
+                    <button
+                        class="bell"
+                        type="button"
+                        aria-label="Notificações"
+                        id="notification-button"
+                    >
+
+                        ♧
+
+                        <i></i>
+
+                    </button>
+
                 </div>
 
-                <b class="tag pending-tag">8 vagas</b>
+            </header>
 
-                <button data-toast="Aula aberta.">→</button>
-              </article>
 
-              <article>
-                <time>
-                  <b>30</b>
-                  <span>SÁB</span>
-                </time>
+            <!--
+                O conteúdo específico de cada página
+                ficará aqui.
+            -->
 
-                <div>
-                  <p>10:00 — 10:50</p>
-                  <h3>Respiração e apoio</h3>
-                  <small>
-                    A voz em movimento · Profa. Clara Almeida
-                  </small>
-                </div>
+            <section class="page-content">
 
-                <b class="tag active-tag">Confirmada</b>
+                <!--
+                    CURSOS
+                    CLIENTES
+                    PROFESSORES
+                    INSTRUMENTOS
+                    AULAS
 
-                <button data-toast="Aula aberta.">→</button>
-              </article>
-            </div>
-          </div>
-        </section>
+                    entram aqui.
+                -->
 
-        <p class="toast" aria-live="polite"></p>
-      </main>
+            </section>
+
+
+            <!-- TOAST GLOBAL -->
+
+            <p
+                class="toast"
+                id="toast"
+                aria-live="polite"
+            ></p>
+
+        </main>
+
     </div>
 
+
+    <!-- JS GLOBAL -->
+
     <script src="assets/js/dashboard.js"></script>
-  </body>
+
+    <!-- JS específico da página -->
+    <!--
+    <script src="assets/js/cursos.js"></script>
+    -->
+
+</body>
 </html>

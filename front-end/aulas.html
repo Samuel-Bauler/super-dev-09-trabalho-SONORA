@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sonora — Aulas</title>
+
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/aulas.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <a class="brand" href="cursos.html">
+            <span>S</span>
+            sonora
+        </a>
+
+        <p class="workspace">
+            GESTÃO ACADÊMICA
+        </p>
+
+        <nav aria-label="Navegação principal">
+
+            <a class="nav-item" href="cursos.html">
+                <i>▣</i>
+                <span>Cursos</span>
+            </a>
+
+            <a class="nav-item" href="clientes.html">
+                <i>♙</i>
+                <span>Clientes</span>
+            </a>
+
+            <a class="nav-item" href="professores.html">
+                <i>♧</i>
+                <span>Professores</span>
+            </a>
+
+            <a class="nav-item" href="instrumentos.html">
+                <i>♬</i>
+                <span>Instrumentos</span>
+            </a>
+
+            <a class="nav-item active" href="aulas.html">
+                <i>□</i>
+                <span>Aulas</span>
+            </a>
+
+        </nav>
+
+        <!-- ADMIN -->
+        <button class="admin" type="button" id="admin-button">
+
+            <span class="admin-avatar">
+                AC
+            </span>
+
+            <span class="admin-info">
+                <strong>Andrea Castro</strong>
+                <small>Administradora</small>
+            </span>
+
+            <b class="admin-arrow">
+                ⌄
+            </b>
+
+        </button>
+
+        <div
+            class="admin-menu"
+            id="admin-menu"
+            hidden
+        >
+            <button type="button">
+                Meu perfil
+            </button>
+
+            <button type="button">
+                Configurações
+            </button>
+
+            <button type="button" id="logout-button">
+                Sair
+            </button>
+        </div>
+
+        <div class="side-orb"></div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO -->
+    <main class="content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="eyebrow">
+                    PAINEL ADMINISTRATIVO
+                </p>
+
+                <h1>
+                    Aulas
+                </h1>
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    class="search"
+                    type="button"
+                    aria-label="Pesquisar"
+                >
+                    ⌕
+                </button>
+
+                <button
+                    class="bell"
+                    type="button"
+                    aria-label="Notificações"
+                >
+                    ♧
+                    <i></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- PÁGINA -->
+        <section class="page-content aulas-page">
+
+            <div class="aulas-header">
+
+                <div>
+                    <p class="eyebrow">
+                        AGENDA ACADÊMICA
+                    </p>
+
+                    <h2>
+                        Aulas agendadas
+                    </h2>
+
+                    <p>
+                        Acompanhe os horários e a duração das aulas dos alunos.
+                    </p>
+                </div>
+
+                <button
+                    class="aula-primary-button"
+                    type="button"
+                    id="new-aula-button"
+                >
+                    + Nova aula
+                </button>
+
+            </div>
+
+
+            <!-- TABELA -->
+            <div class="aulas-table-wrapper">
+
+                <div class="aulas-table-top">
+
+                    <div>
+                        <strong>
+                            Próximas aulas
+                        </strong>
+
+                        <span id="aulas-counter">
+                            8 aulas
+                        </span>
+                    </div>
+
+                    <div class="aulas-search">
+
+                        <span>⌕</span>
+
+                        <input
+                            type="search"
+                            id="aula-search"
+                            placeholder="Buscar cliente..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <table class="aulas-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>CLIENTE</th>
+
+                            <th>DIA</th>
+
+                            <th>INSTRUMENTO</th>
+
+                            <th>HORÁRIO</th>
+
+                            <th>DURAÇÃO</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="aulas-list">
+
+                        <tr
+                            data-client="Mariana Oliveira"
+                            data-instrument="Violão"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-green">
+                                        MO
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Mariana Oliveira
+                                        </strong>
+
+                                        <small>
+                                            mariana@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Segunda
+                                </span>
+                                <small class="aula-date">
+                                    31 Ago 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag green-tag">
+                                    Violão
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    09:00
+                                </strong>
+                                <small>manhã</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    60 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Lucas Martins"
+                            data-instrument="Piano"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-blue">
+                                        LM
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Lucas Martins
+                                        </strong>
+
+                                        <small>
+                                            lucas@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Segunda
+                                </span>
+                                <small class="aula-date">
+                                    31 Ago 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag blue-tag">
+                                    Piano
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    10:30
+                                </strong>
+                                <small>manhã</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    45 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Beatriz Souza"
+                            data-instrument="Canto"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-rose">
+                                        BS
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Beatriz Souza
+                                        </strong>
+
+                                        <small>
+                                            beatriz@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Terça
+                                </span>
+                                <small class="aula-date">
+                                    01 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag rose-tag">
+                                    Canto
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    14:00
+                                </strong>
+                                <small>tarde</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    60 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Pedro Henrique"
+                            data-instrument="Violão"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-sand">
+                                        PH
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Pedro Henrique
+                                        </strong>
+
+                                        <small>
+                                            pedro@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Terça
+                                </span>
+                                <small class="aula-date">
+                                    01 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag green-tag">
+                                    Violão
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    16:00
+                                </strong>
+                                <small>tarde</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    45 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Camila Ferreira"
+                            data-instrument="Piano"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-purple">
+                                        CF
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Camila Ferreira
+                                        </strong>
+
+                                        <small>
+                                            camila@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Quarta
+                                </span>
+                                <small class="aula-date">
+                                    02 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag blue-tag">
+                                    Piano
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    08:30
+                                </strong>
+                                <small>manhã</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    60 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Rafael Almeida"
+                            data-instrument="Bateria"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-dark">
+                                        RA
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Rafael Almeida
+                                        </strong>
+
+                                        <small>
+                                            rafael@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Quarta
+                                </span>
+                                <small class="aula-date">
+                                    02 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag dark-tag">
+                                    Bateria
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    15:30
+                                </strong>
+                                <small>tarde</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    90 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Juliana Costa"
+                            data-instrument="Teclado"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-green">
+                                        JC
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Juliana Costa
+                                        </strong>
+
+                                        <small>
+                                            juliana@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Quinta
+                                </span>
+                                <small class="aula-date">
+                                    03 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag green-tag">
+                                    Teclado
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    11:00
+                                </strong>
+                                <small>manhã</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    60 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr
+                            data-client="Gabriel Santos"
+                            data-instrument="Guitarra"
+                        >
+
+                            <td>
+                                <div class="aula-client">
+
+                                    <span class="aula-avatar avatar-blue">
+                                        GS
+                                    </span>
+
+                                    <div>
+                                        <strong>
+                                            Gabriel Santos
+                                        </strong>
+
+                                        <small>
+                                            gabriel@email.com
+                                        </small>
+                                    </div>
+
+                                </div>
+                            </td>
+
+                            <td>
+                                <span class="aula-day">
+                                    Sexta
+                                </span>
+                                <small class="aula-date">
+                                    04 Set 2026
+                                </small>
+                            </td>
+
+                            <td>
+                                <span class="instrument-tag blue-tag">
+                                    Guitarra
+                                </span>
+                            </td>
+
+                            <td>
+                                <strong class="aula-time">
+                                    18:00
+                                </strong>
+                                <small>noite</small>
+                            </td>
+
+                            <td>
+                                <span class="duration">
+                                    90 min
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div
+                    class="aulas-empty"
+                    id="aulas-empty"
+                    hidden
+                >
+
+                    <div class="aulas-empty-icon">
+                        ⌕
+                    </div>
+
+                    <strong>
+                        Nenhuma aula encontrada
+                    </strong>
+
+                    <p>
+                        Tente buscar por outro cliente ou instrumento.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/aulas.js"></script>
+
+</body>
+</html>

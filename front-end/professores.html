@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Painel de gerenciamento de professores Sonora."
+    >
+
+    <title>Sonora — Professores</title>
+
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/professores.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <a class="brand" href="cursos.html">
+            <span>S</span>
+            sonora
+        </a>
+
+        <p class="workspace">
+            GESTÃO ACADÊMICA
+        </p>
+
+        <nav aria-label="Navegação principal">
+
+            <a class="nav-item" href="cursos.html">
+                <i>▣</i>
+                <span>Cursos</span>
+            </a>
+
+            <a class="nav-item" href="clientes.html">
+                <i>♙</i>
+                <span>Clientes</span>
+            </a>
+
+            <a class="nav-item active" href="professores.html">
+                <i>♧</i>
+                <span>Professores</span>
+            </a>
+
+            <a class="nav-item" href="instrumentos.html">
+                <i>♬</i>
+                <span>Instrumentos</span>
+            </a>
+
+            <a class="nav-item" href="aulas.html">
+                <i>□</i>
+                <span>Aulas</span>
+            </a>
+
+        </nav>
+
+
+        <!-- ADMINISTRADOR -->
+
+        <button
+            class="admin"
+            type="button"
+            id="admin-button"
+        >
+
+            <span class="admin-avatar">
+                AC
+            </span>
+
+            <span class="admin-info">
+                <strong>Andrea Castro</strong>
+                <small>Administradora</small>
+            </span>
+
+            <b class="admin-arrow">
+                ⌄
+            </b>
+
+        </button>
+
+
+        <!-- MENU ADMIN -->
+
+        <div
+            class="admin-menu"
+            id="admin-menu"
+            hidden
+        >
+
+            <button type="button">
+                Meu perfil
+            </button>
+
+            <button type="button">
+                Configurações
+            </button>
+
+            <button
+                type="button"
+                id="logout-button"
+            >
+                Sair
+            </button>
+
+        </div>
+
+        <div class="side-orb"></div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main class="content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="eyebrow">
+                    PAINEL ADMINISTRATIVO
+                </p>
+
+                <h1 id="page-title">
+                    Professores
+                </h1>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    class="search"
+                    type="button"
+                    aria-label="Pesquisar"
+                    id="search-button"
+                >
+                    ⌕
+                </button>
+
+                <button
+                    class="bell"
+                    type="button"
+                    aria-label="Notificações"
+                    id="notification-button"
+                >
+                    ♧
+                    <i></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             PÁGINA PROFESSORES
+        ====================================================== -->
+
+        <section class="page-content professores-page">
+
+
+            <!-- INTRO -->
+
+            <div class="page-intro professores-intro">
+
+                <div>
+
+                    <p class="eyebrow">
+                        GESTÃO DE PROFESSORES
+                    </p>
+
+                    <h2>
+                        Sua equipe de ensino.
+                    </h2>
+
+                    <p>
+                        Gerencie professores, especialidades,
+                        cursos e disponibilidade da equipe Sonora.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-action"
+                    type="button"
+                    id="new-teacher-button"
+                >
+                    + Novo professor
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ESTATÍSTICAS
+            ================================================== -->
+
+
+
+            <!-- =================================================
+                 CABEÇALHO DA LISTA
+            ================================================== -->
+
+            <div class="teachers-section-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        EQUIPE ACADÊMICA
+                    </p>
+
+                    <h2>
+                        Todos os professores
+                    </h2>
+
+                </div>
+
+                <span
+                    class="teachers-counter"
+                    id="teachers-counter"
+                >
+                    18 professores
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 FILTROS
+            ================================================== -->
+
+            <div class="teachers-toolbar">
+
+                <div class="teacher-search">
+
+                    <span>
+                        ⌕
+                    </span>
+
+                    <input
+                        type="search"
+                        id="teacher-search"
+                        placeholder="Buscar por nome ou e-mail..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                
+
+            </div>
+
+
+            <!-- =================================================
+                 TABELA
+            ================================================== -->
+
+            <div class="teachers-table-wrapper">
+
+                <table class="teachers-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                PROFESSOR
+                            </th>
+
+                            <th>
+                                ESPECIALIDADE
+                            </th>
+
+                            <th>
+                                ALUNOS
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                AÇÕES
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="teachers-list">
+
+
+                        <!-- PROFESSOR 1 -->
+
+                        <tr
+                            data-name="Rafael Bastos"
+                            data-email="rafael@email.com"
+                            data-status="active"
+                            data-course="violao"
+                        >
+
+                            <td>
+
+                                <div class="teacher-person">
+
+                                    <span class="teacher-avatar avatar-green">
+                                        RB
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Rafael Bastos
+                                        </strong>
+
+                                        <small>
+                                            rafael@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="specialty-tag green-tag">
+                                    Violão
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                42 alunos
+                            </td>
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="teacher-actions">
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- PROFESSOR 2 -->
+
+                        <tr
+                            data-name="Luiza Serra"
+                            data-email="luiza@email.com"
+                            data-status="active"
+                            data-course="piano"
+                        >
+
+                            <td>
+
+                                <div class="teacher-person">
+
+                                    <span class="teacher-avatar avatar-blue">
+                                        LS
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Luiza Serra
+                                        </strong>
+
+                                        <small>
+                                            luiza@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="specialty-tag blue-tag">
+                                    Piano
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                28 alunos
+                            </td>
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="teacher-actions">
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- PROFESSOR 3 -->
+
+                        <tr
+                            data-name="Clara Almeida"
+                            data-email="clara@email.com"
+                            data-status="active"
+                            data-course="canto"
+                        >
+
+                            <td>
+
+                                <div class="teacher-person">
+
+                                    <span class="teacher-avatar avatar-rose">
+                                        CA
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Clara Almeida
+                                        </strong>
+
+                                        <small>
+                                            clara@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="specialty-tag rose-tag">
+                                    Canto
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                36 alunos
+                            </td>
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="teacher-actions">
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- PROFESSOR 4 -->
+
+                        <tr
+                            data-name="Marcelo Costa"
+                            data-email="marcelo@email.com"
+                            data-status="inactive"
+                            data-course="violao"
+                        >
+
+                            <td>
+
+                                <div class="teacher-person">
+
+                                    <span class="teacher-avatar avatar-sand">
+                                        MC
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Marcelo Costa
+                                        </strong>
+
+                                        <small>
+                                            marcelo@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="specialty-tag green-tag">
+                                    Violão
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                18 alunos
+                            </td>
+
+
+                            <td>
+
+                                <span class="status inactive-status">
+                                    <i></i>
+                                    Inativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="teacher-actions">
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- PROFESSOR 5 -->
+
+                        <tr
+                            data-name="Ana Beatriz"
+                            data-email="ana@email.com"
+                            data-status="active"
+                            data-course="piano"
+                        >
+
+                            <td>
+
+                                <div class="teacher-person">
+
+                                    <span class="teacher-avatar avatar-purple">
+                                        AB
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Ana Beatriz
+                                        </strong>
+
+                                        <small>
+                                            ana@email.com
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="specialty-tag blue-tag">
+                                    Piano
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                31 alunos
+                            </td>
+
+
+                            <td>
+
+                                <span class="status active-status">
+                                    <i></i>
+                                    Ativo
+                                </span>
+
+                            </td>
+
+
+                            <td>
+
+                                <div class="teacher-actions">
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="view"
+                                        title="Visualizar"
+                                    >
+                                        ◉
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="edit"
+                                        title="Editar"
+                                    >
+                                        ✎
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        class="teacher-action"
+                                        data-action="more"
+                                        title="Mais opções"
+                                    >
+                                        ⋮
+                                    </button>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div
+                    class="empty-state"
+                    id="empty-state"
+                    hidden
+                >
+
+                    <div class="empty-icon">
+                        ⌕
+                    </div>
+
+                    <h3>
+                        Nenhum professor encontrado
+                    </h3>
+
+                    <p>
+                        Tente alterar a busca ou os filtros.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+           
+
+
+        </section>
+
+
+        <!-- TOAST -->
+
+        <p
+            class="toast"
+            id="toast"
+            aria-live="polite"
+        ></p>
+
+    </main>
+
+</div>
+
+
+<script src="assets/js/dashboard.js"></script>
+<script src="assets/js/professores.js"></script>
+
+</body>
+</html>

@@ -1,54 +1,269 @@
-const pages = document.querySelectorAll(".page");
-const navItems = document.querySelectorAll(".nav-item");
-const title = document.querySelector("#page-title");
-const toast = document.querySelector(".toast");
+/* =====================================================
+   SONORA — GLOBAL JS
+===================================================== */
 
-let toastTimer;
+document.addEventListener("DOMContentLoaded", () => {
 
-function openPage(id) {
-  pages.forEach((page) => {
-    page.classList.toggle("active", page.id === id);
-  });
+    /* =================================================
+       ELEMENTOS
+    ================================================= */
 
-  navItems.forEach((item) => {
-    item.classList.toggle("active", item.dataset.page === id);
-  });
+    const toast = document.getElementById("toast");
 
-  title.textContent = id.charAt(0).toUpperCase() + id.slice(1);
+    const adminButton =
+        document.getElementById("admin-button");
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
+    const adminMenu =
+        document.getElementById("admin-menu");
 
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add("show");
+    const logoutButton =
+        document.getElementById("logout-button");
 
-  clearTimeout(toastTimer);
+    const searchButton =
+        document.getElementById("search-button");
 
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 2600);
-}
+    const notificationButton =
+        document.getElementById("notification-button");
 
-document.querySelectorAll("[data-page]").forEach((button) => {
-  button.addEventListener("click", () => {
-    openPage(button.dataset.page);
-  });
-});
 
-document.querySelectorAll("[data-toast]").forEach((button) => {
-  button.addEventListener("click", () => {
-    showToast(button.dataset.toast);
-  });
-});
+    /* =================================================
+       PÁGINA ATUAL
+    ================================================= */
 
-document.querySelector(".bell").addEventListener("click", () => {
-  showToast("Você não tem novas notificações.");
-});
+    function setActivePage() {
 
-document.querySelector(".search").addEventListener("click", () => {
-  showToast("Use os filtros em cada página para pesquisar.");
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop()
+                .replace(".html", "");
+
+        const navItems =
+            document.querySelectorAll(".nav-item");
+
+        navItems.forEach((item) => {
+
+            const page =
+                item.dataset.page;
+
+            if (page === currentPage) {
+                item.classList.add("active");
+            } else {
+                item.classList.remove("active");
+            }
+
+        });
+
+    }
+
+    setActivePage();
+
+
+    /* =================================================
+       TÍTULO DA PÁGINA
+    ================================================= */
+
+    function setPageTitle() {
+
+        const title =
+            document.getElementById("page-title");
+
+        if (!title) {
+            return;
+        }
+
+        const currentPage =
+            window.location.pathname
+                .split("/")
+                .pop()
+                .replace(".html", "");
+
+        const titles = {
+            cursos: "Cursos",
+            clientes: "Clientes",
+            professores: "Professores",
+            instrumentos: "Instrumentos",
+            aulas: "Aulas"
+        };
+
+        if (titles[currentPage]) {
+            title.textContent =
+                titles[currentPage];
+        }
+
+    }
+
+    setPageTitle();
+
+
+    /* =================================================
+       TOAST
+    ================================================= */
+
+    let toastTimeout;
+
+    function showToast(message) {
+
+        if (!toast) {
+            return;
+        }
+
+        clearTimeout(toastTimeout);
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        toastTimeout = setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 3000);
+
+    }
+
+
+    /* =================================================
+       BOTÕES COM DATA-TOAST
+    ================================================= */
+
+    document.addEventListener("click", (event) => {
+
+        const button =
+            event.target.closest("[data-toast]");
+
+        if (!button) {
+            return;
+        }
+
+        const message =
+            button.dataset.toast;
+
+        showToast(message);
+
+    });
+
+
+    /* =================================================
+       MENU DO ADMINISTRADOR
+    ================================================= */
+
+    if (adminButton && adminMenu) {
+
+        adminButton.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            const isOpen =
+                !adminMenu.hasAttribute("hidden");
+
+            if (isOpen) {
+                adminMenu.setAttribute("hidden", "");
+            } else {
+                adminMenu.removeAttribute("hidden");
+            }
+
+        });
+
+
+        document.addEventListener("click", (event) => {
+
+            if (
+                !adminMenu.contains(event.target) &&
+                !adminButton.contains(event.target)
+            ) {
+                adminMenu.setAttribute("hidden", "");
+            }
+
+        });
+
+    }
+
+
+    /* =================================================
+       LOGOUT
+    ================================================= */
+
+    if (logoutButton) {
+
+        logoutButton.addEventListener("click", () => {
+
+            showToast("Sessão encerrada.");
+
+            setTimeout(() => {
+
+                // Futuramente:
+                // window.location.href = "login.html";
+
+            }, 1000);
+
+        });
+
+    }
+
+
+    /* =================================================
+       PESQUISA
+    ================================================= */
+
+    if (searchButton) {
+
+        searchButton.addEventListener("click", () => {
+
+            showToast("Pesquisa em breve.");
+
+        });
+
+    }
+
+
+    /* =================================================
+       NOTIFICAÇÕES
+    ================================================= */
+
+    if (notificationButton) {
+
+        notificationButton.addEventListener("click", () => {
+
+            showToast("Você não possui novas notificações.");
+
+        });
+
+    }
+
+
+    /* =================================================
+       LINKS INTERNOS
+    ================================================= */
+
+    const navItems =
+        document.querySelectorAll(
+            ".nav-item"
+        );
+
+    navItems.forEach((item) => {
+
+        item.addEventListener("click", () => {
+
+            navItems.forEach((nav) => {
+                nav.classList.remove("active");
+            });
+
+            item.classList.add("active");
+
+        });
+
+    });
+
+
+    /* =================================================
+       EXPOR TOAST GLOBALMENTE
+    ================================================= */
+
+    window.Sonora = {
+
+        toast: showToast
+
+    };
+
 });
