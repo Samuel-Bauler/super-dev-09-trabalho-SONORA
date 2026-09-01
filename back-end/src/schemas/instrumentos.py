@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
 @dataclass
-class Cliente:
+class Instrumentos:
     id: int
     nome: str
-    email: str

@@ -15,7 +15,5 @@ class Settings():
         self.db_password: str = os.getenv("DB_PASS")
         self.db_name: str = os.getenv("DB_NAME")
 
-        self.app_host: str = os.getenv("APP_HOST")
-        self.app_port: str = os.getenv("APP_PORT")
 
 configuracoes = Settings()

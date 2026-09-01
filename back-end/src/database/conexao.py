@@ -5,7 +5,7 @@ from src.settings.settings import configuracoes
 
 
 def conectar() -> MySQLConnectionAbstract:
-    """Abre uma conexao nova. Quem chama é resonsavel por fechar (use `with`)."""
+    """Abre uma conexao nova. Quem chama é responsavel por fechar (use `with`)."""
     return connect(
         host=configuracoes.db_host,
         port=configuracoes.db_port,
