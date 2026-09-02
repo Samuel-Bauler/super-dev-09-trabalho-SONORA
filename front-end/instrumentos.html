@@ -2,8 +2,13 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
@@ -12,13 +17,23 @@
 
     <title>Sonora — Instrumentos</title>
 
-    <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/instrumentos.css">
+    <link
+        rel="stylesheet"
+        href="assets/css/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/instrumentos.css"
+    >
+
 </head>
+
 
 <body>
 
 <div class="app">
+
 
     <!-- =====================================================
          SIDEBAR
@@ -26,14 +41,19 @@
 
     <aside class="sidebar">
 
-        <a class="brand" href="cursos.html">
+        <a
+            class="brand"
+            href="cursos.html"
+        >
             <span>S</span>
             sonora
         </a>
 
+
         <p class="workspace">
             GESTÃO ACADÊMICA
         </p>
+
 
         <nav aria-label="Navegação principal">
 
@@ -46,6 +66,7 @@
                 <span>Cursos</span>
             </a>
 
+
             <a
                 class="nav-item"
                 href="clientes.html"
@@ -54,6 +75,7 @@
                 <i>♙</i>
                 <span>Clientes</span>
             </a>
+
 
             <a
                 class="nav-item"
@@ -64,6 +86,7 @@
                 <span>Professores</span>
             </a>
 
+
             <a
                 class="nav-item active"
                 href="instrumentos.html"
@@ -72,6 +95,7 @@
                 <i>♬</i>
                 <span>Instrumentos</span>
             </a>
+
 
             <a
                 class="nav-item"
@@ -83,6 +107,7 @@
             </a>
 
         </nav>
+
 
         <!-- ADMIN -->
 
@@ -96,16 +121,26 @@
                 AC
             </span>
 
+
             <span class="admin-info">
-                <strong>Andrea Castro</strong>
-                <small>Administradora</small>
+
+                <strong>
+                    Andrea Castro
+                </strong>
+
+                <small>
+                    Administradora
+                </small>
+
             </span>
+
 
             <b class="admin-arrow">
                 ⌄
             </b>
 
         </button>
+
 
         <div
             class="admin-menu"
@@ -130,6 +165,7 @@
 
         </div>
 
+
         <div class="side-orb"></div>
 
     </aside>
@@ -140,6 +176,7 @@
     ====================================================== -->
 
     <main class="content">
+
 
         <!-- TOPBAR -->
 
@@ -155,6 +192,7 @@
                 >
                     ⌕
                 </button>
+
 
                 <button
                     class="bell"
@@ -178,9 +216,7 @@
         <section class="page-content instrumentos-page">
 
 
-            <!-- =================================================
-                 INTRODUÇÃO
-            ================================================== -->
+            <!-- INTRODUÇÃO -->
 
             <div class="instrumentos-intro">
 
@@ -190,9 +226,11 @@
                         ACERVO MUSICAL
                     </p>
 
+
                     <h2>
                         Instrumentos da Sonora.
                     </h2>
+
 
                     <p>
                         Organize o acervo, acompanhe a disponibilidade
@@ -200,6 +238,7 @@
                     </p>
 
                 </div>
+
 
                 <button
                     class="primary-action"
@@ -213,7 +252,7 @@
 
 
             <!-- =================================================
-                 CONTROLES
+                 PESQUISA
             ================================================== -->
 
             <div class="instrument-controls">
@@ -248,11 +287,13 @@
                         CATÁLOGO
                     </p>
 
+
                     <h2>
                         Instrumentos disponíveis
                     </h2>
 
                 </div>
+
 
                 <span
                     class="instrument-counter"
@@ -276,13 +317,15 @@
 
                         <tr>
 
-                            <th>ID</th>
+                            <th class="column-id">
+                                ID
+                            </th>
 
                             <th>
                                 Instrumento
                             </th>
 
-                            <th>
+                            <th class="column-actions">
                                 Ações
                             </th>
 
@@ -290,154 +333,8 @@
 
                     </thead>
 
+
                     <tbody id="instruments-table">
-
-                        <!-- Exemplo -->
-
-                        <tr>
-
-                            <td>
-                                1
-                            </td>
-
-                            <td>
-                                Violão
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="1"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                2
-                            </td>
-
-                            <td>
-                                Piano
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="2"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                3
-                            </td>
-
-                            <td>
-                                Bateria
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="3"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                4
-                            </td>
-
-                            <td>
-                                Guitarra
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="4"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                5
-                            </td>
-
-                            <td>
-                                Teclado
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="5"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <td>
-                                6
-                            </td>
-
-                            <td>
-                                Baixo
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="instrument-details-button"
-                                    type="button"
-                                    data-id="6"
-                                >
-                                    Ver detalhes
-                                </button>
-
-                            </td>
-
-                        </tr>
-
                     </tbody>
 
                 </table>
@@ -459,9 +356,11 @@
                     ♬
                 </div>
 
+
                 <h3>
                     Nenhum instrumento encontrado
                 </h3>
+
 
                 <p>
                     Tente pesquisar outro instrumento.
@@ -480,6 +379,7 @@
                     Gerenciamento do acervo musical
                 </span>
 
+
                 <button
                     type="button"
                     id="refresh-instruments"
@@ -497,11 +397,191 @@
 
 
 <!-- =========================================================
+     MODAL — NOVO / EDITAR INSTRUMENTO
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="instrument-modal"
+    hidden
+>
+
+    <div
+        class="instrument-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    ACERVO MUSICAL
+                </p>
+
+
+                <h2 id="modal-title">
+                    Novo instrumento
+                </h2>
+
+
+                <p id="modal-description">
+                    Cadastre um novo instrumento no acervo da Sonora.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="close-instrument-modal"
+                aria-label="Fechar modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="instrument-form">
+
+            <div class="form-group">
+
+                <label for="instrument-name">
+                    Nome do instrumento
+                </label>
+
+
+                <input
+                    type="text"
+                    id="instrument-name"
+                    name="nome"
+                    placeholder="Ex.: Violão"
+                    autocomplete="off"
+                    maxlength="15"
+                    required
+                >
+
+            </div>
+
+
+            <div
+                class="modal-error"
+                id="modal-error"
+                hidden
+            ></div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-cancel"
+                    id="cancel-instrument-modal"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="modal-submit"
+                    id="submit-instrument"
+                >
+                    Cadastrar instrumento
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL — CONFIRMAR EXCLUSÃO
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="delete-modal"
+    hidden
+>
+
+    <div
+        class="delete-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-title"
+    >
+
+        <div class="delete-icon">
+            ❗
+        </div>
+
+
+        <div class="delete-content">
+
+            <h2 id="delete-title">
+                Apagar instrumento?
+            </h2>
+
+
+            <p>
+                Tem certeza que deseja apagar o instrumento
+                <strong id="delete-instrument-name">
+                    —
+                </strong>?
+            </p>
+
+
+            <span class="delete-warning">
+                Essa ação não poderá ser desfeita.
+            </span>
+
+        </div>
+
+
+        <div class="delete-actions">
+
+            <button
+                type="button"
+                class="delete-cancel"
+                id="cancel-delete"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="delete-confirm"
+                id="confirm-delete"
+            >
+                Apagar instrumento
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
      JAVASCRIPT
 ========================================================= -->
 
 <script src="assets/js/dashboard.js"></script>
+
 <script src="assets/js/instrumentos.js"></script>
 
+
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +12,7 @@
 
     <title>Sonora — Clientes</title>
 
-
-    <!-- CSS global -->
     <link rel="stylesheet" href="assets/css/dashboard.css">
-
-    <!-- CSS específico -->
     <link rel="stylesheet" href="assets/css/clientes.css">
 </head>
 
@@ -87,7 +84,6 @@
 
         </nav>
 
-
         <!-- ADMINISTRADOR -->
 
         <button
@@ -110,7 +106,6 @@
             </b>
 
         </button>
-
 
         <!-- MENU ADMIN -->
 
@@ -164,7 +159,6 @@
 
             </div>
 
-
             <div class="top-actions">
 
                 <button
@@ -197,10 +191,7 @@
 
         <section class="page-content clientes-page">
 
-
-            <!-- =================================================
-                 INTRO
-            ================================================== -->
+            <!-- INTRO -->
 
             <div class="page-intro clientes-intro">
 
@@ -221,7 +212,6 @@
 
                 </div>
 
-
                 <button
                     class="primary-action"
                     type="button"
@@ -233,10 +223,7 @@
             </div>
 
 
-
-            <!-- =================================================
-                 CABEÇALHO DA LISTA
-            ================================================== -->
+            <!-- CABEÇALHO DA LISTA -->
 
             <div class="clients-section-header">
 
@@ -252,16 +239,17 @@
 
                 </div>
 
-                <span class="clients-counter" id="clients-counter">
-                    6 clientes
+                <span
+                    class="clients-counter"
+                    id="clients-counter"
+                >
+                    5 clientes
                 </span>
 
             </div>
 
 
-            <!-- =================================================
-                 FILTROS
-            ================================================== -->
+            <!-- FILTROS -->
 
             <div class="clients-toolbar">
 
@@ -280,19 +268,50 @@
 
                 </div>
 
-
                 <div class="client-filters">
 
-                    
+                    <select id="status-filter">
+
+                        <option value="all">
+                            Todos os status
+                        </option>
+
+                        <option value="active">
+                            Ativos
+                        </option>
+
+                        <option value="inactive">
+                            Inativos
+                        </option>
+
+                    </select>
+
+                    <select id="course-filter">
+
+                        <option value="all">
+                            Todos os cursos
+                        </option>
+
+                        <option value="violao">
+                            Violão
+                        </option>
+
+                        <option value="piano">
+                            Piano
+                        </option>
+
+                        <option value="canto">
+                            Canto
+                        </option>
+
+                    </select>
 
                 </div>
 
             </div>
 
 
-            <!-- =================================================
-                 TABELA
-            ================================================== -->
+            <!-- TABELA -->
 
             <div class="clients-table-wrapper">
 
@@ -306,8 +325,6 @@
                                 CLIENTE
                             </th>
 
-
-
                             <th>
                                 STATUS
                             </th>
@@ -320,9 +337,7 @@
 
                     </thead>
 
-
                     <tbody id="clients-list">
-
 
                         <!-- CLIENTE 1 -->
 
@@ -357,13 +372,6 @@
 
                             </td>
 
-
-                           
-
-
-
-
-
                             <td>
 
                                 <span class="status active-status">
@@ -372,7 +380,6 @@
                                 </span>
 
                             </td>
-
 
                             <td>
 
@@ -444,6 +451,7 @@
                                 </div>
 
                             </td>
+
                             <td>
 
                                 <span class="status active-status">
@@ -453,7 +461,6 @@
 
                             </td>
 
-
                             <td>
 
                                 <div class="client-actions">
@@ -462,6 +469,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="view"
+                                        title="Visualizar"
                                     >
                                         ◉
                                     </button>
@@ -470,6 +478,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="edit"
+                                        title="Editar"
                                     >
                                         ✎
                                     </button>
@@ -478,6 +487,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="more"
+                                        title="Mais opções"
                                     >
                                         ⋮
                                     </button>
@@ -522,8 +532,6 @@
 
                             </td>
 
-
-
                             <td>
 
                                 <span class="status active-status">
@@ -533,7 +541,6 @@
 
                             </td>
 
-
                             <td>
 
                                 <div class="client-actions">
@@ -542,6 +549,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="view"
+                                        title="Visualizar"
                                     >
                                         ◉
                                     </button>
@@ -550,6 +558,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="edit"
+                                        title="Editar"
                                     >
                                         ✎
                                     </button>
@@ -558,6 +567,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="more"
+                                        title="Mais opções"
                                     >
                                         ⋮
                                     </button>
@@ -611,7 +621,6 @@
 
                             </td>
 
-
                             <td>
 
                                 <div class="client-actions">
@@ -620,6 +629,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="view"
+                                        title="Visualizar"
                                     >
                                         ◉
                                     </button>
@@ -628,6 +638,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="edit"
+                                        title="Editar"
                                     >
                                         ✎
                                     </button>
@@ -636,6 +647,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="more"
+                                        title="Mais opções"
                                     >
                                         ⋮
                                     </button>
@@ -689,7 +701,6 @@
 
                             </td>
 
-
                             <td>
 
                                 <div class="client-actions">
@@ -698,6 +709,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="view"
+                                        title="Visualizar"
                                     >
                                         ◉
                                     </button>
@@ -706,6 +718,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="edit"
+                                        title="Editar"
                                     >
                                         ✎
                                     </button>
@@ -714,6 +727,7 @@
                                         type="button"
                                         class="client-action"
                                         data-action="more"
+                                        title="Mais opções"
                                     >
                                         ⋮
                                     </button>
@@ -724,13 +738,12 @@
 
                         </tr>
 
-
                     </tbody>
 
                 </table>
 
 
-                <!-- ESTADO SEM RESULTADOS -->
+                <!-- ESTADO VAZIO -->
 
                 <div
                     class="empty-state"
@@ -756,17 +769,143 @@
             </div>
 
 
+            <!-- RESULTADOS -->
+
+            <div class="clients-results">
+
+                <span id="results-info">
+                    Mostrando 5 clientes
+                </span>
+
+            </div>
+
+        </section>
+
     </main>
 
 </div>
 
 
-<!-- JAVASCRIPT GLOBAL -->
+<!-- =====================================================
+     MODAL — NOVO CLIENTE
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="client-modal"
+    hidden
+>
+
+    <div
+        class="client-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="client-modal-title"
+    >
+
+        <div class="modal-header">
+
+            <div>
+
+                <p class="eyebrow">
+                    CADASTRO
+                </p>
+
+                <h2 id="client-modal-title">
+                    Novo cliente
+                </h2>
+
+                <p>
+                    Cadastre um novo aluno na Sonora.
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                id="close-client-modal"
+                aria-label="Fechar modal"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form id="client-form">
+
+            <div class="form-group">
+
+                <label for="client-name">
+                    Nome completo
+                </label>
+
+                <input
+                    type="text"
+                    id="client-name"
+                    name="nome"
+                    placeholder="Ex.: Mariana Oliveira"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="client-email">
+                    E-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="client-email"
+                    name="email"
+                    placeholder="Ex.: mariana@email.com"
+                    required
+                >
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="modal-button secondary"
+                    id="cancel-client-modal"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="modal-button primary"
+                >
+                    Cadastrar cliente
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+>
+</div>
+
 
 <script src="assets/js/dashboard.js"></script>
-
-<!-- JAVASCRIPT DA PÁGINA -->
-
 <script src="assets/js/clientes.js"></script>
 
 </body>

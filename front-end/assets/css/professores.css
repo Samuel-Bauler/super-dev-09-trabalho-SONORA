@@ -33,20 +33,14 @@
     display: flex;
     align-items: flex-start;
     gap: 14px;
-
     min-height: 120px;
-
     padding: 20px;
-
     border: 1px solid rgba(25, 42, 35, 0.07);
     border-radius: 17px;
-
     background: #ffffff;
-
     box-shadow:
         0 5px 14px rgba(20, 35, 29, 0.04),
         0 15px 30px rgba(20, 35, 29, 0.04);
-
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
@@ -68,7 +62,6 @@
 .teacher-stat-icon {
     width: 46px;
     height: 46px;
-
     flex: 0 0 auto;
 
     display: flex;
@@ -252,7 +245,6 @@
 
 .teacher-search span {
     color: #82908a;
-
     font-size: 18px;
 }
 
@@ -536,6 +528,16 @@
     background: #f5e1e4;
 }
 
+.purple-tag {
+    color: #71518e;
+    background: #e9dff1;
+}
+
+.sand-tag {
+    color: #876b28;
+    background: #f2e5c6;
+}
+
 
 /* =========================================================
    STATUS
@@ -675,124 +677,403 @@
 
 
 /* =========================================================
-   AÇÕES RÁPIDAS
+   MODAL
 ========================================================= */
 
-.teacher-quick-actions {
-    display: grid;
+.modal-overlay {
+    position: fixed;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    inset: 0;
 
-    margin-top: 18px;
-
-    overflow: hidden;
-
-    border:
-        1px solid rgba(25, 42, 35, 0.07);
-
-    border-radius: 17px;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 7px 22px rgba(20, 35, 29, 0.04);
-}
-
-.teacher-quick-actions button,
-.teacher-quick-actions a {
-    min-height: 75px;
-
-    position: relative;
+    z-index: 9999;
 
     display: flex;
+
     align-items: center;
+    justify-content: center;
 
-    gap: 11px;
+    padding: 20px;
 
-    padding: 12px 18px;
+    background: rgba(10, 28, 22, 0.48);
 
-    border: 0;
+    backdrop-filter: blur(5px);
 
-    color: #173b31;
-    background: transparent;
-
-    text-decoration: none;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease;
+    animation: modalOverlayIn 0.2s ease;
 }
 
-.teacher-quick-actions button:not(:last-child)::after,
-.teacher-quick-actions a:not(:last-child)::after {
-    content: "";
-
-    position: absolute;
-
-    top: 20px;
-    right: 0;
-
-    width: 1px;
-    height: 35px;
-
-    background: #e6ebe7;
+.modal-overlay[hidden] {
+    display: none;
 }
 
-.teacher-quick-actions button:hover,
-.teacher-quick-actions a:hover {
-    background: #f8faf7;
+
+/* =========================================================
+   CAIXA DO MODAL
+========================================================= */
+
+.teacher-modal {
+    width: min(560px, 100%);
+
+    max-height: calc(100vh - 40px);
+
+    overflow-y: auto;
+
+    padding: 28px;
+
+    border: 1px solid rgba(25, 42, 35, 0.08);
+
+    border-radius: 20px;
+
+    background: #bebdbd;
+
+    box-shadow:
+        0 15px 35px rgba(15, 35, 28, 0.12),
+        0 30px 70px rgba(15, 35, 28, 0.14);
+
+    animation: teacherModalIn 0.25s ease;
 }
 
-.teacher-quick-actions > button > span,
-.teacher-quick-actions > a > span {
-    width: 42px;
-    height: 42px;
+
+/* =========================================================
+   CABEÇALHO DO MODAL
+========================================================= */
+
+.teacher-modal-header {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+.teacher-modal-header .eyebrow {
+    margin-bottom: 5px;
+}
+
+.teacher-modal-header h2 {
+    margin: 0 0 7px;
+
+    color: #102f27;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+.teacher-modal-header p:last-child {
+    margin: 0;
+
+    color: #78857f;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BOTÃO FECHAR
+========================================================= */
+
+.modal-close {
+    width: 36px;
+    height: 36px;
 
     flex: 0 0 auto;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border-radius: 11px;
+    border: 0;
 
+    border-radius: 10px;
+
+    color: #65756e;
+
+    background: #f2f5f2;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.modal-close:hover {
     color: #17604b;
-    background: #dcebe2;
 
-    font-size: 20px;
-    font-weight: 900;
+    background: #e2eee7;
+
+    transform: rotate(3deg);
 }
 
-.teacher-quick-actions > a:nth-child(2) > span {
-    color: #846724;
-    background: #f1e2bd;
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+#teacher-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 17px;
 }
 
-.teacher-quick-actions > a:nth-child(3) > span {
-    color: #9b4b5a;
-    background: #f2dce0;
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
 }
 
-.teacher-quick-actions strong {
-    display: block;
+.form-group label {
+    color: #263e35;
 
-    margin-bottom: 3px;
-
-    color: #182d26;
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
 
     font-size: 11px;
+
     font-weight: 900;
 }
 
-.teacher-quick-actions small {
-    color: #87928d;
+.form-group input,
+.form-group select {
+    width: 100%;
 
-    font-size: 9px;
-    font-weight: 600;
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #e1e7e3;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #1d342c;
+
+    background: #fafbf9;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #8fb6a5;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(40, 105, 81, 0.08);
+}
+
+.form-group input::placeholder {
+    color: #a0aaa5;
+}
+
+
+/* =========================================================
+   LINHA DUPLA
+========================================================= */
+
+.form-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+}
+
+
+/* =========================================================
+   AÇÕES DO MODAL
+========================================================= */
+
+.teacher-modal-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 8px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf1ee;
+}
+
+.modal-cancel {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid #dfe6e1;
+
+    border-radius: 10px;
+
+    color: #596a62;
+
+    background: #ffffff;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.modal-cancel:hover {
+    border-color: #cbd7d0;
+
+    background: #f7f9f7;
+}
+
+.modal-submit {
+    height: 42px;
+
+    padding: 0 19px;
+
+    border: 0;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 10000;
+
+    min-width: 230px;
+
+    max-width: 360px;
+
+    margin: 0;
+
+    padding: 13px 17px;
+
+    border-radius: 11px;
+
+    color: #ffffff;
+
+    background: #173f32;
+
+    box-shadow:
+        0 10px 25px rgba(15, 40, 31, 0.20);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(12px);
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+}
+
+.toast.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes modalOverlayIn {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes teacherModalIn {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
 }
 
 
@@ -814,6 +1095,7 @@
     .teachers-table {
         min-width: 900px;
     }
+
 }
 
 
@@ -861,12 +1143,46 @@
     .teacher-quick-actions button:not(:last-child)::after,
     .teacher-quick-actions a:not(:last-child)::after {
         top: auto;
+
         right: 15px;
+
         bottom: 0;
 
         width: calc(100% - 30px);
+
         height: 1px;
     }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .teacher-modal {
+        padding: 22px;
+
+        border-radius: 17px;
+    }
+
+    .teacher-modal-header h2 {
+        font-size: 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .teacher-modal-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .modal-cancel,
+    .modal-submit {
+        width: 100%;
+    }
+
 }
 
 
@@ -887,4 +1203,15 @@
     .teacher-person {
         min-width: 210px;
     }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .teacher-modal {
+        max-height: calc(100vh - 20px);
+
+        padding: 18px;
+    }
+
 }

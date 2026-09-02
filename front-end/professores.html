@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
@@ -11,13 +17,23 @@
 
     <title>Sonora — Professores</title>
 
-    <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/professores.css">
+    <link
+        rel="stylesheet"
+        href="assets/css/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/professores.css"
+    >
+
 </head>
+
 
 <body>
 
 <div class="app">
+
 
     <!-- =====================================================
          SIDEBAR
@@ -25,38 +41,62 @@
 
     <aside class="sidebar">
 
-        <a class="brand" href="cursos.html">
+        <a
+            class="brand"
+            href="cursos.html"
+        >
             <span>S</span>
             sonora
         </a>
+
 
         <p class="workspace">
             GESTÃO ACADÊMICA
         </p>
 
+
         <nav aria-label="Navegação principal">
 
-            <a class="nav-item" href="cursos.html">
+            <a
+                class="nav-item"
+                href="cursos.html"
+            >
                 <i>▣</i>
                 <span>Cursos</span>
             </a>
 
-            <a class="nav-item" href="clientes.html">
+
+            <a
+                class="nav-item"
+                href="clientes.html"
+            >
                 <i>♙</i>
                 <span>Clientes</span>
             </a>
 
-            <a class="nav-item active" href="professores.html">
+
+            <a
+                class="nav-item active"
+                href="professores.html"
+            >
                 <i>♧</i>
                 <span>Professores</span>
             </a>
 
-            <a class="nav-item" href="instrumentos.html">
+
+            <a
+                class="nav-item"
+                href="instrumentos.html"
+            >
                 <i>♬</i>
                 <span>Instrumentos</span>
             </a>
 
-            <a class="nav-item" href="aulas.html">
+
+            <a
+                class="nav-item"
+                href="aulas.html"
+            >
                 <i>□</i>
                 <span>Aulas</span>
             </a>
@@ -77,8 +117,15 @@
             </span>
 
             <span class="admin-info">
-                <strong>Andrea Castro</strong>
-                <small>Administradora</small>
+
+                <strong>
+                    Andrea Castro
+                </strong>
+
+                <small>
+                    Administradora
+                </small>
+
             </span>
 
             <b class="admin-arrow">
@@ -113,9 +160,11 @@
 
         </div>
 
+
         <div class="side-orb"></div>
 
     </aside>
+
 
 
     <!-- =====================================================
@@ -123,6 +172,7 @@
     ====================================================== -->
 
     <main class="content">
+
 
         <!-- TOPBAR -->
 
@@ -152,6 +202,7 @@
                     ⌕
                 </button>
 
+
                 <button
                     class="bell"
                     type="button"
@@ -165,6 +216,7 @@
             </div>
 
         </header>
+
 
 
         <!-- =====================================================
@@ -207,11 +259,6 @@
             </div>
 
 
-            <!-- =================================================
-                 ESTATÍSTICAS
-            ================================================== -->
-
-
 
             <!-- =================================================
                  CABEÇALHO DA LISTA
@@ -231,14 +278,16 @@
 
                 </div>
 
+
                 <span
                     class="teachers-counter"
                     id="teachers-counter"
                 >
-                    18 professores
+                    5 professores
                 </span>
 
             </div>
+
 
 
             <!-- =================================================
@@ -246,6 +295,7 @@
             ================================================== -->
 
             <div class="teachers-toolbar">
+
 
                 <div class="teacher-search">
 
@@ -263,9 +313,67 @@
                 </div>
 
 
-                
+                <div class="teacher-filters">
+
+                    <select
+                        id="teacher-status-filter"
+                        aria-label="Filtrar por status"
+                    >
+
+                        <option value="all">
+                            Todos os status
+                        </option>
+
+                        <option value="active">
+                            Ativos
+                        </option>
+
+                        <option value="inactive">
+                            Inativos
+                        </option>
+
+                    </select>
+
+
+                    <select
+                        id="teacher-course-filter"
+                        aria-label="Filtrar por instrumento"
+                    >
+
+                        <option value="all">
+                            Todos os instrumentos
+                        </option>
+
+                        <option value="violao">
+                            Violão
+                        </option>
+
+                        <option value="piano">
+                            Piano
+                        </option>
+
+                        <option value="canto">
+                            Canto
+                        </option>
+
+                        <option value="guitarra">
+                            Guitarra
+                        </option>
+
+                        <option value="bateria">
+                            Bateria
+                        </option>
+
+                        <option value="violino">
+                            Violino
+                        </option>
+
+                    </select>
+
+                </div>
 
             </div>
+
 
 
             <!-- =================================================
@@ -359,8 +467,11 @@
                             <td>
 
                                 <span class="status active-status">
+
                                     <i></i>
+
                                     Ativo
+
                                 </span>
 
                             </td>
@@ -402,6 +513,7 @@
                             </td>
 
                         </tr>
+
 
 
                         <!-- PROFESSOR 2 -->
@@ -455,8 +567,11 @@
                             <td>
 
                                 <span class="status active-status">
+
                                     <i></i>
+
                                     Ativo
+
                                 </span>
 
                             </td>
@@ -498,6 +613,7 @@
                             </td>
 
                         </tr>
+
 
 
                         <!-- PROFESSOR 3 -->
@@ -551,8 +667,11 @@
                             <td>
 
                                 <span class="status active-status">
+
                                     <i></i>
+
                                     Ativo
+
                                 </span>
 
                             </td>
@@ -594,6 +713,7 @@
                             </td>
 
                         </tr>
+
 
 
                         <!-- PROFESSOR 4 -->
@@ -647,8 +767,11 @@
                             <td>
 
                                 <span class="status inactive-status">
+
                                     <i></i>
+
                                     Inativo
+
                                 </span>
 
                             </td>
@@ -690,6 +813,7 @@
                             </td>
 
                         </tr>
+
 
 
                         <!-- PROFESSOR 5 -->
@@ -743,8 +867,11 @@
                             <td>
 
                                 <span class="status active-status">
+
                                     <i></i>
+
                                     Ativo
+
                                 </span>
 
                             </td>
@@ -793,6 +920,7 @@
                 </table>
 
 
+
                 <!-- ESTADO VAZIO -->
 
                 <div
@@ -818,10 +946,227 @@
             </div>
 
 
-           
-
-
         </section>
+
+
+
+        <!-- =====================================================
+             MODAL — NOVO PROFESSOR
+        ====================================================== -->
+
+        <div
+            class="modal-overlay"
+            id="teacher-modal"
+            hidden
+        >
+
+            <div
+                class="teacher-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="teacher-modal-title"
+            >
+
+
+                <!-- CABEÇALHO -->
+
+                <div class="teacher-modal-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            NOVO CADASTRO
+                        </p>
+
+                        <h2 id="teacher-modal-title">
+                            Novo professor
+                        </h2>
+
+                        <p>
+                            Cadastre um novo professor na equipe Sonora.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="modal-close"
+                        id="close-teacher-modal"
+                        aria-label="Fechar"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+
+                <!-- FORMULÁRIO -->
+
+                <form id="teacher-form">
+
+
+                    <!-- NOME -->
+
+                    <div class="form-group">
+
+                        <label for="teacher-name">
+                            Nome completo
+                        </label>
+
+                        <input
+                            type="text"
+                            id="teacher-name"
+                            name="nome"
+                            placeholder="Ex.: João da Silva"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+
+
+
+                    <!-- INSTRUMENTO -->
+
+                    <div class="form-group">
+
+                        <label for="teacher-instrument">
+                            Instrumento / especialidade
+                        </label>
+
+                        <select
+                            id="teacher-instrument"
+                            name="instrumento"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione um instrumento
+                            </option>
+
+                            <option value="violao">
+                                Violão
+                            </option>
+
+                            <option value="piano">
+                                Piano
+                            </option>
+
+                            <option value="canto">
+                                Canto
+                            </option>
+
+                            <option value="guitarra">
+                                Guitarra
+                            </option>
+
+                            <option value="bateria">
+                                Bateria
+                            </option>
+
+                            <option value="violino">
+                                Violino
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- LINHA DUPLA -->
+
+                    <div class="form-row">
+
+
+                        <!-- ALUNOS -->
+
+                        <div class="form-group">
+
+                            <label for="teacher-students">
+                                Alunos
+                            </label>
+
+                            <input
+                                type="number"
+                                id="teacher-students"
+                                name="alunos"
+                                min="0"
+                                value="0"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- STATUS -->
+
+                        <div class="form-group">
+
+                            <label for="teacher-status">
+                                Status
+                            </label>
+
+                            <select
+                                id="teacher-status"
+                                name="status"
+                                required
+                            >
+
+                                <option value="active">
+                                    Ativo
+                                </option>
+
+                                <option value="inactive">
+                                    Inativo
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- AÇÕES -->
+
+                    <div class="teacher-modal-actions">
+
+                        <button
+                            type="button"
+                            class="modal-cancel"
+                            id="cancel-teacher-modal"
+                        >
+                            Cancelar
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-action modal-submit"
+                        >
+                            Cadastrar professor
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
 
 
         <!-- TOAST -->
@@ -832,13 +1177,17 @@
             aria-live="polite"
         ></p>
 
+
     </main>
 
 </div>
 
 
 <script src="assets/js/dashboard.js"></script>
+
 <script src="assets/js/professores.js"></script>
 
+
 </body>
+
 </html>

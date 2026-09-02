@@ -1,15 +1,23 @@
-/* =========================================================
+/* =====================================================
    CLIENTES
-========================================================= */
+===================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const searchInput = document.getElementById("client-search");
-    const statusFilter = document.getElementById("status-filter");
-    const courseFilter = document.getElementById("course-filter");
+    const searchInput =
+        document.getElementById("client-search");
 
-    const clientsList = document.getElementById("clients-list");
-    const emptyState = document.getElementById("empty-state");
+    const statusFilter =
+        document.getElementById("status-filter");
+
+    const courseFilter =
+        document.getElementById("course-filter");
+
+    const clientsList =
+        document.getElementById("clients-list");
+
+    const emptyState =
+        document.getElementById("empty-state");
 
     const clientsCounter =
         document.getElementById("clients-counter");
@@ -22,17 +30,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       CLIENTES
-    ====================================================== */
+       MODAL
+    ===================================================== */
 
-    const clients = Array.from(
-        clientsList.querySelectorAll("tr")
-    );
+    const clientModal =
+        document.getElementById("client-modal");
+
+    const closeClientModal =
+        document.getElementById("close-client-modal");
+
+    const cancelClientModal =
+        document.getElementById("cancel-client-modal");
+
+    const clientForm =
+        document.getElementById("client-form");
+
+    const clientName =
+        document.getElementById("client-name");
+
+    const clientEmail =
+        document.getElementById("client-email");
+
+
+    /* =====================================================
+       CLIENTES
+    ===================================================== */
+
+    let clients =
+        Array.from(
+            clientsList.querySelectorAll("tr")
+        );
 
 
     /* =====================================================
        TOAST
-    ====================================================== */
+    ===================================================== */
 
     function showToast(message) {
 
@@ -49,17 +81,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clearTimeout(window.sonoraToastTimer);
 
-        window.sonoraToastTimer = setTimeout(() => {
+        window.sonoraToastTimer =
+            setTimeout(() => {
 
-            toast.classList.remove("show");
+                toast.classList.remove("show");
 
-        }, 3000);
+            }, 3000);
+
     }
 
 
     /* =====================================================
        FILTRAR CLIENTES
-    ====================================================== */
+    ===================================================== */
 
     function filterClients() {
 
@@ -158,29 +192,293 @@ document.addEventListener("DOMContentLoaded", () => {
             }`;
 
 
-        resultsInfo.textContent =
-            `Mostrando ${visibleClients} ${
-                visibleClients === 1
-                    ? "cliente"
-                    : "clientes"
-            }`;
+        if (resultsInfo) {
+
+            resultsInfo.textContent =
+                `Mostrando ${visibleClients} ${
+                    visibleClients === 1
+                        ? "cliente"
+                        : "clientes"
+                }`;
+
+        }
 
     }
 
 
     /* =====================================================
+       ABRIR MODAL
+    ===================================================== */
+
+    function openClientModal() {
+
+        clientModal.hidden = false;
+
+        document.body.style.overflow = "hidden";
+
+        clientName.focus();
+
+    }
+
+
+    /* =====================================================
+       FECHAR MODAL
+    ===================================================== */
+
+    function closeClientModalFunction() {
+
+        clientModal.hidden = true;
+
+        document.body.style.overflow = "";
+
+        clientForm.reset();
+
+    }
+
+
+    /* =====================================================
+       EVENTO — NOVO CLIENTE
+    ===================================================== */
+
+    if (newClientButton) {
+
+        newClientButton.addEventListener(
+            "click",
+            openClientModal
+        );
+
+    }
+
+
+    /* =====================================================
+       EVENTO — FECHAR
+    ===================================================== */
+
+    closeClientModal.addEventListener(
+        "click",
+        closeClientModalFunction
+    );
+
+
+    cancelClientModal.addEventListener(
+        "click",
+        closeClientModalFunction
+    );
+
+
+    /* =====================================================
+       FECHAR CLICANDO FORA
+    ===================================================== */
+
+    clientModal.addEventListener(
+        "click",
+        event => {
+
+            if (event.target === clientModal) {
+
+                closeClientModalFunction();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       FECHAR COM ESC
+    ===================================================== */
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape" &&
+                !clientModal.hidden
+            ) {
+
+                closeClientModalFunction();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CADASTRAR CLIENTE
+    ===================================================== */
+
+    clientForm.addEventListener(
+        "submit",
+        event => {
+
+            event.preventDefault();
+
+
+            const nome =
+                clientName.value.trim();
+
+            const email =
+                clientEmail.value.trim();
+
+
+            if (!nome || !email) {
+
+                showToast(
+                    "Preencha todos os campos."
+                );
+
+                return;
+
+            }
+
+
+            /* =================================================
+               CRIA CLIENTE NA TABELA
+            ================================================== */
+
+            const initials =
+                nome
+                    .split(" ")
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .map(
+                        palavra =>
+                            palavra[0].toUpperCase()
+                    )
+                    .join("");
+
+
+            const row =
+                document.createElement("tr");
+
+
+            row.dataset.name = nome;
+
+            row.dataset.email = email;
+
+            row.dataset.status = "active";
+
+            row.dataset.course = "all";
+
+
+            row.innerHTML = `
+
+                <td>
+
+                    <div class="client-person">
+
+                        <span class="client-avatar avatar-green">
+                            ${initials}
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                ${nome}
+                            </strong>
+
+                            <small>
+                                ${email}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <span class="status active-status">
+
+                        <i></i>
+
+                        Ativo
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <div class="client-actions">
+
+                        <button
+                            type="button"
+                            class="client-action"
+                            data-action="view"
+                            title="Visualizar"
+                        >
+                            ◉
+                        </button>
+
+                        <button
+                            type="button"
+                            class="client-action"
+                            data-action="edit"
+                            title="Editar"
+                        >
+                            ✎
+                        </button>
+
+                        <button
+                            type="button"
+                            class="client-action"
+                            data-action="more"
+                            title="Mais opções"
+                        >
+                            ⋮
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            clientsList.appendChild(row);
+
+
+            clients =
+                Array.from(
+                    clientsList.querySelectorAll("tr")
+                );
+
+
+            closeClientModalFunction();
+
+
+            filterClients();
+
+
+            showToast(
+                `${nome} cadastrado com sucesso!`
+            );
+
+        }
+    );
+
+
+    /* =====================================================
        EVENTOS DOS FILTROS
-    ====================================================== */
+    ===================================================== */
 
     searchInput.addEventListener(
         "input",
         filterClients
     );
 
+
     statusFilter.addEventListener(
         "change",
         filterClients
     );
+
 
     courseFilter.addEventListener(
         "change",
@@ -189,28 +487,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       NOVO CLIENTE
-    ====================================================== */
-
-    if (newClientButton) {
-
-        newClientButton.addEventListener(
-            "click",
-            () => {
-
-                showToast(
-                    "Cadastro de novo cliente em breve."
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
        AÇÕES DOS CLIENTES
-    ====================================================== */
+    ===================================================== */
 
     clientsList.addEventListener(
         "click",
@@ -273,61 +551,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       AÇÕES RÁPIDAS
-    ====================================================== */
-
-    document
-        .querySelectorAll(
-            ".client-quick-actions [data-toast]"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    showToast(
-                        button.dataset.toast
-                    );
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
-       PAGINAÇÃO DEMONSTRATIVA
-    ====================================================== */
-
-    document
-        .querySelectorAll(".pagination button")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    if (
-                        button.disabled ||
-                        button.classList.contains("current")
-                    ) {
-                        return;
-                    }
-
-                    showToast(
-                        "Paginação pronta para integração."
-                    );
-
-                }
-            );
-
-        });
-
-
-    /* =====================================================
        INICIALIZAÇÃO
-    ====================================================== */
+    ===================================================== */
 
     filterClients();
 

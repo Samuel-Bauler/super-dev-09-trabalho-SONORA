@@ -1,996 +1,32 @@
 /* =========================================================
-   INSTRUMENTOS
-========================================================= */
-
-.instrumentos-page {
-    width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
-}
-
-
-/* =========================================================
-   INTRO
-========================================================= */
-
-.instrumentos-intro {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    gap: 25px;
-
-    margin-bottom: 30px;
-}
-
-.instrumentos-intro h2 {
-    margin: 5px 0 7px;
-
-    color: #102f27;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 29px;
-    font-weight: 800;
-
-    letter-spacing: -0.8px;
-}
-
-.instrumentos-intro p:not(.eyebrow) {
-    max-width: 600px;
-
-    margin: 0;
-
-    color: #718079;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   RESUMO
-========================================================= */
-
-.instrument-summary {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: 14px;
-
-    margin-bottom: 28px;
-}
-
-.summary-card {
-    display: flex;
-    align-items: center;
-
-    gap: 13px;
-
-    min-height: 94px;
-
-    padding: 16px;
-
-    border: 1px solid rgba(25, 42, 35, 0.07);
-
-    border-radius: 15px;
-
-    background: #fff;
-
-    box-shadow:
-        0 5px 16px rgba(20, 35, 29, 0.035);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.summary-card:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 9px 22px rgba(20, 35, 29, 0.07);
-}
-
-
-.summary-icon {
-    width: 43px;
-    height: 43px;
-
-    flex: 0 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.summary-icon.green {
-    color: #17604b;
-    background: #dcebe2;
-}
-
-.summary-icon.blue {
-    color: #24699f;
-    background: #deedf6;
-}
-
-.summary-icon.sand {
-    color: #876b28;
-    background: #f2e5c6;
-}
-
-.summary-icon.rose {
-    color: #9c4a59;
-    background: #f3dce0;
-}
-
-
-.summary-card > div:last-child {
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-}
-
-.summary-card strong {
-    color: #17352c;
-
-    font-size: 22px;
-    font-weight: 900;
-
-    line-height: 1;
-}
-
-.summary-card span {
-    margin-top: 4px;
-
-    color: #50625a;
-
-    font-size: 10px;
-    font-weight: 800;
-}
-
-.summary-card small {
-    margin-top: 2px;
-
-    color: #9aa49f;
-
-    font-size: 8px;
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   CONTROLES
-========================================================= */
-
-.instrument-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-bottom: 30px;
-
-    padding: 12px;
-
-    border: 1px solid rgba(25, 42, 35, 0.07);
-
-    border-radius: 14px;
-
-    background: #fff;
-
-    box-shadow:
-        0 5px 18px rgba(20, 35, 29, 0.035);
-}
-
-
-/* =========================================================
-   BUSCA
-========================================================= */
-
-.instrument-search {
-    width: min(360px, 100%);
-
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-
-    padding: 0 12px;
-
-    border: 1px solid #e5e9e5;
-
-    border-radius: 10px;
-
-    background: #fafbf9;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.instrument-search:focus-within {
-    border-color: #8fb6a5;
-
-    background: #fff;
-
-    box-shadow:
-        0 0 0 3px rgba(40, 105, 81, 0.08);
-}
-
-.instrument-search span {
-    color: #81908a;
-
-    font-size: 17px;
-}
-
-.instrument-search input {
-    width: 100%;
-
-    border: 0;
-    outline: 0;
-
-    color: #19332a;
-
-    background: transparent;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.instrument-search input::placeholder {
-    color: #9ba6a1;
-}
-
-
-/* =========================================================
-   CATEGORIAS
-========================================================= */
-
-.instrument-categories {
-    display: flex;
-    align-items: center;
-
-    gap: 5px;
-}
-
-.category-filter {
-    height: 36px;
-
-    padding: 0 13px;
-
-    border: 1px solid transparent;
-
-    border-radius: 9px;
-
-    color: #718079;
-
-    background: transparent;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition:
-        color 0.18s ease,
-        background 0.18s ease,
-        border-color 0.18s ease;
-}
-
-.category-filter:hover {
-    color: #17604b;
-
-    background: #f2f7f3;
-}
-
-.category-filter.active {
-    color: #17604b;
-
-    border-color: #d7e5dc;
-
-    background: #e8f1eb;
-}
-
-
-/* =========================================================
-   CABEÇALHO DA LISTA
-========================================================= */
-
-.instrument-list-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-
-    gap: 20px;
-
-    margin-bottom: 16px;
-}
-
-.instrument-list-header h2 {
-    margin: 5px 0 0;
-
-    color: #17352c;
-
-    font-size: 23px;
-    font-weight: 900;
-
-    letter-spacing: -0.5px;
-}
-
-.instrument-counter {
-    padding-bottom: 3px;
-
-    color: #7d8a84;
-
-    font-size: 10px;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   GRID
-========================================================= */
-
-.instruments-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
-
-    gap: 16px;
-}
-
-
-/* =========================================================
-   CARD
-========================================================= */
-
-.instrument-card {
-    overflow: hidden;
-
-    border: 1px solid rgba(25, 42, 35, 0.07);
-
-    border-radius: 17px;
-
-    background: #fff;
-
-    box-shadow:
-        0 6px 20px rgba(20, 35, 29, 0.04);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.instrument-card:hover {
-    transform: translateY(-4px);
-
-    border-color: rgba(23, 96, 75, 0.12);
-
-    box-shadow:
-        0 10px 28px rgba(20, 35, 29, 0.08);
-}
-
-
-/* =========================================================
-   ÁREA VISUAL
-========================================================= */
-
-.instrument-visual {
-    position: relative;
-
-    height: 135px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-}
-
-.instrument-visual::before {
-    content: "";
-
-    position: absolute;
-
-    width: 150px;
-    height: 150px;
-
-    right: -45px;
-    bottom: -80px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.32);
-}
-
-.instrument-visual::after {
-    content: "";
-
-    position: absolute;
-
-    width: 90px;
-    height: 90px;
-
-    left: -30px;
-    top: -45px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.visual-green {
-    background: #dcebe2;
-}
-
-.visual-blue {
-    background: #deedf6;
-}
-
-.visual-purple {
-    background: #e9dff1;
-}
-
-.visual-rose {
-    background: #f3dce0;
-}
-
-.visual-sand {
-    background: #f2e5c6;
-}
-
-
-/* =========================================================
-   SÍMBOLO
-========================================================= */
-
-.instrument-symbol {
-    position: relative;
-    z-index: 2;
-
-    width: 66px;
-    height: 66px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid rgba(255, 255, 255, 0.6);
-
-    border-radius: 19px;
-
-    color: #17604b;
-
-    background: rgba(255, 255, 255, 0.55);
-
-    box-shadow:
-        0 8px 20px rgba(30, 60, 48, 0.07);
-
-    font-size: 28px;
-    font-weight: 900;
-}
-
-.visual-blue .instrument-symbol {
-    color: #24699f;
-}
-
-.visual-purple .instrument-symbol {
-    color: #71518e;
-}
-
-.visual-rose .instrument-symbol {
-    color: #9c4a59;
-}
-
-.visual-sand .instrument-symbol {
-    color: #876b28;
-}
-
-
-/* =========================================================
-   STATUS DO CARD
-========================================================= */
-
-.instrument-status {
-    position: absolute;
-
-    top: 12px;
-    left: 12px;
-
-    z-index: 3;
-
-    padding: 5px 8px;
-
-    border-radius: 999px;
-
-    font-size: 13px;
-    font-weight: 900;
-}
-
-.instrument-status.available {
-    color: #bef1d8;
-
-    background: #23644f;
-}
-
-.instrument-status.loaned {
-    color: rgba(255, 255, 255, 0.75);
-
-    background: #71518e;
-}
-
-.instrument-status.maintenance {
-    color: rgba(216, 206, 206, 0.75);
-
-    background: #9c4a59;
-}
-
-
-/* =========================================================
-   MENU
-========================================================= */
-
-.instrument-menu {
-    position: absolute;
-
-    top: 10px;
-    right: 10px;
-
-    z-index: 3;
-
-    width: 29px;
-    height: 29px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 0;
-
-    border-radius: 8px;
-
-    color: #53675e;
-
-    background: rgba(255, 255, 255, 0.65);
-
-    font-size: 15px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.18s ease,
-        color 0.18s ease;
-}
-
-.instrument-menu:hover {
-    color: #17604b;
-
-    background: #fff;
-}
-
-
-/* =========================================================
-   INFORMAÇÕES
-========================================================= */
-
-.instrument-info {
-    padding: 17px;
-}
-
-
-/* =========================================================
-   TÍTULO
-========================================================= */
-
-.instrument-title {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    font-size: 10px;
-    gap: 12px;
-
-    margin-bottom: 17px;
-}
-
-.instrument-title h3 {
-    margin: 0 0 3px;
-
-    color: #172f27;
-
-    font-size: 14px;
-    font-weight: 900;
-}
-
-.instrument-title span:not(.instrument-code) {
-    color: #8b9792;
-
-    font-size: 9px;
-    font-weight: 600;
-}
-
-.instrument-code {
-    flex: 0 0 auto;
-
-    padding: 5px 7px;
-
-    border-radius: 7px;
-
-    color: #74817c;
-
-    background: #f3f6f3;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 7px;
-    font-weight: 900;
-
-    letter-spacing: 0.5px;
-}
-
-
-/* =========================================================
-   DETALHES
-========================================================= */
-
-.instrument-details {
-    display: grid;
-    font-size: 10px;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 8px;
-
-    margin-bottom: 15px;
-}
-
-.instrument-details > div {
-    padding: 9px 10px;
-
-    border-radius: 9px;
-
-    background: #f8faf7;
-}
-
-.instrument-details small {
-    display: block;
-
-    margin-bottom: 4px;
-
-    color: #000000;
-
-    font-size: 10px;
-    font-weight: 900;
-
-    letter-spacing: 0.5px;
-}
-
-.instrument-details strong {
-    color: #30463e;
-
-    font-size: 13px;
-    font-weight: 900;
-}
-
-
-/* =========================================================
-   RODAPÉ DO CARD
-========================================================= */
-
-.instrument-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 10px;
-
-    padding-top: 12px;
-
-    border-top: 1px solid #edf1ed;
-}
-
-.condition {
-    font-size: 8px;
-    font-weight: 800;
-}
-
-.condition.good {
-    color: #287054;
-}
-
-.condition.attention {
-    color: #a45a65;
-}
-
-.instrument-action {
-    padding: 0;
-
-    border: 0;
-
-    color: #17604b;
-
-    background: transparent;
-
-    font-size: 8px;
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.18s ease,
-        color 0.18s ease;
-}
-
-.instrument-action:hover {
-    color: #0f4738;
-
-    transform: translateX(2px);
-}
-
-
-/* =========================================================
-   ESTADO VAZIO
-========================================================= */
-
-.instrument-empty {
-    padding: 65px 20px;
-
-    text-align: center;
-
-    border: 1px solid rgba(25, 42, 35, 0.07);
-
-    border-radius: 17px;
-
-    background: #fff;
-}
-
-.empty-instrument-icon {
-    width: 52px;
-    height: 52px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin: 0 auto 14px;
-
-    border-radius: 14px;
-
-    color: #23644f;
-
-    background: #e2eee7;
-
-    font-size: 22px;
-}
-
-.instrument-empty h3 {
-    margin: 0 0 6px;
-
-    color: #19352c;
-
-    font-size: 15px;
-    font-weight: 900;
-}
-
-.instrument-empty p {
-    margin: 0;
-
-    color: #7e8a85;
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
-
-.instrument-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 18px 3px;
-
-    color: #87928d;
-
-    font-size: 9px;
-    font-weight: 700;
-}
-
-.instrument-bottom button {
-    padding: 8px 12px;
-
-    border: 1px solid #dce5df;
-
-    border-radius: 8px;
-
-    color: #17604b;
-
-    background: #fff;
-
-    font-size: 8px;
-    font-weight: 900;
-
-    cursor: pointer;
-
-    transition:
-        background 0.18s ease,
-        border-color 0.18s ease;
-}
-
-.instrument-bottom button:hover {
-    border-color: #bcd0c4;
-
-    background: #f4f8f5;
-}
-
-
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-
-@media (max-width: 1200px) {
-
-    .instruments-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
-    .instrument-summary {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-}
-
-
-@media (max-width: 850px) {
-
-    .instrumentos-intro {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .instrument-controls {
-        align-items: stretch;
-
-        flex-direction: column;
-    }
-
-    .instrument-search {
-        width: 100%;
-    }
-
-    .instrument-categories {
-        width: 100%;
-
-        overflow-x: auto;
-
-        padding-bottom: 2px;
-    }
-
-    .category-filter {
-        flex: 0 0 auto;
-    }
-}
-
-
-@media (max-width: 650px) {
-
-    .instruments-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .instrument-summary {
-        grid-template-columns: 1fr;
-    }
-
-    .instrument-list-header {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 5px;
-    }
-
-    .instrument-bottom {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 10px;
-    }
-}
-
-
-@media (max-width: 480px) {
-
-    .instrumentos-intro h2 {
-        font-size: 25px;
-    }
-
-    .summary-card {
-        min-height: 86px;
-    }
-
-    .instrument-visual {
-        height: 125px;
-    }
-
-    .instrument-info {
-        padding: 15px;
-    }
-
-    .instrument-title {
-        flex-direction: column;
-
-        gap: 7px;
-    }
-
-    .instrument-footer {
-        align-items: flex-start;
-
-        flex-direction: column;
-    }
-
-    .instrument-action {
-        align-self: flex-end;
-    }
-}
-
-/* =========================================================
    SONORA — INSTRUMENTOS
 ========================================================= */
 
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
 .instrumentos-page {
+
     width: 100%;
+
     max-width: 1500px;
+
     margin: 0 auto;
 }
 
 
 /* =========================================================
-   INTRO
+   INTRODUÇÃO
 ========================================================= */
 
 .instrumentos-intro {
+
     display: flex;
+
     align-items: flex-end;
+
     justify-content: space-between;
 
     gap: 25px;
@@ -998,7 +34,9 @@
     margin-bottom: 30px;
 }
 
+
 .instrumentos-intro h2 {
+
     margin: 5px 0 7px;
 
     color: #102f27;
@@ -1009,12 +47,15 @@
         sans-serif;
 
     font-size: 29px;
+
     font-weight: 800;
 
     letter-spacing: -0.8px;
 }
 
+
 .instrumentos-intro p:not(.eyebrow) {
+
     max-width: 600px;
 
     margin: 0;
@@ -1022,6 +63,7 @@
     color: #718079;
 
     font-size: 11px;
+
     font-weight: 600;
 
     line-height: 1.7;
@@ -1033,8 +75,11 @@
 ========================================================= */
 
 .instrument-controls {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -1059,16 +104,18 @@
 ========================================================= */
 
 .instrument-search {
-    width: min(360px, 100%);
 
-    height: 40px;
+    width: min(420px, 100%);
+
+    height: 42px;
 
     display: flex;
+
     align-items: center;
 
     gap: 9px;
 
-    padding: 0 12px;
+    padding: 0 13px;
 
     border: 1px solid #e5e9e5;
 
@@ -1082,7 +129,9 @@
         box-shadow 0.2s ease;
 }
 
+
 .instrument-search:focus-within {
+
     border-color: #8fb6a5;
 
     background: #fff;
@@ -1091,16 +140,21 @@
         0 0 0 3px rgba(40, 105, 81, 0.08);
 }
 
+
 .instrument-search span {
+
     color: #81908a;
 
     font-size: 17px;
 }
 
+
 .instrument-search input {
+
     width: 100%;
 
     border: 0;
+
     outline: 0;
 
     color: #19332a;
@@ -1112,11 +166,14 @@
         Arial,
         sans-serif;
 
-    font-size: 10px;
+    font-size: 11px;
+
     font-weight: 700;
 }
 
+
 .instrument-search input::placeholder {
+
     color: #9ba6a1;
 }
 
@@ -1126,8 +183,11 @@
 ========================================================= */
 
 .instrument-list-header {
+
     display: flex;
+
     align-items: flex-end;
+
     justify-content: space-between;
 
     gap: 20px;
@@ -1135,23 +195,29 @@
     margin-bottom: 16px;
 }
 
+
 .instrument-list-header h2 {
+
     margin: 5px 0 0;
 
     color: #17352c;
 
     font-size: 23px;
+
     font-weight: 900;
 
     letter-spacing: -0.5px;
 }
 
+
 .instrument-counter {
+
     padding-bottom: 3px;
 
     color: #7d8a84;
 
     font-size: 10px;
+
     font-weight: 800;
 }
 
@@ -1161,6 +227,7 @@
 ========================================================= */
 
 .instrument-list {
+
     width: 100%;
 
     overflow: hidden;
@@ -1176,11 +243,8 @@
 }
 
 
-/* =========================================================
-   TABLE
-========================================================= */
-
 .instrument-list table {
+
     width: 100%;
 
     border-collapse: collapse;
@@ -1195,22 +259,27 @@
 
 
 /* =========================================================
-   CABEÇALHO DA TABELA
+   CABEÇALHO
 ========================================================= */
 
 .instrument-list thead {
-    background: #f5f8f5;
+
+    background: #17604b;
 }
 
+
 .instrument-list th {
+
     padding: 15px 20px;
 
-    color: #50625a;
+    color: #e8ecea;
 
     font-size: 9px;
+
     font-weight: 900;
 
     text-align: left;
+
     text-transform: uppercase;
 
     letter-spacing: 0.7px;
@@ -1220,22 +289,20 @@
 
 
 /* =========================================================
-   LARGURA DAS COLUNAS
+   COLUNAS
 ========================================================= */
 
-.instrument-list th:first-child,
-.instrument-list td:first-child {
+.instrument-list .column-id {
+
     width: 100px;
 }
 
-.instrument-list th:nth-child(2),
-.instrument-list td:nth-child(2) {
-    width: auto;
-}
 
-.instrument-list th:last-child,
-.instrument-list td:last-child {
-    width: 170px;
+.instrument-list .column-actions {
+
+    width: 190px;
+
+    text-align: center;
 }
 
 
@@ -1244,13 +311,16 @@
 ========================================================= */
 
 .instrument-list tbody tr {
+
     background: #fff;
 
     transition:
         background 0.18s ease;
 }
 
+
 .instrument-list tbody tr:hover {
+
     background: #f7faf8;
 }
 
@@ -1260,11 +330,13 @@
 ========================================================= */
 
 .instrument-list td {
+
     padding: 16px 20px;
 
     color: #30463e;
 
     font-size: 11px;
+
     font-weight: 700;
 
     border-bottom: 1px solid #edf1ed;
@@ -1273,9 +345,8 @@
 }
 
 
-/* Remove borda da última linha */
-
 .instrument-list tbody tr:last-child td {
+
     border-bottom: 0;
 }
 
@@ -1285,9 +356,11 @@
 ========================================================= */
 
 .instrument-list td:first-child {
+
     color: #87928d;
 
     font-size: 10px;
+
     font-weight: 800;
 }
 
@@ -1297,63 +370,125 @@
 ========================================================= */
 
 .instrument-list td:nth-child(2) {
+
     color: #17352c;
 
-    font-size: 12px;
+    font-size: 13px;
+
     font-weight: 800;
 }
 
 
 /* =========================================================
-   BOTÃO — VER DETALHES
+   AÇÕES
 ========================================================= */
 
-.instrument-details-button {
-    display: inline-flex;
+.instrument-actions {
+
+    display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    min-width: 100px;
+    gap: 8px;
+}
 
-    padding: 7px 11px;
 
-    border: 1px solid #d7e5dc;
+/* =========================================================
+   BOTÕES DE AÇÃO
+========================================================= */
 
-    border-radius: 7px;
+.instrument-action {
 
-    color: #17604b;
+    width: 34px;
 
-    background: #e8f1eb;
+    height: 34px;
 
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
+    display: inline-flex;
 
-    font-size: 8px;
-    font-weight: 900;
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #dfe7e1;
+
+    border-radius: 9px;
+
+    background: #f7faf8;
 
     cursor: pointer;
 
     transition:
+        transform 0.18s ease,
         background 0.18s ease,
-        border-color 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease;
+        border-color 0.18s ease;
 }
 
-.instrument-details-button:hover {
+
+.instrument-action:hover {
+
+    transform: translateY(-2px);
+
+    background: #fff;
+}
+
+
+.instrument-action:active {
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ÍCONE
+========================================================= */
+
+.instrument-action svg {
+
+    width: 16px;
+
+    height: 16px;
+
+    stroke: currentColor;
+}
+
+
+/* =========================================================
+   EDITAR
+========================================================= */
+
+.instrument-action.edit {
+
+    color: #17604b;
+}
+
+
+.instrument-action.edit:hover {
+
     border-color: #17604b;
 
-    color: #fff;
-
-    background: #17604b;
-
-    transform: translateX(2px);
+    background: #e8f1eb;
 }
 
-.instrument-details-button:active {
-    transform: translateX(0);
+
+/* =========================================================
+   APAGAR
+========================================================= */
+
+.instrument-action.delete {
+
+    color: #b04c5d;
+}
+
+
+.instrument-action.delete:hover {
+
+    border-color: #e3b8c0;
+
+    background: #fae9ec;
 }
 
 
@@ -1362,7 +497,10 @@
 ========================================================= */
 
 .instrument-empty {
+
     padding: 65px 20px;
+
+    margin-top: 20px;
 
     text-align: center;
 
@@ -1373,12 +511,23 @@
     background: #fff;
 }
 
+
+.instrument-empty[hidden] {
+
+    display: none;
+}
+
+
 .empty-instrument-icon {
+
     width: 52px;
+
     height: 52px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     margin: 0 auto 14px;
@@ -1392,21 +541,27 @@
     font-size: 22px;
 }
 
+
 .instrument-empty h3 {
+
     margin: 0 0 6px;
 
     color: #19352c;
 
     font-size: 15px;
+
     font-weight: 900;
 }
 
+
 .instrument-empty p {
+
     margin: 0;
 
     color: #7e8a85;
 
     font-size: 10px;
+
     font-weight: 600;
 }
 
@@ -1416,8 +571,11 @@
 ========================================================= */
 
 .instrument-bottom {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     padding: 18px 3px;
@@ -1425,10 +583,13 @@
     color: #87928d;
 
     font-size: 9px;
+
     font-weight: 700;
 }
 
+
 .instrument-bottom button {
+
     padding: 8px 12px;
 
     border: 1px solid #dce5df;
@@ -1440,6 +601,7 @@
     background: #fff;
 
     font-size: 8px;
+
     font-weight: 900;
 
     cursor: pointer;
@@ -1449,7 +611,9 @@
         border-color 0.18s ease;
 }
 
+
 .instrument-bottom button:hover {
+
     border-color: #bcd0c4;
 
     background: #f4f8f5;
@@ -1457,24 +621,601 @@
 
 
 /* =========================================================
-   RESPONSIVO — 850px
+   MODAL — GERAL
+========================================================= */
+
+.modal-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 35, 28, 0.48);
+
+    backdrop-filter: blur(5px);
+}
+
+
+.modal-overlay[hidden] {
+
+    display: none;
+}
+
+
+/* =========================================================
+   MODAL DE INSTRUMENTO
+========================================================= */
+
+.instrument-modal {
+
+    width: 100%;
+
+    max-width: 480px;
+
+    padding: 28px;
+
+    border: 1px solid rgba(25, 42, 35, 0.08);
+
+    border-radius: 18px;
+
+    background: #fff;
+
+    box-shadow:
+        0 25px 70px rgba(20, 35, 29, 0.22);
+
+    animation:
+        modalOpen 0.2s ease;
+}
+
+
+@keyframes modalOpen {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px)
+            scale(0.98);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   CABEÇALHO DO MODAL
+========================================================= */
+
+.modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+}
+
+
+.modal-header h2 {
+
+    margin: 5px 0 7px;
+
+    color: #102f27;
+
+    font-size: 27px;
+
+    font-weight: 900;
+
+    letter-spacing: -0.5px;
+}
+
+
+.modal-header p:not(.eyebrow) {
+
+    margin: 0;
+
+    color: #718079;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   FECHAR
+========================================================= */
+
+.modal-close {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    color: #718079;
+
+    background: #f3f6f3;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        color 0.18s ease;
+}
+
+
+.modal-close:hover {
+
+    color: #fff;
+
+    background: #17604b;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.form-group label {
+
+    color: #30463e;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+
+.form-group input {
+
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #dfe6e1;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    color: #19332a;
+
+    background: #fafbf9;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.form-group input:focus {
+
+    border-color: #8fb6a5;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 3px rgba(40, 105, 81, 0.08);
+}
+
+
+.form-group input::placeholder {
+
+    color: #9ba6a1;
+}
+
+
+/* =========================================================
+   ERRO
+========================================================= */
+
+.modal-error {
+
+    margin-top: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: 9px;
+
+    color: #9c4a59;
+
+    background: #f8e7ea;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+.modal-error[hidden] {
+
+    display: none;
+}
+
+
+/* =========================================================
+   AÇÕES DO FORMULÁRIO
+========================================================= */
+
+.modal-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.modal-actions button {
+
+    height: 40px;
+
+    padding: 0 16px;
+
+    border-radius: 9px;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+
+/* =========================================================
+   CANCELAR
+========================================================= */
+
+.modal-cancel {
+
+    border: 1px solid #dce5df;
+
+    color: #50625a;
+
+    background: #fff;
+}
+
+
+.modal-cancel:hover {
+
+    border-color: #c4d2ca;
+
+    background: #f5f8f5;
+}
+
+
+/* =========================================================
+   SALVAR
+========================================================= */
+
+.modal-submit {
+
+    border: 1px solid #17604b;
+
+    color: #fff;
+
+    background: #17604b;
+}
+
+
+.modal-submit:hover {
+
+    border-color: #0f4738;
+
+    background: #0f4738;
+}
+
+
+.modal-submit:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   MODAL DE EXCLUSÃO
+========================================================= */
+
+.delete-modal {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    border: 1px solid rgba(25, 42, 35, 0.08);
+
+    border-radius: 18px;
+
+    background: #cac8c8;
+
+    box-shadow:
+        0 25px 70px rgba(20, 35, 29, 0.22);
+
+    animation:
+        modalOpen 0.2s ease;
+}
+
+
+/* =========================================================
+   ÍCONE DE ALERTA
+========================================================= */
+
+.delete-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    color: #b04c5d;
+
+    background: #fae9ec;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.delete-content h2 {
+
+    margin: 0 0 9px;
+
+    color: #19352c;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+
+.delete-content p {
+
+    margin: 0;
+
+    color: #718079;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+
+.delete-content strong {
+
+    color: #19352c;
+
+    font-weight: 900;
+}
+
+
+.delete-warning {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #b04c5d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   BOTÕES DE EXCLUSÃO
+========================================================= */
+
+.delete-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.delete-actions button {
+
+    height: 40px;
+
+    padding: 0 17px;
+
+    border-radius: 9px;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+
+/* =========================================================
+   CANCELAR EXCLUSÃO
+========================================================= */
+
+.delete-cancel {
+
+    border: 1px solid #dce5df;
+
+    color: #50625a;
+
+    background: #fff;
+}
+
+
+.delete-cancel:hover {
+
+    background: #f5f8f5;
+
+    border-color: #c4d2ca;
+}
+
+
+/* =========================================================
+   CONFIRMAR EXCLUSÃO
+========================================================= */
+
+.delete-confirm {
+
+    border: 1px solid #b04c5d;
+
+    color: #fff;
+
+    background: #b04c5d;
+}
+
+
+.delete-confirm:hover {
+
+    border-color: #963d4e;
+
+    background: #963d4e;
+}
+
+
+.delete-confirm:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RESPONSIVO — 850PX
 ========================================================= */
 
 @media (max-width: 850px) {
 
     .instrumentos-intro {
+
         align-items: flex-start;
 
         flex-direction: column;
     }
 
+
     .instrument-controls {
+
         align-items: stretch;
 
         flex-direction: column;
     }
 
+
     .instrument-search {
+
         width: 100%;
     }
 
@@ -1482,22 +1223,27 @@
 
 
 /* =========================================================
-   RESPONSIVO — 650px
+   RESPONSIVO — 650PX
 ========================================================= */
 
 @media (max-width: 650px) {
 
     .instrument-list {
+
         overflow-x: auto;
 
         border-radius: 13px;
     }
 
+
     .instrument-list table {
-        min-width: 600px;
+
+        min-width: 620px;
     }
 
+
     .instrument-list-header {
+
         align-items: flex-start;
 
         flex-direction: column;
@@ -1505,7 +1251,9 @@
         gap: 5px;
     }
 
+
     .instrument-bottom {
+
         align-items: flex-start;
 
         flex-direction: column;
@@ -1517,22 +1265,48 @@
 
 
 /* =========================================================
-   RESPONSIVO — 480px
+   RESPONSIVO — 480PX
 ========================================================= */
 
 @media (max-width: 480px) {
 
     .instrumentos-intro h2 {
+
         font-size: 25px;
     }
 
+
     .instrument-list th,
     .instrument-list td {
+
         padding: 13px 14px;
     }
 
+
     .instrument-list table {
-        min-width: 550px;
+
+        min-width: 560px;
+    }
+
+
+    .instrument-modal,
+    .delete-modal {
+
+        padding: 22px;
+    }
+
+
+    .modal-actions,
+    .delete-actions {
+
+        flex-direction: column;
+    }
+
+
+    .modal-actions button,
+    .delete-actions button {
+
+        width: 100%;
     }
 
 }
