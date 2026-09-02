@@ -5,9 +5,13 @@ import sys
 
 # Permite rodar com `py src/app.py`
 # Coloca a raiz do projeto no sys.path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(
+    0,
+    str(Path(__file__).resolve().parent.parent)
+)
 
-from src.controllers import instrumentos_controller
+from src.controllers import instrumentos_controller, clientes_controller, professores_controller
+
 
 app = FastAPI(
     title="Sonora API",
@@ -27,6 +31,8 @@ app.add_middleware(
 )
 
 app.include_router(instrumentos_controller.router)
+app.include_router(clientes_controller.router)
+app.include_router(professores_controller.router)
 
 if __name__ == "__main__":
     import uvicorn
