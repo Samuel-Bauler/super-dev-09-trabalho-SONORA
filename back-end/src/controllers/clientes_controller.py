@@ -2,7 +2,9 @@ from fastapi import APIRouter, HTTPException, status
 from src.repositories import clientes_repository
 from src.schemas.clientes import ClienteCreate
 
-router = APIRouter()
+router = APIRouter(
+    tags=["Clientes"]
+)
 
 
 @router.get("/clientes")

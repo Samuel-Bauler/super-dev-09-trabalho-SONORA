@@ -3,8 +3,9 @@ from fastapi import APIRouter, HTTPException, status
 from src.repositories import professores_repository
 from src.schemas.professores import ProfessorCreate
 
-router = APIRouter()
-
+router = APIRouter(
+    tags=["Professores"]
+)
 
 @router.get("/professores")
 def get_professores():
