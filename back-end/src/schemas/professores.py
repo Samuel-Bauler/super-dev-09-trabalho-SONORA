@@ -13,4 +13,4 @@ class ProfessorCreate:
     nome: str
     id_instrumento: int
     alunos: int
-    status: int
+    status: bool
