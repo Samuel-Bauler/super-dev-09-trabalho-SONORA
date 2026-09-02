@@ -19,130 +19,6 @@
 
 
 /* =========================================================
-   ESTATÍSTICAS
-========================================================= */
-
-.teacher-stats {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
-    margin-bottom: 42px;
-}
-
-.teacher-stat {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    min-height: 120px;
-    padding: 20px;
-    border: 1px solid rgba(25, 42, 35, 0.07);
-    border-radius: 17px;
-    background: #ffffff;
-    box-shadow:
-        0 5px 14px rgba(20, 35, 29, 0.04),
-        0 15px 30px rgba(20, 35, 29, 0.04);
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.teacher-stat:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 18px rgba(20, 35, 29, 0.06),
-        0 20px 35px rgba(20, 35, 29, 0.07);
-}
-
-
-/* =========================================================
-   ÍCONES
-========================================================= */
-
-.teacher-stat-icon {
-    width: 46px;
-    height: 46px;
-    flex: 0 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 13px;
-
-    font-size: 20px;
-    font-weight: 900;
-}
-
-.teacher-stat-icon.green {
-    color: #126048;
-    background: #dcece2;
-}
-
-.teacher-stat-icon.blue {
-    color: #2167a5;
-    background: #dcebf6;
-}
-
-.teacher-stat-icon.sand {
-    color: #916d22;
-    background: #f3e6c6;
-}
-
-.teacher-stat-icon.rose {
-    color: #a44c5b;
-    background: #f4dfe2;
-}
-
-
-/* =========================================================
-   CONTEÚDO ESTATÍSTICA
-========================================================= */
-
-.teacher-stat-content {
-    min-width: 0;
-}
-
-.teacher-stat-content strong {
-    display: block;
-
-    margin-bottom: 2px;
-
-    color: #102d26;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 27px;
-    font-weight: 900;
-
-    line-height: 1;
-}
-
-.teacher-stat-content p {
-    margin: 5px 0 8px;
-
-    color: #687872;
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
-.teacher-stat-content em {
-    display: block;
-
-    color: #247054;
-
-    font-size: 10px;
-    font-weight: 900;
-
-    font-style: normal;
-}
-
-
-/* =========================================================
    CABEÇALHO
 ========================================================= */
 
@@ -155,6 +31,7 @@
 
     margin-bottom: 18px;
 }
+
 
 .teachers-section-header h2 {
     margin: 5px 0 0;
@@ -171,6 +48,7 @@
 
     letter-spacing: -0.7px;
 }
+
 
 .teachers-counter {
     padding-bottom: 4px;
@@ -194,7 +72,6 @@
     gap: 15px;
 
     margin-bottom: 14px;
-
     padding: 14px;
 
     border: 1px solid rgba(25, 42, 35, 0.07);
@@ -234,6 +111,7 @@
         background 0.2s ease;
 }
 
+
 .teacher-search:focus-within {
     border-color: #8fb6a5;
 
@@ -243,10 +121,12 @@
         0 0 0 3px rgba(40, 105, 81, 0.08);
 }
 
+
 .teacher-search span {
     color: #82908a;
     font-size: 18px;
 }
+
 
 .teacher-search input {
     width: 100%;
@@ -266,6 +146,7 @@
     font-weight: 700;
 }
 
+
 .teacher-search input::placeholder {
     color: #9ba6a1;
 }
@@ -277,8 +158,10 @@
 
 .teacher-filters {
     display: flex;
+
     gap: 9px;
 }
+
 
 .teacher-filters select {
     height: 42px;
@@ -306,6 +189,7 @@
     cursor: pointer;
 }
 
+
 .teacher-filters select:focus {
     border-color: #8fb6a5;
 
@@ -330,6 +214,7 @@
         0 7px 22px rgba(20, 35, 29, 0.045);
 }
 
+
 .teachers-table {
     width: 100%;
 
@@ -346,6 +231,7 @@
 .teachers-table thead {
     background: #1f4c3e;
 }
+
 
 .teachers-table th {
     padding: 15px 18px;
@@ -377,13 +263,14 @@
 
 .teachers-table tbody tr {
     transition:
-        background 0.18s ease,
-        transform 0.18s ease;
+        background 0.18s ease;
 }
+
 
 .teachers-table tbody tr:hover {
     background: #f9fbf9;
 }
+
 
 .teachers-table td {
     padding: 17px 18px;
@@ -404,8 +291,24 @@
     white-space: nowrap;
 }
 
+
 .teachers-table tbody tr:last-child td {
     border-bottom: 0;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading-row td {
+    padding: 45px 20px;
+
+    color: #75837d;
+
+    text-align: center;
+
+    font-size: 12px;
 }
 
 
@@ -422,6 +325,7 @@
     min-width: 240px;
 }
 
+
 .teacher-person > div {
     display: flex;
     flex-direction: column;
@@ -431,18 +335,12 @@
     min-width: 0;
 }
 
+
 .teacher-person strong {
     color: #142d25;
 
     font-size: 15px;
     font-weight: 900;
-}
-
-.teacher-person small {
-    color: #8b9892;
-
-    font-size: 9px;
-    font-weight: 600;
 }
 
 
@@ -471,25 +369,30 @@
     font-weight: 900;
 }
 
+
 .avatar-green {
     color: #24634f;
     background: #dcebe2;
 }
+
 
 .avatar-blue {
     color: #24699f;
     background: #deedf6;
 }
 
+
 .avatar-rose {
     color: #9c4a59;
     background: #f3dce0;
 }
 
+
 .avatar-sand {
     color: #876b28;
     background: #f2e5c6;
 }
+
 
 .avatar-purple {
     color: #71518e;
@@ -513,25 +416,30 @@
     font-weight: 900;
 }
 
+
 .green-tag {
     color: #28634f;
     background: #e3f0e8;
 }
+
 
 .blue-tag {
     color: #27699e;
     background: #e3eff7;
 }
 
+
 .rose-tag {
     color: #9e4d5b;
     background: #f5e1e4;
 }
 
+
 .purple-tag {
     color: #71518e;
     background: #e9dff1;
 }
+
 
 .sand-tag {
     color: #876b28;
@@ -553,6 +461,7 @@
     font-weight: 900;
 }
 
+
 .status i {
     width: 7px;
     height: 7px;
@@ -562,9 +471,11 @@
     border-radius: 50%;
 }
 
+
 .active-status {
     color: #267054;
 }
+
 
 .active-status i {
     background: #2e9b6e;
@@ -573,9 +484,11 @@
         0 0 0 3px rgba(46, 155, 110, 0.10);
 }
 
+
 .inactive-status {
     color: #9b6269;
 }
+
 
 .inactive-status i {
     background: #d27a85;
@@ -590,39 +503,84 @@
     display: flex;
     align-items: center;
 
-    gap: 5px;
+    gap: 7px;
 }
 
+
 .teacher-action {
-    width: 31px;
-    height: 31px;
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
     border: 0;
-    border-radius: 8px;
-
-    color: #64746d;
-
-    background: transparent;
-
-    font-size: 14px;
-    font-weight: 800;
+    border-radius: 7px;
 
     cursor: pointer;
 
     transition:
-        background 0.18s ease,
-        color 0.18s ease,
-        transform 0.18s ease;
+        transform 0.18s ease,
+        background 0.18s ease;
 }
 
-.teacher-action:hover {
-    color: #17604b;
 
-    background: #eaf3ed;
+/* =========================================================
+   ÍCONE
+========================================================= */
+
+.teacher-action svg {
+    width: 17px;
+    height: 17px;
+
+    display: block;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   BOTÃO EDITAR
+========================================================= */
+
+.edit-action {
+    color: #246b55;
+
+    background: #f0f7f2;
+}
+
+
+.edit-action:hover {
+    color: #ffffff;
+
+    background: #246b55;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   BOTÃO APAGAR
+========================================================= */
+
+.delete-action {
+    color: #b34d5a;
+
+    background: #fff2f3;
+}
+
+
+.delete-action:hover {
+    color: #ffffff;
+
+    background: #b34d5a;
 
     transform: translateY(-1px);
 }
@@ -637,6 +595,7 @@
 
     text-align: center;
 }
+
 
 .empty-icon {
     width: 50px;
@@ -657,6 +616,7 @@
     font-weight: 800;
 }
 
+
 .empty-state h3 {
     margin: 0 0 6px;
 
@@ -665,6 +625,7 @@
     font-size: 15px;
     font-weight: 900;
 }
+
 
 .empty-state p {
     margin: 0;
@@ -677,7 +638,7 @@
 
 
 /* =========================================================
-   MODAL
+   MODAL OVERLAY
 ========================================================= */
 
 .modal-overlay {
@@ -688,7 +649,6 @@
     z-index: 9999;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -698,8 +658,10 @@
 
     backdrop-filter: blur(5px);
 
-    animation: modalOverlayIn 0.2s ease;
+    animation:
+        modalOverlayIn 0.2s ease;
 }
+
 
 .modal-overlay[hidden] {
     display: none;
@@ -707,7 +669,7 @@
 
 
 /* =========================================================
-   CAIXA DO MODAL
+   MODAL PROFESSOR
 ========================================================= */
 
 .teacher-modal {
@@ -729,12 +691,13 @@
         0 15px 35px rgba(15, 35, 28, 0.12),
         0 30px 70px rgba(15, 35, 28, 0.14);
 
-    animation: teacherModalIn 0.25s ease;
+    animation:
+        teacherModalIn 0.25s ease;
 }
 
 
 /* =========================================================
-   CABEÇALHO DO MODAL
+   CABEÇALHO MODAL
 ========================================================= */
 
 .teacher-modal-header {
@@ -748,9 +711,11 @@
     margin-bottom: 25px;
 }
 
+
 .teacher-modal-header .eyebrow {
     margin-bottom: 5px;
 }
+
 
 .teacher-modal-header h2 {
     margin: 0 0 7px;
@@ -768,6 +733,7 @@
 
     letter-spacing: -0.5px;
 }
+
 
 .teacher-modal-header p:last-child {
     margin: 0;
@@ -793,7 +759,6 @@
     flex: 0 0 auto;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -813,16 +778,14 @@
 
     transition:
         background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        color 0.2s ease;
 }
+
 
 .modal-close:hover {
     color: #17604b;
 
     background: #e2eee7;
-
-    transform: rotate(3deg);
 }
 
 
@@ -838,6 +801,7 @@
     gap: 17px;
 }
 
+
 .form-group {
     display: flex;
 
@@ -845,6 +809,7 @@
 
     gap: 7px;
 }
+
 
 .form-group label {
     color: #263e35;
@@ -858,6 +823,7 @@
 
     font-weight: 900;
 }
+
 
 .form-group input,
 .form-group select {
@@ -892,6 +858,7 @@
         background 0.2s ease;
 }
 
+
 .form-group input:focus,
 .form-group select:focus {
     border-color: #8fb6a5;
@@ -901,6 +868,7 @@
     box-shadow:
         0 0 0 3px rgba(40, 105, 81, 0.08);
 }
+
 
 .form-group input::placeholder {
     color: #a0aaa5;
@@ -921,7 +889,33 @@
 
 
 /* =========================================================
-   AÇÕES DO MODAL
+   ERRO DO MODAL
+========================================================= */
+
+.modal-error,
+.delete-error {
+    margin: 0;
+
+    padding: 11px 13px;
+
+    border: 1px solid #f0c9ce;
+
+    border-radius: 9px;
+
+    color: #a44753;
+
+    background: #fff1f3;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   AÇÕES MODAL
 ========================================================= */
 
 .teacher-modal-actions {
@@ -938,6 +932,7 @@
 
     border-top: 1px solid #edf1ee;
 }
+
 
 .modal-cancel {
     height: 42px;
@@ -968,11 +963,13 @@
         border-color 0.2s ease;
 }
 
+
 .modal-cancel:hover {
     border-color: #cbd7d0;
 
     background: #f7f9f7;
 }
+
 
 .modal-submit {
     height: 42px;
@@ -982,6 +979,192 @@
     border: 0;
 
     font-size: 11px;
+}
+
+
+/* =========================================================
+   MODAL DELETE
+========================================================= */
+
+.delete-modal {
+    width: min(430px, 100%);
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 20px 60px rgba(15, 35, 28, 0.18);
+
+    animation:
+        teacherModalIn 0.25s ease;
+}
+
+
+.delete-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 14px;
+
+    color: #b34d5a;
+
+    background: #fff0f2;
+}
+
+
+.delete-icon svg {
+    width: 23px;
+    height: 23px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+.delete-modal-content .eyebrow {
+    margin: 0 0 6px;
+
+    color: #b34d5a;
+}
+
+
+.delete-modal-content h2 {
+    margin: 0 0 9px;
+
+    color: #19352c;
+
+    font-size: 23px;
+
+    font-weight: 900;
+}
+
+
+.delete-modal-content p {
+    margin: 0 0 6px;
+
+    color: #53645c;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+.delete-modal-content p strong {
+    color: #19352c;
+}
+
+
+.delete-modal-content > span {
+    display: block;
+
+    color: #8a9690;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   AÇÕES DELETE
+========================================================= */
+
+.delete-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+.delete-confirm {
+    height: 42px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 0 17px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    background: #b34d5a;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.delete-confirm:hover {
+    background: #9e414e;
+
+    transform: translateY(-1px);
+}
+
+
+.delete-confirm svg {
+    width: 16px;
+    height: 16px;
+
+    fill: none;
+
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   BOTÕES DESABILITADOS
+========================================================= */
+
+button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none !important;
 }
 
 
@@ -1029,6 +1212,7 @@
         visibility 0.25s ease,
         transform 0.25s ease;
 }
+
 
 .toast.show {
     opacity: 1;
@@ -1083,17 +1267,13 @@
 
 @media (max-width: 1100px) {
 
-    .teacher-stats {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
-
     .teachers-table-wrapper {
         overflow-x: auto;
     }
 
+
     .teachers-table {
-        min-width: 900px;
+        min-width: 800px;
     }
 
 }
@@ -1101,15 +1281,12 @@
 
 @media (max-width: 760px) {
 
-    .teacher-stats {
-        grid-template-columns: 1fr;
-    }
-
     .teachers-section-header {
         align-items: flex-start;
 
         flex-direction: column;
     }
+
 
     .teachers-toolbar {
         align-items: stretch;
@@ -1117,9 +1294,11 @@
         flex-direction: column;
     }
 
+
     .teacher-search {
         width: 100%;
     }
+
 
     .teacher-filters {
         display: grid;
@@ -1127,30 +1306,9 @@
         grid-template-columns: 1fr 1fr;
     }
 
+
     .teacher-filters select {
         width: 100%;
-    }
-
-    .teacher-quick-actions {
-        grid-template-columns: 1fr;
-    }
-
-    .teacher-quick-actions button,
-    .teacher-quick-actions a {
-        min-height: 65px;
-    }
-
-    .teacher-quick-actions button:not(:last-child)::after,
-    .teacher-quick-actions a:not(:last-child)::after {
-        top: auto;
-
-        right: 15px;
-
-        bottom: 0;
-
-        width: calc(100% - 30px);
-
-        height: 1px;
     }
 
 }
@@ -1164,22 +1322,28 @@
         border-radius: 17px;
     }
 
+
     .teacher-modal-header h2 {
         font-size: 22px;
     }
+
 
     .form-row {
         grid-template-columns: 1fr;
     }
 
-    .teacher-modal-actions {
+
+    .teacher-modal-actions,
+    .delete-modal-actions {
         flex-direction: column-reverse;
 
         align-items: stretch;
     }
 
+
     .modal-cancel,
-    .modal-submit {
+    .modal-submit,
+    .delete-confirm {
         width: 100%;
     }
 
@@ -1188,27 +1352,23 @@
 
 @media (max-width: 480px) {
 
-    .teacher-stat {
-        padding: 16px;
-    }
-
-    .teacher-stat-content strong {
-        font-size: 24px;
-    }
-
     .teacher-filters {
         grid-template-columns: 1fr;
     }
+
 
     .teacher-person {
         min-width: 210px;
     }
 
+
     .modal-overlay {
         padding: 10px;
     }
 
-    .teacher-modal {
+
+    .teacher-modal,
+    .delete-modal {
         max-height: calc(100vh - 20px);
 
         padding: 18px;

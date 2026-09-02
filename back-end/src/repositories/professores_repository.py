@@ -55,5 +55,13 @@ def editar(id: int, professor: ProfessorCreate) -> None:
 def apagar(id: int) -> None:
     with conectar() as conexao:
         with conexao.cursor() as cursor:
-            cursor.execute("DELETE FROM professores WHERE id = %s", (id,))
+            cursor.execute(
+                """
+                UPDATE professores
+                SET status = %s
+                WHERE id = %s
+                """,
+                (False, id)
+            )
+
             conexao.commit()

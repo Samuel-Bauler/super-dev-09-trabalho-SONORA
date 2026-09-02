@@ -63,4 +63,6 @@ def apagar(id: int):
 
     professores_repository.apagar(id)
 
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+    }

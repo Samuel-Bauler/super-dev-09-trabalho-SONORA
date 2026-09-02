@@ -355,7 +355,7 @@
 
 .client-action.edit {
     border-color: #17604b;
-    background: #dcebe2;
+    background: #f5faf5;
     color: #17604b;
 }
 
@@ -369,7 +369,7 @@
 
 .client-action.delete {
     border-color: #a33a3a;
-    background: #f6dddd;
+    background: #f5faf5;
     color: #a33a3a;
 }
 

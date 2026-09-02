@@ -2,7 +2,6 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -26,14 +25,12 @@
         rel="stylesheet"
         href="assets/css/professores.css"
     >
-
 </head>
 
 
 <body>
 
 <div class="app">
-
 
     <!-- =====================================================
          SIDEBAR
@@ -166,13 +163,11 @@
     </aside>
 
 
-
     <!-- =====================================================
          CONTEÚDO
     ====================================================== -->
 
     <main class="content">
-
 
         <!-- TOPBAR -->
 
@@ -218,7 +213,6 @@
         </header>
 
 
-
         <!-- =====================================================
              PÁGINA PROFESSORES
         ====================================================== -->
@@ -242,7 +236,7 @@
 
                     <p>
                         Gerencie professores, especialidades,
-                        cursos e disponibilidade da equipe Sonora.
+                        alunos e disponibilidade da equipe Sonora.
                     </p>
 
                 </div>
@@ -257,7 +251,6 @@
                 </button>
 
             </div>
-
 
 
             <!-- =================================================
@@ -283,11 +276,10 @@
                     class="teachers-counter"
                     id="teachers-counter"
                 >
-                    5 professores
+                    0 professores
                 </span>
 
             </div>
-
 
 
             <!-- =================================================
@@ -295,7 +287,6 @@
             ================================================== -->
 
             <div class="teachers-toolbar">
-
 
                 <div class="teacher-search">
 
@@ -306,7 +297,7 @@
                     <input
                         type="search"
                         id="teacher-search"
-                        placeholder="Buscar por nome ou e-mail..."
+                        placeholder="Buscar professor..."
                         autocomplete="off"
                     >
 
@@ -324,11 +315,11 @@
                             Todos os status
                         </option>
 
-                        <option value="active">
+                        <option value="1">
                             Ativos
                         </option>
 
-                        <option value="inactive">
+                        <option value="0">
                             Inativos
                         </option>
 
@@ -344,36 +335,11 @@
                             Todos os instrumentos
                         </option>
 
-                        <option value="violao">
-                            Violão
-                        </option>
-
-                        <option value="piano">
-                            Piano
-                        </option>
-
-                        <option value="canto">
-                            Canto
-                        </option>
-
-                        <option value="guitarra">
-                            Guitarra
-                        </option>
-
-                        <option value="bateria">
-                            Bateria
-                        </option>
-
-                        <option value="violino">
-                            Violino
-                        </option>
-
                     </select>
 
                 </div>
 
             </div>
-
 
 
             <!-- =================================================
@@ -415,510 +381,17 @@
 
                     <tbody id="teachers-list">
 
+                        <tr class="loading-row">
 
-                        <!-- PROFESSOR 1 -->
-
-                        <tr
-                            data-name="Rafael Bastos"
-                            data-email="rafael@email.com"
-                            data-status="active"
-                            data-course="violao"
-                        >
-
-                            <td>
-
-                                <div class="teacher-person">
-
-                                    <span class="teacher-avatar avatar-green">
-                                        RB
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Rafael Bastos
-                                        </strong>
-
-                                        <small>
-                                            rafael@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="specialty-tag green-tag">
-                                    Violão
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                42 alunos
-                            </td>
-
-
-                            <td>
-
-                                <span class="status active-status">
-
-                                    <i></i>
-
-                                    Ativo
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="teacher-actions">
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
+                            <td colspan="5">
+                                Carregando professores...
                             </td>
 
                         </tr>
-
-
-
-                        <!-- PROFESSOR 2 -->
-
-                        <tr
-                            data-name="Luiza Serra"
-                            data-email="luiza@email.com"
-                            data-status="active"
-                            data-course="piano"
-                        >
-
-                            <td>
-
-                                <div class="teacher-person">
-
-                                    <span class="teacher-avatar avatar-blue">
-                                        LS
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Luiza Serra
-                                        </strong>
-
-                                        <small>
-                                            luiza@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="specialty-tag blue-tag">
-                                    Piano
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                28 alunos
-                            </td>
-
-
-                            <td>
-
-                                <span class="status active-status">
-
-                                    <i></i>
-
-                                    Ativo
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="teacher-actions">
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- PROFESSOR 3 -->
-
-                        <tr
-                            data-name="Clara Almeida"
-                            data-email="clara@email.com"
-                            data-status="active"
-                            data-course="canto"
-                        >
-
-                            <td>
-
-                                <div class="teacher-person">
-
-                                    <span class="teacher-avatar avatar-rose">
-                                        CA
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Clara Almeida
-                                        </strong>
-
-                                        <small>
-                                            clara@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="specialty-tag rose-tag">
-                                    Canto
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                36 alunos
-                            </td>
-
-
-                            <td>
-
-                                <span class="status active-status">
-
-                                    <i></i>
-
-                                    Ativo
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="teacher-actions">
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- PROFESSOR 4 -->
-
-                        <tr
-                            data-name="Marcelo Costa"
-                            data-email="marcelo@email.com"
-                            data-status="inactive"
-                            data-course="violao"
-                        >
-
-                            <td>
-
-                                <div class="teacher-person">
-
-                                    <span class="teacher-avatar avatar-sand">
-                                        MC
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Marcelo Costa
-                                        </strong>
-
-                                        <small>
-                                            marcelo@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="specialty-tag green-tag">
-                                    Violão
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                18 alunos
-                            </td>
-
-
-                            <td>
-
-                                <span class="status inactive-status">
-
-                                    <i></i>
-
-                                    Inativo
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="teacher-actions">
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-
-                        <!-- PROFESSOR 5 -->
-
-                        <tr
-                            data-name="Ana Beatriz"
-                            data-email="ana@email.com"
-                            data-status="active"
-                            data-course="piano"
-                        >
-
-                            <td>
-
-                                <div class="teacher-person">
-
-                                    <span class="teacher-avatar avatar-purple">
-                                        AB
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Ana Beatriz
-                                        </strong>
-
-                                        <small>
-                                            ana@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-
-                            <td>
-
-                                <span class="specialty-tag blue-tag">
-                                    Piano
-                                </span>
-
-                            </td>
-
-
-                            <td>
-                                31 alunos
-                            </td>
-
-
-                            <td>
-
-                                <span class="status active-status">
-
-                                    <i></i>
-
-                                    Ativo
-
-                                </span>
-
-                            </td>
-
-
-                            <td>
-
-                                <div class="teacher-actions">
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="teacher-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
 
                     </tbody>
 
                 </table>
-
 
 
                 <!-- ESTADO VAZIO -->
@@ -945,13 +418,11 @@
 
             </div>
 
-
         </section>
 
 
-
         <!-- =====================================================
-             MODAL — NOVO PROFESSOR
+             MODAL — CADASTRAR / EDITAR
         ====================================================== -->
 
         <div
@@ -967,7 +438,6 @@
                 aria-labelledby="teacher-modal-title"
             >
 
-
                 <!-- CABEÇALHO -->
 
                 <div class="teacher-modal-header">
@@ -975,14 +445,16 @@
                     <div>
 
                         <p class="eyebrow">
-                            NOVO CADASTRO
+                            <span id="teacher-modal-eyebrow">
+                                NOVO CADASTRO
+                            </span>
                         </p>
 
                         <h2 id="teacher-modal-title">
                             Novo professor
                         </h2>
 
-                        <p>
+                        <p id="teacher-modal-description">
                             Cadastre um novo professor na equipe Sonora.
                         </p>
 
@@ -1001,11 +473,9 @@
                 </div>
 
 
-
                 <!-- FORMULÁRIO -->
 
                 <form id="teacher-form">
-
 
                     <!-- NOME -->
 
@@ -1027,12 +497,6 @@
                     </div>
 
 
-
-                    <!-- EMAIL -->
-
-
-
-
                     <!-- INSTRUMENTO -->
 
                     <div class="form-group">
@@ -1043,7 +507,7 @@
 
                         <select
                             id="teacher-instrument"
-                            name="instrumento"
+                            name="id_instrumento"
                             required
                         >
 
@@ -1051,40 +515,14 @@
                                 Selecione um instrumento
                             </option>
 
-                            <option value="violao">
-                                Violão
-                            </option>
-
-                            <option value="piano">
-                                Piano
-                            </option>
-
-                            <option value="canto">
-                                Canto
-                            </option>
-
-                            <option value="guitarra">
-                                Guitarra
-                            </option>
-
-                            <option value="bateria">
-                                Bateria
-                            </option>
-
-                            <option value="violino">
-                                Violino
-                            </option>
-
                         </select>
 
                     </div>
 
 
-
                     <!-- LINHA DUPLA -->
 
                     <div class="form-row">
-
 
                         <!-- ALUNOS -->
 
@@ -1106,7 +544,6 @@
                         </div>
 
 
-
                         <!-- STATUS -->
 
                         <div class="form-group">
@@ -1121,11 +558,11 @@
                                 required
                             >
 
-                                <option value="active">
+                                <option value="1">
                                     Ativo
                                 </option>
 
-                                <option value="inactive">
+                                <option value="0">
                                     Inativo
                                 </option>
 
@@ -1133,9 +570,16 @@
 
                         </div>
 
-
                     </div>
 
+
+                    <!-- ERRO DO FORM -->
+
+                    <p
+                        class="modal-error"
+                        id="teacher-modal-error"
+                        hidden
+                    ></p>
 
 
                     <!-- AÇÕES -->
@@ -1154,12 +598,12 @@
                         <button
                             type="submit"
                             class="primary-action modal-submit"
+                            id="teacher-submit"
                         >
                             Cadastrar professor
                         </button>
 
                     </div>
-
 
                 </form>
 
@@ -1167,6 +611,102 @@
 
         </div>
 
+
+        <!-- =====================================================
+             MODAL — CONFIRMAR EXCLUSÃO
+        ====================================================== -->
+
+        <div
+            class="modal-overlay"
+            id="delete-modal"
+            hidden
+        >
+
+            <div
+                class="delete-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="delete-modal-title"
+            >
+
+                <div class="delete-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M6 7h12M9 7V5.8c0-.44.36-.8.8-.8h4.4c.44 0 .8.36.8.8V7m-8 0 .7 12h6.6l.7-12M10 11v5m4-5v5"
+                        />
+                    </svg>
+
+                </div>
+
+
+                <div class="delete-modal-content">
+
+                    <p class="eyebrow">
+                        EXCLUIR PROFESSOR
+                    </p>
+
+                    <h2 id="delete-modal-title">
+                        Apagar professor?
+                    </h2>
+
+                    <p>
+                        Tem certeza que deseja apagar
+                        <strong id="delete-teacher-name"></strong>?
+                    </p>
+
+                    <span>
+                        Essa ação não poderá ser desfeita.
+                    </span>
+
+                </div>
+
+
+                <p
+                    class="delete-error"
+                    id="delete-error"
+                    hidden
+                ></p>
+
+
+                <div class="delete-modal-actions">
+
+                    <button
+                        type="button"
+                        class="modal-cancel"
+                        id="cancel-delete"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="delete-confirm"
+                        id="confirm-delete"
+                    >
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M6 7h12M9 7V5.8c0-.44.36-.8.8-.8h4.4c.44 0 .8.36.8.8V7m-8 0 .7 12h6.6l.7-12M10 11v5m4-5v5"
+                            />
+                        </svg>
+
+                        Apagar professor
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
         <!-- TOAST -->
@@ -1176,7 +716,6 @@
             id="toast"
             aria-live="polite"
         ></p>
-
 
     </main>
 
