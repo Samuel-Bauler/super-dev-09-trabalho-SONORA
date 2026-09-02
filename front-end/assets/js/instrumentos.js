@@ -1,212 +1,79 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+document.addEventListener("DOMContentLoaded", async () => {
     const searchInput = document.getElementById("instrument-search");
-    const categoryButtons = document.querySelectorAll(".category-filter");
-    const cards = document.querySelectorAll(".instrument-card");
-
     const counter = document.getElementById("instrument-counter");
     const emptyState = document.getElementById("instrument-empty");
+    const table = document.getElementById("instruments-table");
+    const newInstrumentButton = document.getElementById("new-instrument-button");
 
-    const newInstrumentButton =
-        document.getElementById("new-instrument-button");
+    let instrumentos = [];
 
-    const loadMoreButton =
-        document.getElementById("load-more-instruments");
+    async function loadInstruments() {
+        try {
+            const response = await fetch("http://localhost:8000/instrumentos");
 
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
 
-    let currentCategory = "all";
+            instrumentos = await response.json();
 
+            console.log("Instrumentos recebidos:", instrumentos);
 
-    /* =====================================================
-       FILTRAR INSTRUMENTOS
-    ====================================================== */
+            renderInstruments(instrumentos);
+        } catch (error) {
+            console.error("Erro ao conectar com o backend:", error);
+        }
+    }
 
-    function filterInstruments() {
+    function renderInstruments(lista) {
+        table.innerHTML = "";
 
-        const searchTerm =
-            searchInput.value
+        lista.forEach(instrumento => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${instrumento.id}</td>
+                <td>${instrumento.nome}</td>
+                <td>
+                    <button
+                        class="instrument-action"
+                        data-action="view"
+                        data-id="${instrumento.id}"
+                    >
+                        Ver detalhes
+                    </button>
+                </td>
+            `;
+
+            table.appendChild(row);
+        });
+
+        counter.textContent = `${lista.length} ${
+            lista.length === 1 ? "instrumento" : "instrumentos"
+        }`;
+
+        emptyState.hidden = lista.length !== 0;
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            const searchTerm = searchInput.value
                 .trim()
                 .toLowerCase();
 
-        let visibleCount = 0;
+            const filtrados = instrumentos.filter(instrumento =>
+                instrumento.nome.toLowerCase().includes(searchTerm)
+            );
 
-
-        cards.forEach(card => {
-
-            const name =
-                card.dataset.name.toLowerCase();
-
-            const category =
-                card.dataset.category.toLowerCase();
-
-
-            const matchesSearch =
-                name.includes(searchTerm);
-
-            const matchesCategory =
-                currentCategory === "all" ||
-                category === currentCategory;
-
-
-            const shouldShow =
-                matchesSearch &&
-                matchesCategory;
-
-
-            card.style.display =
-                shouldShow ? "" : "none";
-
-
-            if (shouldShow) {
-                visibleCount++;
-            }
-
+            renderInstruments(filtrados);
         });
-
-
-        counter.textContent =
-            `${visibleCount} ${
-                visibleCount === 1
-                    ? "instrumento"
-                    : "instrumentos"
-            }`;
-
-
-        emptyState.hidden =
-            visibleCount !== 0;
-
     }
-
-
-    /* =====================================================
-       BUSCA
-    ====================================================== */
-
-    if (searchInput) {
-
-        searchInput.addEventListener(
-            "input",
-            filterInstruments
-        );
-
-    }
-
-
-    /* =====================================================
-       CATEGORIAS
-    ====================================================== */
-
-    categoryButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            categoryButtons.forEach(item => {
-                item.classList.remove("active");
-            });
-
-
-            button.classList.add("active");
-
-
-            currentCategory =
-                button.dataset.category;
-
-
-            filterInstruments();
-
-        });
-
-    });
-
-
-    /* =====================================================
-       AÇÕES DOS CARDS
-    ====================================================== */
-
-    document
-        .querySelectorAll(
-            ".instrument-action, .instrument-menu"
-        )
-        .forEach(button => {
-
-            button.addEventListener("click", () => {
-
-                const action =
-                    button.dataset.action;
-
-                const card =
-                    button.closest(".instrument-card");
-
-                const name =
-                    card?.dataset.name || "Instrumento";
-
-
-                if (action === "view") {
-
-                    alert(
-                        `Visualizando detalhes de ${name}.`
-                    );
-
-                }
-
-
-                if (action === "more") {
-
-                    alert(
-                        `Mais opções para ${name}.`
-                    );
-
-                }
-
-            });
-
-        });
-
-
-    /* =====================================================
-       NOVO INSTRUMENTO
-    ====================================================== */
 
     if (newInstrumentButton) {
-
-        newInstrumentButton.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Abrir formulário para cadastrar novo instrumento."
-                );
-
-            }
-        );
-
+        newInstrumentButton.addEventListener("click", () => {
+            alert("Abrir formulário para cadastrar novo instrumento.");
+        });
     }
 
-
-    /* =====================================================
-       CARREGAR MAIS
-    ====================================================== */
-
-    if (loadMoreButton) {
-
-        loadMoreButton.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Carregar mais instrumentos..."
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       INICIALIZAÇÃO
-    ====================================================== */
-
-    filterInstruments();
-
+    await loadInstruments();
 });

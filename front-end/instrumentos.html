@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,7 @@
 
     <title>Sonora — Instrumentos</title>
 
-    <!-- CSS global -->
     <link rel="stylesheet" href="assets/css/dashboard.css">
-
-    <!-- CSS específico -->
     <link rel="stylesheet" href="assets/css/instrumentos.css">
 </head>
 
@@ -86,8 +84,7 @@
 
         </nav>
 
-
-        <!-- ADMINISTRADOR -->
+        <!-- ADMIN -->
 
         <button
             class="admin"
@@ -109,9 +106,6 @@
             </b>
 
         </button>
-
-
-        <!-- MENU ADMIN -->
 
         <div
             class="admin-menu"
@@ -177,15 +171,15 @@
         </header>
 
 
-        <!-- =====================================================
-             PÁGINA INSTRUMENTOS
-        ====================================================== -->
+        <!-- =================================================
+             PÁGINA
+        ================================================== -->
 
         <section class="page-content instrumentos-page">
 
 
             <!-- =================================================
-                 INTRO
+                 INTRODUÇÃO
             ================================================== -->
 
             <div class="instrumentos-intro">
@@ -207,7 +201,6 @@
 
                 </div>
 
-
                 <button
                     class="primary-action"
                     type="button"
@@ -217,7 +210,6 @@
                 </button>
 
             </div>
-
 
 
             <!-- =================================================
@@ -241,13 +233,11 @@
 
                 </div>
 
-
-
             </div>
 
 
             <!-- =================================================
-                 CABEÇALHO
+                 CABEÇALHO DA LISTA
             ================================================== -->
 
             <div class="instrument-list-header">
@@ -268,567 +258,189 @@
                     class="instrument-counter"
                     id="instrument-counter"
                 >
-                    42 instrumentos
+                    0 instrumentos
                 </span>
 
             </div>
 
 
             <!-- =================================================
-                 GRID DE INSTRUMENTOS
+                 TABELA
             ================================================== -->
 
-            <div
-                class="instruments-grid"
-                id="instruments-grid"
-            >
+            <div class="instrument-list">
 
+                <table>
 
-                <!-- VIOLÃO -->
+                    <thead>
 
-                <article
-                    class="instrument-card"
-                    data-name="Violão"
-                    data-category="cordas"
-                    data-status="available"
-                >
+                        <tr>
 
-                    <div class="instrument-visual visual-green">
+                            <th>ID</th>
 
-                        <span class="instrument-symbol">
-                            ♫
-                        </span>
+                            <th>
+                                Instrumento
+                            </th>
 
-                        <span class="instrument-status available">
-                            Disponível
-                        </span>
+                            <th>
+                                Ações
+                            </th>
 
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
+                        </tr>
 
-                    </div>
+                    </thead>
 
+                    <tbody id="instruments-table">
 
-                    <div class="instrument-info">
+                        <!-- Exemplo -->
 
-                        <div class="instrument-title">
+                        <tr>
 
-                            <div>
+                            <td>
+                                1
+                            </td>
 
-                                <h3>
-                                    Violão
-                                </h3>
+                            <td>
+                                Violão
+                            </td>
 
-                                <span>
-                                    Cordas acústicas
-                                </span>
+                            <td>
 
-                            </div>
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="1"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                            <span class="instrument-code">
-                                VIO-001
-                            </span>
+                            </td>
 
-                        </div>
+                        </tr>
 
+                        <tr>
 
-                        <div class="instrument-details">
+                            <td>
+                                2
+                            </td>
 
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
+                            <td>
+                                Piano
+                            </td>
 
-                                <strong>
-                                    12 unidades
-                                </strong>
-                            </div>
+                            <td>
 
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="2"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                        </div>
+                            </td>
 
+                        </tr>
 
-                        <div class="instrument-footer">
+                        <tr>
 
-                            <span class="condition good">
-                                ● Bom estado
-                            </span>
+                            <td>
+                                3
+                            </td>
 
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
+                            <td>
+                                Bateria
+                            </td>
 
-                        </div>
+                            <td>
 
-                    </div>
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="3"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                </article>
+                            </td>
 
+                        </tr>
 
-                <!-- PIANO -->
+                        <tr>
 
-                <article
-                    class="instrument-card"
-                    data-name="Piano"
-                    data-category="teclas"
-                    data-status="available"
-                >
+                            <td>
+                                4
+                            </td>
 
-                    <div class="instrument-visual visual-blue">
+                            <td>
+                                Guitarra
+                            </td>
 
-                        <span class="instrument-symbol">
-                            ♬
-                        </span>
+                            <td>
 
-                        <span class="instrument-status available">
-                            Disponível
-                        </span>
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="4"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
+                            </td>
 
-                    </div>
+                        </tr>
 
+                        <tr>
 
-                    <div class="instrument-info">
+                            <td>
+                                5
+                            </td>
 
-                        <div class="instrument-title">
+                            <td>
+                                Teclado
+                            </td>
 
-                            <div>
+                            <td>
 
-                                <h3>
-                                    Piano
-                                </h3>
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="5"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                                <span>
-                                    Teclas acústicas
-                                </span>
+                            </td>
 
-                            </div>
+                        </tr>
 
-                            <span class="instrument-code">
-                                PIA-002
-                            </span>
+                        <tr>
 
-                        </div>
+                            <td>
+                                6
+                            </td>
 
+                            <td>
+                                Baixo
+                            </td>
 
-                        <div class="instrument-details">
+                            <td>
 
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
+                                <button
+                                    class="instrument-details-button"
+                                    type="button"
+                                    data-id="6"
+                                >
+                                    Ver detalhes
+                                </button>
 
-                                <strong>
-                                    4 unidades
-                                </strong>
-                            </div>
+                            </td>
 
+                        </tr>
 
-                        </div>
+                    </tbody>
 
-
-                        <div class="instrument-footer">
-
-                            <span class="condition good">
-                                ● Bom estado
-                            </span>
-
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- GUITARRA -->
-
-                <article
-                    class="instrument-card"
-                    data-name="Guitarra"
-                    data-category="cordas"
-                    data-status="loaned"
-                >
-
-                    <div class="instrument-visual visual-purple">
-
-                        <span class="instrument-symbol">
-                            ♫
-                        </span>
-
-                        <span class="instrument-status loaned">
-                            Em uso
-                        </span>
-
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
-
-                    </div>
-
-
-                    <div class="instrument-info">
-
-                        <div class="instrument-title">
-
-                            <div>
-
-                                <h3>
-                                    Guitarra
-                                </h3>
-
-                                <span>
-                                    Cordas elétricas
-                                </span>
-
-                            </div>
-
-                            <span class="instrument-code">
-                                GUI-003
-                            </span>
-
-                        </div>
-
-
-                        <div class="instrument-details">
-
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
-
-                                <strong>
-                                    8 unidades
-                                </strong>
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="instrument-footer">
-
-                            <span class="condition good">
-                                ● Bom estado
-                            </span>
-
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- BATERIA -->
-
-                <article
-                    class="instrument-card"
-                    data-name="Bateria"
-                    data-category="percussao"
-                    data-status="maintenance"
-                >
-
-                    <div class="instrument-visual visual-rose">
-
-                        <span class="instrument-symbol">
-                            ◉
-                        </span>
-
-                        <span class="instrument-status maintenance">
-                            Manutenção
-                        </span>
-
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
-
-                    </div>
-
-
-                    <div class="instrument-info">
-
-                        <div class="instrument-title">
-
-                            <div>
-
-                                <h3>
-                                    Bateria
-                                </h3>
-
-                                <span>
-                                    Percussão
-                                </span>
-
-                            </div>
-
-                            <span class="instrument-code">
-                                BAT-004
-                            </span>
-
-                        </div>
-
-
-                        <div class="instrument-details">
-
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
-
-                                <strong>
-                                    3 unidades
-                                </strong>
-                            </div>
-
-                            
-
-                        </div>
-
-
-                        <div class="instrument-footer">
-
-                            <span class="condition attention">
-                                ● Revisão necessária
-                            </span>
-
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- VIOLINO -->
-
-                <article
-                    class="instrument-card"
-                    data-name="Violino"
-                    data-category="cordas"
-                    data-status="available"
-                >
-
-                    <div class="instrument-visual visual-sand">
-
-                        <span class="instrument-symbol">
-                            ♫
-                        </span>
-
-                        <span class="instrument-status available">
-                            Disponível
-                        </span>
-
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
-
-                    </div>
-
-
-                    <div class="instrument-info">
-
-                        <div class="instrument-title">
-
-                            <div>
-
-                                <h3>
-                                    Violino
-                                </h3>
-
-                                <span>
-                                    Cordas acústicas
-                                </span>
-
-                            </div>
-
-                            <span class="instrument-code">
-                                VIO-005
-                            </span>
-
-                        </div>
-
-
-                        <div class="instrument-details">
-
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
-
-                                <strong>
-                                    6 unidades
-                                </strong>
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="instrument-footer">
-
-                            <span class="condition good">
-                                ● Bom estado
-                            </span>
-
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- SAXOFONE -->
-
-                <article
-                    class="instrument-card"
-                    data-name="Saxofone"
-                    data-category="sopro"
-                    data-status="available"
-                >
-
-                    <div class="instrument-visual visual-blue">
-
-                        <span class="instrument-symbol">
-                            ♬
-                        </span>
-
-                        <span class="instrument-status available">
-                            Disponível
-                        </span>
-
-                        <button
-                            type="button"
-                            class="instrument-menu"
-                            data-action="more"
-                            title="Mais opções"
-                        >
-                            ⋮
-                        </button>
-
-                    </div>
-
-
-                    <div class="instrument-info">
-
-                        <div class="instrument-title">
-
-                            <div>
-
-                                <h3>
-                                    Saxofone
-                                </h3>
-
-                                <span>
-                                    Instrumento de sopro
-                                </span>
-
-                            </div>
-
-                            <span class="instrument-code">
-                                SAX-006
-                            </span>
-
-                        </div>
-
-
-                        <div class="instrument-details">
-
-                            <div>
-                                <small>
-                                    QUANTIDADE
-                                </small>
-
-                                <strong>
-                                    5 unidades
-                                </strong>
-                            </div>
-
-
-                        </div>
-
-
-                        <div class="instrument-footer">
-
-                            <span class="condition good">
-                                ● Bom estado
-                            </span>
-
-                            <button
-                                type="button"
-                                class="instrument-action"
-                                data-action="view"
-                            >
-                                Ver detalhes →
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </article>
+                </table>
 
             </div>
 
@@ -852,14 +464,30 @@
                 </h3>
 
                 <p>
-                    Tente pesquisar outro instrumento ou
-                    alterar a categoria selecionada.
+                    Tente pesquisar outro instrumento.
                 </p>
 
             </div>
 
 
-            
+            <!-- =================================================
+                 RODAPÉ
+            ================================================== -->
+
+            <div class="instrument-bottom">
+
+                <span>
+                    Gerenciamento do acervo musical
+                </span>
+
+                <button
+                    type="button"
+                    id="refresh-instruments"
+                >
+                    Atualizar
+                </button>
+
+            </div>
 
         </section>
 
@@ -868,12 +496,11 @@
 </div>
 
 
-<!-- JAVASCRIPT GLOBAL -->
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
 <script src="assets/js/dashboard.js"></script>
-
-<!-- JAVASCRIPT DA PÁGINA -->
-
 <script src="assets/js/instrumentos.js"></script>
 
 </body>
