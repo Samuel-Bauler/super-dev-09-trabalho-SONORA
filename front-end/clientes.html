@@ -206,7 +206,7 @@
                     </h2>
 
                     <p>
-                        Gerencie clientes, matrículas e informações
+                        Gerencie clientes e informações
                         dos alunos da Sonora em um só lugar.
                     </p>
 
@@ -243,13 +243,13 @@
                     class="clients-counter"
                     id="clients-counter"
                 >
-                    5 clientes
+                    Carregando...
                 </span>
 
             </div>
 
 
-            <!-- FILTROS -->
+            <!-- BUSCA -->
 
             <div class="clients-toolbar">
 
@@ -268,45 +268,14 @@
 
                 </div>
 
-                <div class="client-filters">
-
-                    <select id="status-filter">
-
-                        <option value="all">
-                            Todos os status
-                        </option>
-
-                        <option value="active">
-                            Ativos
-                        </option>
-
-                        <option value="inactive">
-                            Inativos
-                        </option>
-
-                    </select>
-
-                    <select id="course-filter">
-
-                        <option value="all">
-                            Todos os cursos
-                        </option>
-
-                        <option value="violao">
-                            Violão
-                        </option>
-
-                        <option value="piano">
-                            Piano
-                        </option>
-
-                        <option value="canto">
-                            Canto
-                        </option>
-
-                    </select>
-
-                </div>
+                <button
+                    type="button"
+                    class="refresh-button"
+                    id="refresh-clients"
+                    title="Atualizar clientes"
+                >
+                    ↻ Atualizar
+                </button>
 
             </div>
 
@@ -322,11 +291,15 @@
                         <tr>
 
                             <th>
+                                ID
+                            </th>
+
+                            <th>
                                 CLIENTE
                             </th>
 
                             <th>
-                                STATUS
+                                E-MAIL
                             </th>
 
                             <th>
@@ -338,406 +311,10 @@
                     </thead>
 
                     <tbody id="clients-list">
-
-                        <!-- CLIENTE 1 -->
-
-                        <tr
-                            data-name="Mariana Oliveira"
-                            data-email="mariana@email.com"
-                            data-status="active"
-                            data-course="violao"
-                        >
-
-                            <td>
-
-                                <div class="client-person">
-
-                                    <span class="client-avatar avatar-green">
-                                        MO
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Mariana Oliveira
-                                        </strong>
-
-                                        <small>
-                                            mariana@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status active-status">
-                                    <i></i>
-                                    Ativo
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <div class="client-actions">
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- CLIENTE 2 -->
-
-                        <tr
-                            data-name="Lucas Martins"
-                            data-email="lucas@email.com"
-                            data-status="active"
-                            data-course="piano"
-                        >
-
-                            <td>
-
-                                <div class="client-person">
-
-                                    <span class="client-avatar avatar-blue">
-                                        LM
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Lucas Martins
-                                        </strong>
-
-                                        <small>
-                                            lucas@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status active-status">
-                                    <i></i>
-                                    Ativo
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <div class="client-actions">
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- CLIENTE 3 -->
-
-                        <tr
-                            data-name="Beatriz Souza"
-                            data-email="beatriz@email.com"
-                            data-status="active"
-                            data-course="canto"
-                        >
-
-                            <td>
-
-                                <div class="client-person">
-
-                                    <span class="client-avatar avatar-rose">
-                                        BS
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Beatriz Souza
-                                        </strong>
-
-                                        <small>
-                                            beatriz@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status active-status">
-                                    <i></i>
-                                    Ativo
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <div class="client-actions">
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- CLIENTE 4 -->
-
-                        <tr
-                            data-name="Pedro Henrique"
-                            data-email="pedro@email.com"
-                            data-status="inactive"
-                            data-course="violao"
-                        >
-
-                            <td>
-
-                                <div class="client-person">
-
-                                    <span class="client-avatar avatar-sand">
-                                        PH
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Pedro Henrique
-                                        </strong>
-
-                                        <small>
-                                            pedro@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status inactive-status">
-                                    <i></i>
-                                    Inativo
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <div class="client-actions">
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
-
-                        <!-- CLIENTE 5 -->
-
-                        <tr
-                            data-name="Camila Ferreira"
-                            data-email="camila@email.com"
-                            data-status="active"
-                            data-course="piano"
-                        >
-
-                            <td>
-
-                                <div class="client-person">
-
-                                    <span class="client-avatar avatar-purple">
-                                        CF
-                                    </span>
-
-                                    <div>
-
-                                        <strong>
-                                            Camila Ferreira
-                                        </strong>
-
-                                        <small>
-                                            camila@email.com
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                <span class="status active-status">
-                                    <i></i>
-                                    Ativo
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <div class="client-actions">
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="view"
-                                        title="Visualizar"
-                                    >
-                                        ◉
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="edit"
-                                        title="Editar"
-                                    >
-                                        ✎
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        class="client-action"
-                                        data-action="more"
-                                        title="Mais opções"
-                                    >
-                                        ⋮
-                                    </button>
-
-                                </div>
-
-                            </td>
-
-                        </tr>
-
+                        <!--
+                            Os clientes serão inseridos
+                            aqui pelo JavaScript.
+                        -->
                     </tbody>
 
                 </table>
@@ -760,8 +337,8 @@
                     </h3>
 
                     <p>
-                        Tente alterar os filtros ou realizar
-                        uma nova busca.
+                        Tente alterar sua busca ou cadastre
+                        um novo cliente.
                     </p>
 
                 </div>
@@ -774,7 +351,7 @@
             <div class="clients-results">
 
                 <span id="results-info">
-                    Mostrando 5 clientes
+                    Carregando clientes...
                 </span>
 
             </div>
@@ -787,7 +364,7 @@
 
 
 <!-- =====================================================
-     MODAL — NOVO CLIENTE
+     MODAL — NOVO / EDITAR CLIENTE
 ====================================================== -->
 
 <div
@@ -808,14 +385,14 @@
             <div>
 
                 <p class="eyebrow">
-                    CADASTRO
+                    CLIENTES
                 </p>
 
                 <h2 id="client-modal-title">
                     Novo cliente
                 </h2>
 
-                <p>
+                <p id="client-modal-description">
                     Cadastre um novo aluno na Sonora.
                 </p>
 
@@ -846,6 +423,7 @@
                     id="client-name"
                     name="nome"
                     placeholder="Ex.: Mariana Oliveira"
+                    maxlength="40"
                     required
                 >
 
@@ -863,10 +441,18 @@
                     id="client-email"
                     name="email"
                     placeholder="Ex.: mariana@email.com"
+                    maxlength="40"
                     required
                 >
 
             </div>
+
+
+            <div
+                class="modal-error"
+                id="modal-error"
+                hidden
+            ></div>
 
 
             <div class="modal-actions">
@@ -882,6 +468,7 @@
                 <button
                     type="submit"
                     class="modal-button primary"
+                    id="submit-client"
                 >
                     Cadastrar cliente
                 </button>
@@ -895,14 +482,89 @@
 </div>
 
 
+<!-- =====================================================
+     MODAL — EXCLUSÃO
+====================================================== -->
+
+<div
+    class="modal-overlay"
+    id="delete-modal"
+    hidden
+>
+
+    <div
+        class="client-modal delete-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-modal-title"
+    >
+
+        <div class="delete-icon">
+            !
+        </div>
+
+        <div class="delete-content">
+
+            <p class="eyebrow">
+                ATENÇÃO
+            </p>
+
+            <h2 id="delete-modal-title">
+                Excluir cliente?
+            </h2>
+
+            <p>
+                Tem certeza que deseja excluir o cliente
+                <strong id="delete-client-name"></strong>?
+            </p>
+
+            <p class="delete-warning">
+                Essa ação não poderá ser desfeita.
+            </p>
+
+        </div>
+
+
+        <div
+            class="modal-error"
+            id="delete-error"
+            hidden
+        ></div>
+
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="modal-button secondary"
+                id="cancel-delete"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="button"
+                class="modal-button danger"
+                id="confirm-delete"
+            >
+                Excluir cliente
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <!-- TOAST -->
 
 <div
     class="toast"
     id="toast"
     role="status"
->
-</div>
+    aria-live="polite"
+></div>
 
 
 <script src="assets/js/dashboard.js"></script>
