@@ -236,7 +236,7 @@ button { cursor: pointer; }
   overflow: hidden;
   border: 1px solid rgba(22,55,43,.08);
   border-radius: 18px;
-  background: white;
+  background: #155741;
   box-shadow: var(--shadow);
 }
 
@@ -259,6 +259,7 @@ button { cursor: pointer; }
 .calendar-title h3 {
   margin: 0;
   font-size: 14px;
+  color: white;
 }
 
 .calendar-title span {
