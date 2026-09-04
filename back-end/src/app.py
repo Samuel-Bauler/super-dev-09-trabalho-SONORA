@@ -10,7 +10,7 @@ sys.path.insert(
     str(Path(__file__).resolve().parent.parent)
 )
 
-from src.controllers import instrumentos_controller, clientes_controller, professores_controller
+from src.controllers import instrumentos_controller, clientes_controller, professores_controller, cursos_controller
 
 
 app = FastAPI(
@@ -34,6 +34,7 @@ app.add_middleware(
 app.include_router(instrumentos_controller.router)
 app.include_router(clientes_controller.router)
 app.include_router(professores_controller.router)
+app.include_router(cursos_controller.router)
 
 if __name__ == "__main__":
     import uvicorn
