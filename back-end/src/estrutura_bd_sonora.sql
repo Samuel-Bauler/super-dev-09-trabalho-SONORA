@@ -19,7 +19,7 @@ CREATE TABLE instrumentos(
 
 CREATE TABLE professores(
     id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(40),
+    nome VARCHAR(40), 
     id_instrumento INT NOT NULL,
     FOREIGN KEY (id_instrumento) REFERENCES instrumentos(id),
     alunos INT NOT NULL,
