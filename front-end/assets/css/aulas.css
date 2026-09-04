@@ -1,648 +1,1805 @@
-/* styles.css */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap');
+/* =========================================================
+   SONORA — AULAS
+========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap");
+
+
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
 
 :root {
-  --ink: #123229;
-  --line: #e7ede9;
-  --green: #17644e;
-  --shadow: 0 14px 35px rgba(21, 57, 45, .09);
+    --ink: #123229;
+    --line: #e2eae5;
+
+    --green: #17644e;
+    --green-dark: #123e33;
+    --green-light: #e5f1e9;
+
+    --calendar-bg: #ffffff;
+    --slot-bg: #f7faf8;
+    --slot-hover: #edf6f1;
+
+    --shadow:
+        0 14px 35px rgba(21, 57, 45, .09);
 }
 
-* { box-sizing: border-box; }
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
 
 body {
-  margin: 0;
-  min-width: 320px;
-  color: var(--ink);
-  background: linear-gradient(115deg, #f6faf7, #d8eadf);
-  font-family: "DM Sans", Arial, sans-serif;
+    margin: 0;
+
+    min-width: 320px;
+
+    font-family:
+        "DM Sans",
+        Arial,
+        sans-serif;
+
+    color: var(--ink);
+
+    background: linear-gradient(135deg, #b8c2b7 0%, #cbe0d3 50%, #6f997f 100%);
+    color: #24312b;
 }
 
-button, input, select { font: inherit; }
-button { cursor: pointer; }
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
 
 .app-shell {
-  min-height: 100vh;
-  display: flex;
+    min-height: 100vh;
+
+    display: flex;
 }
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
 .sidebar {
-  width: 282px;
-  flex: 0 0 282px;
-  position: relative;
-  overflow: hidden;
-  padding: 37px 28px 26px;
-  color: #e9f3ed;
-  background: #123e33;
-  display: flex;
-  flex-direction: column;
+    width: 282px;
+    flex: 0 0 282px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    padding:
+        37px
+        28px
+        26px;
+
+    color: #e9f3ed;
+
+    background: #123e33;
+
+    display: flex;
+    flex-direction: column;
 }
+
+
+/* =========================================================
+   MARCA
+========================================================= */
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  color: white;
-  text-decoration: none;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 27px;
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 27px;
 }
 
-.brand-mark {
-  width: 41px;
-  height: 41px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #155741;
-  background: #e7f1e9;
-  font-family: "DM Sans", sans-serif;
+
+.brand > span {
+    width: 41px;
+    height: 41px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #155741;
+
+    background: #e7f1e9;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 16px;
+    font-weight: 800;
 }
+
+
+/* =========================================================
+   LABEL SIDEBAR
+========================================================= */
 
 .workspace-label,
 .eyebrow {
-  margin: 0;
-  color: #829b92;
-  letter-spacing: 1.5px;
-  font-size: 10px;
-  font-weight: 800;
+    margin: 0;
+
+    color: #829b92;
+
+    letter-spacing: 1.5px;
+
+    font-size: 10px;
+    font-weight: 800;
 }
+
 
 .workspace-label {
-  margin: 61px 5px 20px;
+    margin:
+        61px
+        5px
+        20px;
 }
+
+
+/* =========================================================
+   NAVEGAÇÃO
+========================================================= */
 
 .main-nav {
-  display: grid;
-  gap: 8px;
+    display: grid;
+
+    gap: 8px;
 }
 
+
 .main-nav a {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-  min-height: 51px;
-  padding: 0 12px;
-  border-radius: 10px;
-  color: #b7ccc3;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    gap: 17px;
+
+    min-height: 51px;
+
+    padding:
+        0
+        12px;
+
+    border-radius: 10px;
+
+    color: #b7ccc3;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color .18s ease,
+        background .18s ease;
 }
+
 
 .main-nav a:hover,
 .main-nav .active {
-  color: white;
-  background: rgba(255,255,255,.09);
+    color: white;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .09
+        );
 }
+
+
+/* =========================================================
+   PERFIL
+========================================================= */
 
 .profile {
-  width: 100%;
-  margin-top: auto;
-  padding: 12px 0 0;
-  border: 0;
-  color: white;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-align: left;
+    width: 100%;
+
+    margin-top: auto;
+
+    padding:
+        12px
+        0
+        0;
+
+    border: 0;
+
+    color: white;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    text-align: left;
 }
 
+
 .profile-avatar {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: #27614d;
-  background: #e4f0e7;
-  font-size: 11px;
-  font-weight: 800;
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #27614d;
+
+    background: #e4f0e7;
+
+    font-size: 11px;
+    font-weight: 800;
 }
+
 
 .profile strong,
 .profile small {
-  display: block;
+    display: block;
 }
 
-.profile strong { font-size: 12px; }
-.profile small { color: #a3bbb1; font-size: 10px; }
-.profile b { margin-left: auto; }
+
+.profile strong {
+    font-size: 12px;
+}
+
+
+.profile small {
+    color: #a3bbb1;
+
+    font-size: 10px;
+}
+
+
+.profile b {
+    margin-left: auto;
+}
+
+
+/* =========================================================
+   DECORAÇÃO SIDEBAR
+========================================================= */
 
 .side-orb {
-  position: absolute;
-  right: -95px;
-  bottom: -135px;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #4c806b, transparent 70%);
+    position: absolute;
+
+    right: -95px;
+    bottom: -135px;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #4c806b,
+            transparent 70%
+        );
 }
+
+
+/* =========================================================
+   CONTEÚDO
+========================================================= */
 
 .main-content {
-  min-width: 0;
-  width: 100%;
-  padding: 27px 52px 55px;
+    min-width: 0;
+
+    width: 100%;
+
+    padding:
+        27px
+        52px
+        55px;
 }
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
 
 .topbar {
-  min-height: 94px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(61,97,81,.2);
+    min-height: 94px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid
+        rgba(
+            61,
+            97,
+            81,
+            .2
+        );
 }
+
 
 .topbar h1 {
-  margin: 8px 0 0;
-  color: #103229;
-  font-family: "Playfair Display", Georgia, serif;
-  font-size: 33px;
+    margin:
+        8px
+        0
+        0;
+
+    color: #103229;
+
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size: 36px;
 }
+
+
+/* =========================================================
+   BOTÕES DO TOPO
+========================================================= */
 
 .top-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 10px;
 }
+
 
 .circle-button {
-  width: 47px;
-  height: 47px;
-  border: 1px solid #dbe4dd;
-  border-radius: 50%;
-  color: #1a5140;
-  background: white;
+    width: 47px;
+    height: 47px;
+
+    border:
+        1px solid
+        #dbe4dd;
+
+    border-radius: 50%;
+
+    color: #1a5140;
+
+    background: white;
+
+    font-size: 18px;
+
+    transition:
+        background .18s ease,
+        transform .18s ease;
 }
+
+
+.circle-button:hover {
+    background: #f0f6f2;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PÁGINA DA AGENDA
+========================================================= */
 
 .agenda-page {
-  max-width: 1468px;
-  margin: 42px auto 0;
+    width: 100%;
+
+    max-width: 1600px;
+
+    margin:
+        42px
+        auto
+        0;
 }
+
+
+/* =========================================================
+   CABEÇALHO DA AGENDA
+========================================================= */
 
 .agenda-heading {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 28px;
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    margin-bottom: 28px;
 }
+
 
 .agenda-heading h2 {
-  margin: 9px 0 7px;
-  font-size: 31px;
+    margin:
+        9px
+        0
+        7px;
+
+    color: #123229;
+
+    font-size: 33px;
 }
 
+
 .agenda-heading p:not(.eyebrow) {
-  margin: 0;
-  color: #697c74;
-  font-size: 12px;
+    margin: 0;
+
+    color: #697c74;
+
+    font-size: 13px;
 }
+
+
+/* =========================================================
+   BOTÕES
+========================================================= */
 
 .primary-button,
 .secondary-button,
 .danger-button {
-  min-height: 43px;
-  padding: 0 17px;
-  border: 0;
-  border-radius: 10px;
-  font-size: 12px;
-  font-weight: 800;
+    min-height: 46px;
+
+    padding:
+        0
+        19px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
 }
+
 
 .primary-button {
-  color: white;
-  background: #17634d;
+    border: 0;
+
+    color: white;
+
+    background: #17634d;
 }
+
+
+.primary-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 14px
+        rgba(
+            23,
+            99,
+            77,
+            .18
+        );
+}
+
 
 .secondary-button {
-  color: #32564a;
-  border: 1px solid #dbe7df;
-  background: white;
+    color: #32564a;
+
+    border:
+        1px solid
+        #dbe7df;
+
+    background: white;
 }
+
 
 .danger-button {
-  color: white;
-  background: #b8494e;
+    color: white;
+
+    border: 0;
+
+    background: #b8494e;
 }
+
 
 .icon-text {
-  color: #b34b50;
-  border: 1px solid #f2d9da;
-  background: #fff5f5;
+    color: #b34b50;
+
+    border:
+        1px solid
+        #f2d9da;
+
+    background: #fff5f5;
 }
+
+
+/* =========================================================
+   CARD DO CALENDÁRIO
+========================================================= */
 
 .calendar-card {
-  overflow: hidden;
-  border: 1px solid rgba(22,55,43,.08);
-  border-radius: 18px;
-  background: #155741;
-  box-shadow: var(--shadow);
+    overflow: hidden;
+
+    border:
+        1px solid
+        rgba(
+            22,
+            55,
+            43,
+            .08
+        );
+
+    border-radius: 18px;
+
+    background: #17634d;
+
+    box-shadow: var(--shadow);
 }
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
 
 .calendar-toolbar {
-  min-height: 81px;
-  padding: 17px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 17px;
-  border-bottom: 1px solid var(--line);
+    min-height: 88px;
+
+    padding:
+        19px
+        25px;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom:
+        1px solid
+        var(--line);
 }
+
 
 .calendar-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
 }
+
 
 .calendar-title h3 {
-  margin: 0;
-  font-size: 14px;
-  color: white;
+    margin: 0;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 800;
 }
+
 
 .calendar-title span {
-  padding: 5px 9px;
-  border-radius: 999px;
-  color: #277058;
-  background: #e5f1e9;
-  font-size: 10px;
+    padding:
+        6px
+        11px;
+
+    border-radius: 999px;
+
+    color: #277058;
+
+    background: #e5f1e9;
+
+    font-size: 11px;
+    font-weight: 700;
 }
+
+
+/* =========================================================
+   AÇÕES DA TOOLBAR
+========================================================= */
 
 .toolbar-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+    display: flex;
+    align-items: center;
+
+    gap: 17px;
 }
+
+
+/* =========================================================
+   BUSCA
+========================================================= */
 
 .search-box {
-  width: 216px;
-  height: 36px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid #e1e8e3;
-  border-radius: 9px;
-  background: #fbfcfa;
+    width: 250px;
+    height: 42px;
+
+    padding:
+        0
+        12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    border:
+        1px solid
+        #d8e3dc;
+
+    border-radius: 10px;
+
+    background: #fbfcfa;
 }
+
+
+.search-box > span {
+    color: #70847b;
+
+    font-size: 17px;
+}
+
 
 .search-box input {
-  width: 100%;
-  border: 0;
-  outline: 0;
-  background: transparent;
+    width: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    color: #29473d;
+
+    background: transparent;
+
+    font-size: 12px;
 }
+
+
+/* =========================================================
+   CONTROLES DA SEMANA
+========================================================= */
 
 .week-controls {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 10px;
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: white;
+
+    font-size: 11px;
 }
+
 
 .week-controls button {
-  width: 28px;
-  height: 28px;
-  border: 1px solid #dfe9e2;
-  border-radius: 7px;
-  background: white;
+    width: 34px;
+    height: 34px;
+
+    border:
+        1px solid
+        #d7e3dc;
+
+    border-radius: 8px;
+
+    color: #31594b;
+
+    background: white;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        background .15s ease,
+        transform .15s ease;
 }
 
-.calendar-scroll { overflow-x: auto; }
+
+.week-controls button:hover {
+    background: #f1f7f3;
+
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   SCROLL DO CALENDÁRIO
+========================================================= */
+
+.calendar-scroll {
+    width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background: white;
+}
+
+
+.calendar-scroll::-webkit-scrollbar {
+    height: 10px;
+}
+
+
+.calendar-scroll::-webkit-scrollbar-track {
+    background: #edf3ef;
+}
+
+
+.calendar-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+
+    background: #b8cfc3;
+}
+
+
+/* =========================================================
+   ESTRUTURA PRINCIPAL
+========================================================= */
 
 .weekly-calendar {
-  min-width: 920px;
-  display: grid;
-  grid-template-columns: 68px repeat(7, minmax(120px, 1fr));
-  grid-template-rows: 75px 840px;
+    /*
+        78px = coluna dos horários
+
+        7 dias com no mínimo 145px
+    */
+
+    min-width: 1120px;
+
+    display: grid;
+
+    grid-template-columns:
+        78px
+        repeat(
+            7,
+            minmax(
+                145px,
+                1fr
+            )
+        );
+
+    /*
+        82px = cabeçalho
+
+        12 linhas × 96px
+
+        O calendário possui:
+        08:00
+        09:00
+        10:00
+        ...
+        19:00
+    */
+
+    grid-template-rows:
+        82px
+        1152px;
 }
+
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
 
 .calendar-header,
 .day-header {
-  background: #f8faf8;
+    background: #f8faf8;
 }
+
 
 .calendar-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #7e9188;
-  font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-right:
+        1px solid
+        var(--line);
+
+    color: #667c72;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: .5px;
 }
+
+
+/* =========================================================
+   CABEÇALHO DO DIA
+========================================================= */
 
 .day-header {
-  border: 0;
-  border-left: 1px solid var(--line);
-  color: #73867d;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: 22px 1fr;
-  padding: 12px 14px 10px;
-  text-align: left;
+    border: 0;
+
+    border-left:
+        1px solid
+        var(--line);
+
+    color: #73867d;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        auto;
+
+    grid-template-rows:
+        25px
+        1fr;
+
+    padding:
+        15px
+        17px
+        12px;
+
+    text-align: left;
+
+    transition:
+        background .18s ease;
 }
+
+
+.day-header:hover {
+    background: #f0f6f2;
+}
+
 
 .day-header span {
-  font-size: 9px;
-  font-weight: 800;
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
 }
+
 
 .day-header strong {
-  grid-row: 1 / 3;
-  font-size: 25px;
+    grid-row: 1 / 3;
+
+    align-self: center;
+
+    font-size: 29px;
+
+    font-weight: 700;
 }
+
 
 .day-header small {
-  font-size: 9px;
+    font-size: 10px;
+
+    color: #91a199;
 }
+
 
 .day-header.is-today {
-  background: #eff7f1;
+    background: #eff7f1;
 }
+
 
 .day-header.is-today strong {
-  width: 31px;
-  height: 31px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  color: white;
-  background: #19634e;
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: white;
+
+    background: #19634e;
 }
+
+
+/* =========================================================
+   GRID DAS AULAS
+========================================================= */
 
 .calendar-grid {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 68px repeat(7, minmax(120px, 1fr));
-  grid-template-rows: repeat(24, 35px);
+    grid-column: 1 / -1;
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        78px
+        repeat(
+            7,
+            minmax(
+                145px,
+                1fr
+            )
+        );
+
+    /*
+        12 linhas.
+
+        Cada linha = 1 hora.
+
+        08:00 → linha 1
+        09:00 → linha 2
+        10:00 → linha 3
+        ...
+        19:00 → linha 12
+    */
+
+    grid-template-rows:
+        repeat(
+            12,
+            96px
+        );
+
+    background: #ffffff;
 }
+
+
+/* =========================================================
+   HORÁRIOS
+========================================================= */
 
 .time-label {
-  padding: 7px 8px 0 0;
-  border-top: 1px solid var(--line);
-  color: #91a199;
-  background: #fafcfb;
-  font-size: 9px;
-  text-align: right;
+    height: 96px;
+
+    padding:
+        10px
+        10px
+        0
+        0;
+
+    border-top:
+        1px solid
+        #dce5df;
+
+    border-right:
+        1px solid
+        #dce5df;
+
+    color: #526b60;
+
+    background: #fafcfb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-align: right;
 }
+
+
+/* =========================================================
+   SLOTS
+========================================================= */
 
 .slot {
-  border: 0;
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-  background: white;
+    width: 100%;
+    height: 96px;
+
+    min-width: 0;
+
+    padding: 0;
+
+    border: 0;
+
+    border-top:
+        1px solid
+        #e1e8e4;
+
+    border-left:
+        1px solid
+        #e1e8e4;
+
+    background: #f8faf9;
+
+    transition:
+        background .15s ease,
+        box-shadow .15s ease;
 }
+
 
 .slot:hover {
-  background: #f2f8f4;
+    background: #edf6f1;
+
+    box-shadow:
+        inset 0 0 0 1px
+        #c8ddd2;
 }
+
 
 .slot:hover::after {
-  content: "+";
-  display: grid;
-  place-items: center;
-  color: #3d8a6f;
-  font-size: 20px;
+    content: "+";
+
+    width: 28px;
+    height: 28px;
+
+    margin: auto;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    color: #3d8a6f;
+
+    background: #e3f1e8;
+
+    font-size: 18px;
+
+    font-weight: 700;
 }
 
+
+/* =========================================================
+   CARDS DAS AULAS
+========================================================= */
+
 .class-card {
-  z-index: 2;
-  margin: 3px 5px 0;
-  padding: 6px 8px;
-  border: 0;
-  border-radius: 7px;
-  text-align: left;
-  overflow: hidden;
+    z-index: 5;
+
+    width: auto;
+
+    min-height: 0;
+
+    margin:
+        6px
+        7px;
+
+    padding:
+        12px
+        13px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    text-align: left;
+
+    overflow: hidden;
+
+    /*
+        O JavaScript define a altura
+        proporcional à duração.
+
+        45 min = 75%
+        60 min = 100%
+        90 min = 150%
+    */
+
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    box-shadow:
+        0 3px 9px
+        rgba(
+            20,
+            50,
+            40,
+            .08
+        );
+
+    transition:
+        transform .15s ease,
+        box-shadow .15s ease;
 }
+
+
+.class-card:hover {
+    z-index: 10;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 7px 18px
+        rgba(
+            20,
+            50,
+            40,
+            .15
+        );
+}
+
+
+/* =========================================================
+   TEXTO DOS CARDS
+========================================================= */
 
 .class-card strong,
 .class-card span,
 .class-card small {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    display: block;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
 }
 
-.class-card strong { font-size: 10px; }
-.class-card span { margin-top: 2px; font-size: 9px; }
-.class-card small { margin-top: 4px; font-size: 8px; }
 
-.guitar { color: #26634f; background: #e1f0e6; }
-.piano { color: #276b9c; background: #e3eff8; }
-.vocal { color: #a04c59; background: #f6e1e4; }
-.drums { color: #516b61; background: #e5ece8; }
-.keyboard { color: #6d5291; background: #eee7f6; }
-.guitar-blue { color: #2f6b82; background: #dcebf2; }
+.class-card strong {
+    font-size: 13px;
+
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+
+.class-card span {
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    opacity: .9;
+}
+
+
+.class-card small {
+    margin-top: 8px;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    opacity: .8;
+}
+
+
+/* =========================================================
+   CORES
+========================================================= */
+
+.guitar {
+    color: #26634f;
+
+    background: #e1f0e6;
+}
+
+
+.piano {
+    color: #276b9c;
+
+    background: #e3eff8;
+}
+
+
+.vocal {
+    color: #a04c59;
+
+    background: #f6e1e4;
+}
+
+
+.drums {
+    color: #516b61;
+
+    background: #e5ece8;
+}
+
+
+.keyboard {
+    color: #6d5291;
+
+    background: #eee7f6;
+}
+
+
+.guitar-blue {
+    color: #2f6b82;
+
+    background: #dcebf2;
+}
+
+
+/* =========================================================
+   LEGENDA
+========================================================= */
 
 .calendar-legend {
-  padding: 13px 20px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--line);
-  font-size: 10px;
+    min-height: 55px;
+
+    padding:
+        15px
+        22px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    border-top:
+        1px solid
+        var(--line);
+
+    color: #61766c;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    background: white;
 }
+
 
 .dot {
-  width: 7px;
-  height: 7px;
-  display: inline-block;
-  margin-right: 5px;
-  border-radius: 50%;
+    width: 8px;
+    height: 8px;
+
+    display: inline-block;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
 }
 
-.dot.guitar { background: #72ab8e; }
-.dot.piano { background: #70a7ce; }
-.dot.vocal { background: #d78996; }
-.dot.drums { background: #80968c; }
-.dot.keyboard { background: #a58ac3; }
-.dot.guitar-blue { background: #6f9eb4; }
+
+.dot.guitar {
+    background: #72ab8e;
+}
+
+
+.dot.piano {
+    background: #70a7ce;
+}
+
+
+.dot.vocal {
+    background: #d78996;
+}
+
+
+.dot.drums {
+    background: #80968c;
+}
+
+
+.dot.keyboard {
+    background: #a58ac3;
+}
+
+
+.dot.guitar-blue {
+    background: #6f9eb4;
+}
+
+
+/* =========================================================
+   MODAIS
+========================================================= */
 
 .modal-backdrop {
-  position: fixed;
-  z-index: 10;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: rgba(11,38,30,.42);
+    position: fixed;
+
+    z-index: 1000;
+
+    inset: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(
+            11,
+            38,
+            30,
+            .42
+        );
 }
+
 
 .modal {
-  position: relative;
-  width: min(100%, 520px);
-  max-height: calc(100vh - 40px);
-  overflow: auto;
-  border-radius: 18px;
-  background: white;
-  box-shadow: 0 25px 70px rgba(0,0,0,.22);
+    position: relative;
+
+    width:
+        min(
+            100%,
+            520px
+        );
+
+    max-height:
+        calc(
+            100vh - 40px
+        );
+
+    overflow: auto;
+
+    border-radius: 18px;
+
+    background: white;
+
+    box-shadow:
+        0 25px 70px
+        rgba(
+            0,
+            0,
+            0,
+            .22
+        );
 }
+
 
 .modal-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 27px 30px 21px;
-  border-bottom: 1px solid #edf1ee;
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        27px
+        30px
+        21px;
+
+    border-bottom:
+        1px solid
+        #edf1ee;
 }
+
 
 .modal-top h2 {
-  margin: 5px 0 0;
-  font-size: 22px;
+    margin:
+        5px
+        0
+        0;
+
+    font-size: 22px;
 }
+
 
 .modal-icon {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  color: #22644e;
-  background: #e5f1e9;
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    color: #22644e;
+
+    background: #e5f1e9;
+
+    font-size: 18px;
 }
+
 
 .modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 30px;
-  height: 30px;
-  border: 0;
-  border-radius: 8px;
-  background: #f3f6f4;
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 30px;
+    height: 30px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: #f3f6f4;
+
+    font-size: 18px;
 }
+
+
+/* =========================================================
+   DETALHES
+========================================================= */
 
 .details-list {
-  padding: 12px 30px 20px;
+    padding:
+        12px
+        30px
+        20px;
 }
+
 
 .detail-row {
-  display: flex;
-  gap: 14px;
-  padding: 14px 0;
-  border-bottom: 1px solid #eef2ef;
+    display: flex;
+
+    gap: 14px;
+
+    padding:
+        14px
+        0;
+
+    border-bottom:
+        1px solid
+        #eef2ef;
 }
+
 
 .detail-row div {
-  display: grid;
-  gap: 3px;
+    display: grid;
+
+    gap: 3px;
 }
+
 
 .detail-row small {
-  color: #899b93;
-  font-size: 10px;
+    color: #899b93;
+
+    font-size: 10px;
 }
+
 
 .detail-row strong {
-  color: #28473d;
-  font-size: 12px;
+    color: #28473d;
+
+    font-size: 12px;
 }
+
 
 .modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 18px 30px 25px;
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding:
+        18px
+        30px
+        25px;
 }
+
 
 .details-footer {
-  justify-content: space-between;
-  border-top: 1px solid #edf1ee;
+    justify-content: space-between;
+
+    border-top:
+        1px solid
+        #edf1ee;
 }
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
 
 .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  padding: 24px 30px 2px;
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap: 15px;
+
+    padding:
+        24px
+        30px
+        2px;
 }
 
+
 .form-grid label {
-  display: grid;
-  gap: 7px;
-  font-size: 11px;
-  font-weight: 800;
+    display: grid;
+
+    gap: 7px;
+
+    font-size: 11px;
+
+    font-weight: 800;
 }
+
 
 .form-grid input,
 .form-grid select {
-  width: 100%;
-  height: 40px;
-  padding: 0 10px;
-  border: 1px solid #dae5de;
-  border-radius: 8px;
+    width: 100%;
+
+    height: 42px;
+
+    padding:
+        0
+        11px;
+
+    border:
+        1px solid
+        #dae5de;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #28473d;
+
+    background: white;
+
+    font-size: 12px;
+
+    transition:
+        border .15s ease,
+        box-shadow .15s ease;
 }
+
+
+.form-grid input:focus,
+.form-grid select:focus {
+    border-color: #77a894;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            119,
+            168,
+            148,
+            .12
+        );
+}
+
+
+/* =========================================================
+   MODAL DE CONFIRMAÇÃO
+========================================================= */
 
 .confirmation-modal {
-  width: min(100%, 410px);
-  padding: 35px 30px 5px;
-  text-align: center;
+    width:
+        min(
+            100%,
+            410px
+        );
+
+    padding:
+        35px
+        30px
+        5px;
+
+    text-align: center;
 }
+
 
 .warning-icon {
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  margin: 0 auto 17px;
-  border-radius: 50%;
-  color: #b54c50;
-  background: #f9e5e6;
-  font-size: 23px;
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin:
+        0
+        auto
+        17px;
+
+    border-radius: 50%;
+
+    color: #b54c50;
+
+    background: #f9e5e6;
+
+    font-size: 23px;
+
+    font-weight: 800;
 }
+
+
+.confirmation-modal h2 {
+    margin:
+        0
+        0
+        8px;
+
+    color: #243f36;
+
+    font-size: 21px;
+}
+
+
+.confirmation-modal p {
+    margin: 0;
+
+    color: #788a82;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 .toast {
-  position: fixed;
-  z-index: 12;
-  left: 50%;
-  bottom: 26px;
-  transform: translate(-50%, 20px);
-  padding: 11px 16px;
-  border-radius: 9px;
-  color: white;
-  background: #173f34;
-  opacity: 0;
-  transition: .22s;
+    position: fixed;
+
+    z-index: 1200;
+
+    left: 50%;
+    bottom: 26px;
+
+    transform:
+        translate(
+            -50%,
+            20px
+        );
+
+    padding:
+        12px
+        18px;
+
+    border-radius: 9px;
+
+    color: white;
+
+    background: #173f34;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    opacity: 0;
+
+    transition:
+        .22s;
 }
+
 
 .toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
+    opacity: 1;
+
+    transform:
+        translate(
+            -50%,
+            0
+        );
 }
 
-@media (max-width: 760px) {
-  .sidebar { display: none; }
 
-  .main-content {
-    padding: 22px 16px 35px;
-  }
-
-  .agenda-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .agenda-heading .primary-button {
-    width: 100%;
-  }
-
-  .calendar-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .search-box {
-    width: 100%;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* =========================================================
+   HIDDEN
+========================================================= */
 
 .modal-backdrop[hidden],
 .modal[hidden] {
-  display: none !important;
+    display: none !important;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .main-content {
+        padding:
+            25px
+            30px
+            45px;
+    }
+
+
+    .agenda-page {
+        margin-top: 32px;
+    }
+
+
+    .toolbar-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .search-box {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 760px) {
+
+    .sidebar {
+        display: none;
+    }
+
+
+    .main-content {
+        padding:
+            22px
+            16px
+            35px;
+    }
+
+
+    .topbar {
+        min-height: 80px;
+    }
+
+
+    .topbar h1 {
+        font-size: 30px;
+    }
+
+
+    .agenda-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+
+    .agenda-heading h2 {
+        font-size: 28px;
+    }
+
+
+    .agenda-heading .primary-button {
+        width: 100%;
+    }
+
+
+    .calendar-toolbar {
+        align-items: stretch;
+
+        flex-direction: column;
+    }
+
+
+    .toolbar-actions {
+        width: 100%;
+    }
+
+
+    .search-box {
+        width: 100%;
+    }
+
+
+    .week-controls {
+        justify-content: space-between;
+    }
+
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,124 +1,206 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta
         name="description"
-        content="Painel administrativo Sonora — Gestão de cursos."
+        content="Painel de gerenciamento de cursos Sonora."
     >
 
     <title>Sonora — Cursos</title>
-
-    
-
-    <!-- CSS Global -->
+<link rel="stylesheet" href="assets/css/cursos.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
-
-    <!-- CSS da página -->
-    <link rel="stylesheet" href="assets/css/cursos.css">
+    
 </head>
 
 <body>
 
 <div class="app">
 
-    <!-- =========================================
+    <!-- =====================================================
          SIDEBAR
-    ========================================== -->
+    ====================================================== -->
 
     <aside class="sidebar">
 
-        <a class="brand" href="cursos.html">
-            <span class="brand-symbol">€</span>
-            <strong>Sonora</strong>
-        </a>
+        <!-- LOGO -->
 
-        <p class="workspace">
-            GESTÃO ACADÊMICA
-        </p>
 
-        <nav class="main-nav">
+            
+            <span class="brand-name">
+                    SONORA
+                </span>
+                <br>
+                <br>
+                <br>
+            
 
-            <a class="nav-item active" href="cursos.html">
-                <i>▣</i>
-                <span>Cursos</span>
-            </a>
+        
 
-            <a class="nav-item" href="clientes.html">
-                <i>♙</i>
-                <span>Clientes</span>
-            </a>
 
-            <a class="nav-item" href="professores.html">
-                <i>♧</i>
-                <span>Professores</span>
-            </a>
+  
 
-            <a class="nav-item" href="instrumentos.html">
-                <i>♬</i>
-                <span>Instrumentos</span>
-            </a>
 
-            <a class="nav-item" href="aulas.html">
-                <i>□</i>
-                <span>Aulas</span>
-            </a>
+           <nav class="main-nav">
 
-        </nav>
+    <a class="nav-item active" href="cursos.html">
+        <i class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 5.5C4 4.67 4.67 4 5.5 4H18.5C19.33 4 20 4.67 20 5.5V18.5C20 19.33 19.33 20 18.5 20H5.5C4.67 20 4 19.33 4 18.5V5.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"/>
+                <path d="M8 8H16M8 12H16M8 16H13"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+            </svg>
+        </i>
 
-        <!-- ADMIN -->
+        <span>Cursos</span>
+    </a>
 
-        <button class="admin" id="admin-button" type="button">
 
-            <span class="admin-avatar">
-                AC
-            </span>
+    <a class="nav-item" href="clientes.html">
+        <i class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="8" r="3"
+                        stroke="currentColor"
+                        stroke-width="1.8"/>
 
-            <span class="admin-info">
-                <strong>Andrea Castro</strong>
-                <small>Administradora</small>
-            </span>
+                <path d="M6.5 19C6.5 15.96 8.96 13.5 12 13.5C15.04 13.5 17.5 15.96 17.5 19"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+            </svg>
+        </i>
 
-            <b>⌄</b>
+        <span>Clientes</span>
+    </a>
 
-        </button>
 
-        <div class="admin-menu" id="admin-menu" hidden>
+    <a class="nav-item" href="professores.html">
+        <i class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="7" r="2.8"
+                        stroke="currentColor"
+                        stroke-width="1.8"/>
 
-            <button type="button">
-                Meu perfil
-            </button>
+                <path d="M6.5 19C6.5 15.9 8.96 13.5 12 13.5C15.04 13.5 17.5 15.9 17.5 19"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
 
-            <button type="button">
-                Configurações
-            </button>
+                <path d="M17 9.5C18.1 9.7 19 10.65 19 11.8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
 
-            <button type="button" id="logout-button">
-                Sair
-            </button>
+                <path d="M7 9.5C5.9 9.7 5 10.65 5 11.8"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+            </svg>
+        </i>
+
+        <span>Professores</span>
+    </a>
+
+
+    <a class="nav-item" href="instrumentos.html">
+        <i class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14.5 5.5L18.5 9.5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+
+                <path d="M13.5 6.5L6 14"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+
+                <path d="M17.5 3.5L20.5 6.5"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+
+                <path d="M5 14.5L3.8 18.8L8.2 17.5L15.5 10.2L11.8 6.5L5 14.5Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linejoin="round"/>
+            </svg>
+        </i>
+
+        <span>Instrumentos</span>
+    </a>
+
+
+    <a class="nav-item" href="aulas.html">
+        <i class="nav-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.8"/>
+
+                <path d="M8 8H16M8 12H16M8 16H13"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"/>
+            </svg>
+        </i>
+
+        <span>Aulas</span>
+    </a>
+
+</nav>
+        <!-- ADMINISTRADOR -->
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+
+                <div class="">
+                    
+                </div>
+
+
+               
+
+
+                <button
+                    type="button"
+                    class="admin-menu-button"
+                    aria-label="Abrir menu"
+                >
+                    
+                </button>
+
+            </div>
 
         </div>
-
-        <div class="side-orb"></div>
 
     </aside>
 
 
-    <!-- =========================================
-         CONTEÚDO
-    ========================================== -->
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
 
-    <main class="content">
+    <main class="main-content">
 
-        <!-- TOPBAR -->
+
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
         <header class="topbar">
 
             <div>
 
-                <p class="eyebrow">
+                <p class="topbar-eyebrow">
                     PAINEL ADMINISTRATIVO
                 </p>
 
@@ -128,375 +210,811 @@
 
             </div>
 
-            <div class="top-actions">
 
-                <button
-                    class="top-icon"
-                    type="button"
-                    aria-label="Pesquisar"
-                >
-                    ⌕
-                </button>
+            <button
+                type="button"
+                class="primary-action"
+                id="new-course-button"
+            >
 
-                <button
-                    class="top-icon notification"
-                    type="button"
-                    aria-label="Notificações"
-                >
-                    ♧
-                    <span></span>
-                </button>
+                <span>
+                    +
+                </span>
 
-            </div>
+                Novo curso
+
+            </button>
 
         </header>
 
 
-        <!-- =========================================
-             INTRO
-        ========================================== -->
+        <!-- =================================================
+             PÁGINA DE CURSOS
+        ================================================== -->
 
-        <section class="courses-page">
+        <section class="cursos-page">
 
-            <div class="page-intro">
+
+            <!-- =================================================
+                 INTRODUÇÃO
+            ================================================== -->
+
+            <div class="courses-intro">
 
                 <div>
 
                     <p class="eyebrow green">
-                        VISÃO GERAL
+                        CATÁLOGO ACADÊMICO
                     </p>
 
                     <h2>
-                        Gerencie a jornada de aprendizado.
+                        Seus cursos em um só lugar
                     </h2>
 
-                    <p class="intro-description">
-                        Organize cursos, professores, instrumentos e turmas em um só lugar.
+                    <p class="intro-text">
+                        Cadastre, edite e organize os cursos oferecidos
+                        pela Sonora.
                     </p>
 
                 </div>
 
-                <button
-                    class="primary-action"
-                    id="new-course-button"
-                    type="button"
-                >
-                    <span>+</span>
-                    Novo curso
-                </button>
-
             </div>
 
 
-            <!-- =========================================
-                 ESTATÍSTICAS
-            ========================================== -->
-
-            
-
-
-            <!-- =========================================
+            <!-- =================================================
                  CATÁLOGO
-            ========================================== -->
+            ================================================== -->
 
-            <div class="section-title">
+            <section class="catalog-section">
 
-                <div>
 
-                    <p class="eyebrow green">
-                        CURSOS EM DESTAQUE
-                    </p>
+                <div class="section-title">
 
-                    <h2>
-                        Seu catálogo
-                    </h2>
+                    <div>
+
+                        <p class="eyebrow green">
+                            CURSOS EM DESTAQUE
+                        </p>
+
+                        <h2>
+                            Seu catálogo
+                        </h2>
+
+                    </div>
+
+
+                    <div class="catalog-tools">
+
+                        <span
+                            class="course-count"
+                            id="course-count"
+                        >
+                            0 cursos
+                        </span>
+
+
+                        <label class="search-box">
+
+                            <span>
+                                ⌕
+                            </span>
+
+                            <input
+                                type="search"
+                                id="course-search"
+                                placeholder="Buscar curso..."
+                                autocomplete="off"
+                            >
+
+                        </label>
+
+                    </div>
 
                 </div>
 
-                <a
-                    href="instrumentos.html"
-                    class="catalog-link"
+
+                <!-- GRID DOS CURSOS -->
+
+                <div
+                    class="course-grid"
+                    id="course-grid"
+                ></div>
+
+
+                <!-- ESTADO VAZIO -->
+
+                <div
+                    class="empty-state"
+                    id="empty-state"
+                    hidden
                 >
-                    Ver instrumentos →
-                </a>
 
-            </div>
+                    <div class="empty-icon">
+                        ♫
+                    </div>
 
+                    <h3>
+                        Nenhum curso encontrado
+                    </h3>
 
-            <!-- =========================================
-                 CURSOS
-            ========================================== -->
+                    <p>
+                        Tente buscar por outro nome ou cadastre
+                        um novo curso.
+                    </p>
 
-            <div class="course-grid">
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="empty-new-course"
+                    >
 
-
-                <!-- CURSO 1 -->
-
-                <article class="course-card">
-
-                    <div class="course-cover guitar">
-
-                        <span class="cover-symbol">
-                            ϟ
+                        <span>
+                            +
                         </span>
 
-                        <b>
-                            ATIVO
-                        </b>
+                        Novo curso
 
-                    </div>
+                    </button>
 
-                    <div class="course-info">
+                </div>
 
-                        <p class="course-category">
-                            VIOLÃO · INICIANTE
-                        </p>
-
-                        <h3>
-                            Fundamentos do violão
-                        </h3>
-
-                        <div class="course-meta">
-
-                            <span>
-                                8 aulas
-                            </span>
-
-                            <span>•</span>
-
-                            <span>
-                                42 alunos
-                            </span>
-
-                        </div>
-
-                        <div class="teacher">
-
-                            <span class="teacher-avatar">
-                                RB
-                            </span>
-
-                            <strong>
-                                Rafael Bastos
-                            </strong>
-
-                            <a href="aulas.html">
-                                Ver aulas →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
+            </section>
 
 
-                <!-- CURSO 2 -->
-
-                <article class="course-card">
-
-                    <div class="course-cover piano">
-
-                        <span class="cover-symbol">
-                            ♪
-                        </span>
-
-                        <b>
-                            ATIVO
-                        </b>
-
-                    </div>
-
-                    <div class="course-info">
-
-                        <p class="course-category">
-                            PIANO · INTERMEDIÁRIO
-                        </p>
-
-                        <h3>
-                            Harmonia e improviso
-                        </h3>
-
-                        <div class="course-meta">
-
-                            <span>
-                                12 aulas
-                            </span>
-
-                            <span>•</span>
-
-                            <span>
-                                28 alunos
-                            </span>
-
-                        </div>
-
-                        <div class="teacher">
-
-                            <span class="teacher-avatar">
-                                LS
-                            </span>
-
-                            <strong>
-                                Luiza Serra
-                            </strong>
-
-                            <a href="aulas.html">
-                                Ver aulas →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <!-- CURSO 3 -->
-
-                <article class="course-card">
-
-                    <div class="course-cover voice">
-
-                        <span class="cover-symbol">
-                            ♫
-                        </span>
-
-                        <b>
-                            ATIVO
-                        </b>
-
-                    </div>
-
-                    <div class="course-info">
-
-                        <p class="course-category">
-                            CANTO · TODOS OS NÍVEIS
-                        </p>
-
-                        <h3>
-                            A voz em movimento
-                        </h3>
-
-                        <div class="course-meta">
-
-                            <span>
-                                10 aulas
-                            </span>
-
-                            <span>•</span>
-
-                            <span>
-                                36 alunos
-                            </span>
-
-                        </div>
-
-                        <div class="teacher">
-
-                            <span class="teacher-avatar">
-                                CA
-                            </span>
-
-                            <strong>
-                                Clara Almeida
-                            </strong>
-
-                            <a href="aulas.html">
-                                Ver aulas →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            </div>
-
-
-            <!-- =========================================
+            <!-- =================================================
                  AÇÕES RÁPIDAS
-            ========================================== -->
+            ================================================== -->
 
-            <div class="quick-actions">
+            <section class="quick-section">
 
-                <button
-                    type="button"
-                    data-toast="Editor de cursos em breve."
-                >
 
-                    <span class="quick-icon green">
-                        +
-                    </span>
+                <div class="section-title">
 
                     <div>
-                        <strong>
-                            Criar curso
-                        </strong>
 
-                        <small>
-                            Adicionar novo curso ao catálogo
-                        </small>
+                        <p class="eyebrow green">
+                            ATALHOS
+                        </p>
+
+                        <h2>
+                            Ações rápidas
+                        </h2>
+
                     </div>
 
-                </button>
+                </div>
 
 
-                <a href="professores.html">
-
-                    <span class="quick-icon gold">
-                        ♧
-                    </span>
-
-                    <div>
-                        <strong>
-                            Gerenciar professores
-                        </strong>
-
-                        <small>
-                            Visualizar e gerenciar sua equipe
-                        </small>
-                    </div>
-
-                </a>
+                <div class="quick-actions">
 
 
-                <a href="aulas.html">
+                    <!-- CRIAR CURSO -->
 
-                    <span class="quick-icon rose">
-                        □
-                    </span>
+                    <button
+                        type="button"
+                        id="quick-create-course"
+                    >
 
-                    <div>
-                        <strong>
-                            Ver agenda
-                        </strong>
+                        <span class="quick-icon">
+                            +
+                        </span>
 
-                        <small>
-                            Acompanhe as aulas agendadas
-                        </small>
-                    </div>
+                        <span>
 
-                </a>
+                            <strong>
+                                Criar novo curso
+                            </strong>
 
-            </div>
+                            <small>
+                                Adicione um curso ao catálogo
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+                    <!-- PROFESSORES -->
+
+                    <a href="professores.html">
+
+                        <span class="quick-icon">
+                            ♙
+                        </span>
+
+                        <span>
+
+                            <strong>
+                                Gerenciar professores
+                            </strong>
+
+                            <small>
+                                Consulte os professores cadastrados
+                            </small>
+
+                        </span>
+
+                    </a>
+
+
+                    <!-- AULAS -->
+
+                    <a href="aulas.html">
+
+                        <span class="quick-icon">
+                            ▣
+                        </span>
+
+                        <span>
+
+                            <strong>
+                                Ver agenda
+                            </strong>
+
+                            <small>
+                                Confira as próximas aulas
+                            </small>
+
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </section>
 
         </section>
-
-
-        <!-- TOAST -->
-
-        <div
-            class="toast"
-            id="toast"
-            aria-live="polite"
-        ></div>
 
     </main>
 
 </div>
 
+
+<!-- =========================================================
+     BACKDROP DOS MODAIS
+========================================================== -->
+
+<div
+    class="modal-backdrop"
+    id="modal-backdrop"
+    hidden
+></div>
+
+
+<!-- =========================================================
+     MODAL — CADASTRAR / EDITAR CURSO
+========================================================== -->
+
+<div
+    class="modal"
+    id="course-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="course-modal-title"
+    hidden
+>
+
+    <div class="modal-card course-modal-card">
+
+
+        <!-- CABEÇALHO -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <p class="eyebrow green">
+                    CURSO
+                </p>
+
+                <h2 id="course-modal-title">
+                    Novo curso
+                </h2>
+
+                <p id="course-modal-description">
+                    Cadastre um novo curso no catálogo.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                data-close-modal
+                aria-label="Fechar"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form id="course-form">
+
+            <!-- ID usado quando estiver editando -->
+
+            <input
+                type="hidden"
+                id="editing-course-id"
+            >
+
+
+            <div class="form-grid">
+
+
+                <!-- NOME -->
+
+                <div class="form-field full">
+
+                    <label for="course-name">
+                        Nome do curso
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course-name"
+                        name="name"
+                        placeholder="Ex.: Fundamentos do violão"
+                        maxlength="80"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <div class="form-field full">
+
+                    <label for="course-description">
+                        Descrição
+                    </label>
+
+                    <textarea
+                        id="course-description"
+                        name="description"
+                        placeholder="Descreva brevemente o curso..."
+                        maxlength="255"
+                        required
+                    ></textarea>
+
+                    <small class="field-hint">
+                        Máximo de 255 caracteres.
+                    </small>
+
+                </div>
+
+
+                <!-- CLIENTE -->
+
+                <div class="form-field">
+
+                    <label for="course-client">
+                        Cliente
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course-client"
+                        name="client"
+                        placeholder="Nome do cliente"
+                        maxlength="80"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- INSTRUMENTO -->
+
+                <div class="form-field">
+
+                    <label for="course-instrument">
+                        Instrumento
+                    </label>
+
+                    <select
+                        id="course-instrument"
+                        name="instrument"
+                        required
+                    >
+
+                        <option value="">
+                            Selecione um instrumento
+                        </option>
+
+                        <option value="Violão">
+                            Violão
+                        </option>
+
+                        <option value="Piano">
+                            Piano
+                        </option>
+
+                        <option value="Canto">
+                            Canto
+                        </option>
+
+                        <option value="Bateria">
+                            Bateria
+                        </option>
+
+                        <option value="Teclado">
+                            Teclado
+                        </option>
+
+                        <option value="Guitarra">
+                            Guitarra
+                        </option>
+
+                        <option value="Ukulele">
+                            Ukulele
+                        </option>
+
+                        <option value="Outro">
+                            Outro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- FOTO -->
+
+                <div class="form-field full">
+
+                    <label>
+                        Foto da capa
+                    </label>
+
+
+                    <div class="upload-wrapper">
+
+
+                        <label
+                            class="upload-area"
+                            for="course-cover"
+                            id="upload-area"
+                        >
+
+                            <input
+                                type="file"
+                                id="course-cover"
+                                name="cover"
+                                accept="image/*"
+                            >
+
+
+                            <img
+                                src=""
+                                alt="Prévia da capa"
+                                id="cover-preview-image"
+                                hidden
+                            >
+
+
+                            <div
+                                class="cover-placeholder"
+                                id="cover-placeholder"
+                            >
+
+                                <span class="upload-icon">
+                                    ↑
+                                </span>
+
+                                <strong>
+                                    Adicionar foto
+                                </strong>
+
+                                <small>
+                                    PNG, JPG ou WEBP até 2 MB
+                                </small>
+
+                            </div>
+
+                        </label>
+
+
+                        <button
+                            type="button"
+                            class="remove-cover-button"
+                            id="remove-cover"
+                            hidden
+                        >
+                            Remover foto
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTÕES -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-action"
+                    data-close-modal
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-action"
+                    id="save-course-button"
+                >
+                    Cadastrar curso
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL — DETALHES DO CURSO
+========================================================== -->
+
+<div
+    class="modal"
+    id="details-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="details-name"
+    hidden
+>
+
+    <div class="modal-card details-modal-card">
+
+
+        <!-- FECHAR -->
+
+        <button
+            type="button"
+            class="modal-close details-close"
+            data-close-modal
+            aria-label="Fechar"
+        >
+            ×
+        </button>
+
+
+        <!-- CAPA -->
+
+        <div
+            class="details-cover"
+            id="details-cover"
+        >
+
+            <img
+                src=""
+                alt=""
+                id="details-cover-image"
+                hidden
+            >
+
+            <span id="details-cover-symbol">
+                ♪
+            </span>
+
+            <b>
+                ATIVO
+            </b>
+
+        </div>
+
+
+        <!-- CONTEÚDO -->
+
+        <div class="details-content">
+
+
+            <div class="details-top">
+
+                <div>
+
+                    <span
+                        class="details-category"
+                        id="details-instrument"
+                    >
+                        VIOLÃO
+                    </span>
+
+                    <h2 id="details-name">
+                        Nome do curso
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIÇÃO -->
+
+            <div class="details-description">
+
+                <p class="details-label">
+                    DESCRIÇÃO
+                </p>
+
+                <p id="details-description">
+                    Descrição do curso.
+                </p>
+
+            </div>
+
+
+            <!-- INFORMAÇÕES -->
+
+            <div class="details-info-grid">
+
+
+                <div class="details-info">
+
+                    <span>
+                        CLIENTE
+                    </span>
+
+                    <strong id="details-client">
+                        Cliente
+                    </strong>
+
+                </div>
+
+
+                <div class="details-info">
+
+                    <span>
+                        ID DO CURSO
+                    </span>
+
+                    <strong id="details-id">
+                        curso-001
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- AÇÕES -->
+
+            <div class="details-actions">
+
+                <button
+                    type="button"
+                    class="secondary-action"
+                    id="details-edit-button"
+                >
+                    Editar curso
+                </button>
+
+
+                <button
+                    type="button"
+                    class="danger-action"
+                    id="details-delete-button"
+                >
+                    Excluir curso
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL — CONFIRMAR EXCLUSÃO
+========================================================== -->
+
+<div
+    class="modal"
+    id="delete-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="delete-modal-title"
+    hidden
+>
+
+    <div class="modal-card delete-modal-card">
+
+
+        <!-- ÍCONE -->
+
+        <div class="delete-icon">
+            !
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="delete-content">
+
+            <p class="eyebrow red">
+                ATENÇÃO
+            </p>
+
+            <h2 id="delete-modal-title">
+                Excluir curso?
+            </h2>
+
+            <p>
+
+                Você está prestes a excluir o curso
+
+                <strong id="delete-course-name">
+                    Nome do curso
+                </strong>.
+
+            </p>
+
+            <p class="delete-warning">
+                Essa ação não poderá ser desfeita.
+            </p>
+
+        </div>
+
+
+        <!-- BOTÕES -->
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="secondary-action"
+                data-close-modal
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="danger-action"
+                id="confirm-delete-button"
+            >
+                Sim, excluir
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+    aria-live="polite"
+></div>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
 
 <script src="assets/js/dashboard.js"></script>
 <script src="assets/js/cursos.js"></script>

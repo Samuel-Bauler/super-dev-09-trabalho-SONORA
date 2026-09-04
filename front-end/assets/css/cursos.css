@@ -1,43 +1,563 @@
 /* =========================================================
-   CURSOS — PÁGINA
-========================================================= */
+   SONORA — CURSOS
+   ========================================================= */
 
-.cursos-page {
-    width: 100%;
-    max-width: 1500px;
-    margin: 0 auto;
+/* =========================================================
+   FONTES
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap");
+
+
+/* =========================================================
+   VARIÁVEIS
+   ========================================================= */
+
+:root {
+    --green-dark: #123f36;
+    --green: #185f50;
+    --green-medium: #2d6c5e;
+    --green-light: #dcebe3;
+
+    --background: #edf4ef;
+    --background-soft: #f3f6f1;
+
+    --white: #ffffff;
+    --cream: #f7f6ef;
+
+    --text: #123d35;
+    --text-soft: #62756f;
+    --text-muted: #84928e;
+
+    --border: rgba(18, 63, 54, 0.12);
+    --border-light: rgba(18, 63, 54, 0.08);
+
+    --danger: #b84f4f;
+
+    --shadow-sm:
+        0 5px 18px rgba(24, 66, 57, 0.06);
+
+    --shadow-md:
+        0 12px 30px rgba(24, 66, 57, 0.10);
+
+    --shadow-lg:
+        0 20px 50px rgba(24, 66, 57, 0.14);
+
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
 }
 
 
 /* =========================================================
-   GRID DE CURSOS
-========================================================= */
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+
+    font-family: "DM Sans", sans-serif;
+
+    color: var(--text);
+
+    background:
+        linear-gradient(
+            118deg,
+            #f1f6f2 0%,
+            #e5f0e9 42%,
+            #c7ddd0 100%
+        );
+
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* =========================================================
+   LAYOUT PRINCIPAL
+   ========================================================= */
+
+.app {
+    display: grid !important;
+
+    grid-template-columns: 227px minmax(0, 1fr) !important;
+
+    width: 100%;
+
+    /*
+     * O app pode crescer junto com o conteúdo.
+     * Não usamos height: 100vh aqui.
+     */
+    min-height: 100vh;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    position: relative !important;
+
+    width: 227px !important;
+    min-width: 227px !important;
+    max-width: 227px !important;
+
+    /*
+     * IMPORTANTE:
+     * Não usar height: 100vh.
+     *
+     * A sidebar agora acompanha a altura total
+     * do conteúdo da página.
+     */
+    height: auto !important;
+
+    min-height: 100vh;
+
+    /*
+     * Permite que a coluna cresça quando o conteúdo
+     * principal for maior que a tela.
+     */
+    align-self: stretch;
+
+    overflow: visible;
+
+    z-index: 50;
+
+    background: var(--green-dark);
+}
+
+
+/*
+ * Caso exista algum container interno da sidebar
+ * definido pelo dashboard.css com 100vh.
+ */
+.sidebar-inner,
+.sidebar-content,
+.sidebar-nav {
+    max-height: none;
+}
+
+
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
+
+.main-content {
+    position: relative !important;
+
+    width: 100% !important;
+
+    min-width: 0 !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(245, 248, 244, 0.82) 0%,
+            rgba(226, 239, 231, 0.80) 45%,
+            rgba(193, 216, 202, 0.82) 100%
+        );
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    width: 100%;
+
+    min-height: 112px;
+
+    padding: 20px 44px 25px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(18, 63, 54, 0.12);
+
+    background: rgba(247, 249, 245, 0.18);
+}
+
+
+/* pequeno texto */
+
+.topbar-eyebrow {
+    margin: 0 0 4px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    letter-spacing: 1.2px;
+
+    color: #6e817b;
+}
+
+
+/* título Cursos */
+
+.topbar h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 32px;
+
+    line-height: 1.1;
+
+    font-weight: 700;
+
+    color: var(--green-dark);
+}
+
+
+/* =========================================================
+   BOTÃO PRINCIPAL
+   ========================================================= */
+
+.primary-action {
+    border: 0;
+
+    min-height: 42px;
+
+    padding: 0 20px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+    color: #ffffff;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(24, 95, 80, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.primary-action:hover {
+    background: #124f42;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(24, 95, 80, 0.20);
+}
+
+.primary-action:active {
+    transform: translateY(0);
+}
+
+.primary-action span {
+    font-size: 15px;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   PÁGINA DE CURSOS
+   ========================================================= */
+
+.cursos-page {
+    width: 100%;
+
+    max-width: 1500px;
+
+    margin: 0 auto;
+
+    padding: 34px 44px 60px;
+}
+
+
+/* =========================================================
+   INTRO
+   ========================================================= */
+
+.courses-intro {
+    width: 100%;
+
+    margin-bottom: 34px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
+
+    color: #73847f;
+}
+
+.eyebrow.green {
+    color: #668078;
+}
+
+.eyebrow.red {
+    color: var(--danger);
+}
+
+
+.courses-intro h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(38px, 4vw, 54px);
+
+    line-height: 1.05;
+
+    letter-spacing: -1.4px;
+
+    font-weight: 700;
+
+    color: #17473d;
+}
+
+
+.intro-text {
+    margin: 12px 0 0;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    color: #627770;
+}
+
+
+/* =========================================================
+   SEÇÃO DO CATÁLOGO
+   ========================================================= */
+
+.catalog-section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   TÍTULO DA SEÇÃO
+   ========================================================= */
+
+.section-title {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 18px;
+}
+
+
+.section-title h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+
+    line-height: 1.1;
+
+    letter-spacing: -0.5px;
+
+    color: #103e35;
+}
+
+
+/* =========================================================
+   FERRAMENTAS DO CATÁLOGO
+   ========================================================= */
+
+.catalog-tools {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+/* contador */
+
+.course-count {
+    white-space: nowrap;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #6d817a;
+}
+
+
+/* =========================================================
+   BUSCA
+   ========================================================= */
+
+.search-box {
+    width: 250px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 14px;
+
+    border: 1px solid rgba(18, 63, 54, 0.13);
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    box-shadow:
+        0 4px 12px rgba(24, 66, 57, 0.04);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.search-box:focus-within {
+    border-color: rgba(24, 95, 80, 0.35);
+
+    box-shadow:
+        0 0 0 3px rgba(24, 95, 80, 0.08);
+}
+
+
+.search-box > span {
+    flex-shrink: 0;
+
+    font-size: 18px;
+
+    line-height: 1;
+
+    color: #6b8179;
+}
+
+
+.search-box input {
+    width: 100%;
+
+    border: 0;
+
+    outline: 0;
+
+    background: transparent;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    color: var(--text);
+}
+
+
+.search-box input::placeholder {
+    color: #84938e;
+}
+
+
+/* =========================================================
+   GRID DOS CURSOS
+   ========================================================= */
 
 .course-grid {
+    width: 100%;
+
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
     gap: 20px;
+
     margin-top: 18px;
-    margin-bottom: 32px;
 }
 
 
 /* =========================================================
    CARD DO CURSO
-========================================================= */
+   ========================================================= */
 
 .course-card {
     position: relative;
+
+    min-width: 0;
+
     overflow: hidden;
 
-    border: 1px solid rgba(25, 42, 35, 0.08);
+    border: 1px solid rgba(18, 63, 54, 0.08);
+
     border-radius: 18px;
 
     background: #ffffff;
 
     box-shadow:
-        0 4px 12px rgba(20, 35, 29, 0.04),
-        0 14px 32px rgba(20, 35, 29, 0.06);
+        0 8px 25px rgba(24, 66, 57, 0.07);
 
     transition:
         transform 0.25s ease,
@@ -45,480 +565,533 @@
         border-color 0.25s ease;
 }
 
+
 .course-card:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(29, 88, 69, 0.12);
+    border-color: rgba(24, 95, 80, 0.15);
 
     box-shadow:
-        0 8px 18px rgba(20, 35, 29, 0.06),
-        0 22px 45px rgba(20, 35, 29, 0.10);
+        0 16px 35px rgba(24, 66, 57, 0.12);
 }
 
 
 /* =========================================================
-   CAPA DO CURSO
-========================================================= */
+   CAPA DO CARD
+   ========================================================= */
 
 .course-cover {
     position: relative;
 
-    height: 160px;
+    width: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 205px;
 
     overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeae2,
+            #b9d1c4
+        );
 }
 
 
-/* =========================================================
-   ELEMENTOS DECORATIVOS DAS CAPAS
-========================================================= */
+/* imagem */
 
-.course-cover::before,
-.course-cover::after {
+.course-cover-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.45s ease;
+}
+
+
+.course-card:hover .course-cover-image {
+    transform: scale(1.04);
+}
+
+
+/* escurecimento da imagem */
+
+.course-cover.has-image::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10, 38, 32, 0.02),
+            rgba(10, 38, 32, 0.18)
+        );
+
     pointer-events: none;
 }
 
 
 /* =========================================================
-   VIOLÃO
-========================================================= */
+   CAPAS SEM IMAGEM
+   ========================================================= */
 
 .course-cover.guitar {
     background:
         linear-gradient(
             135deg,
-            #a9d1bb 0%,
-            #cfe5d5 55%,
-            #dfece0 100%
+            #dcebe3,
+            #b8d1c4
         );
 }
-
-.course-cover.guitar::before {
-    content: "";
-
-    position: absolute;
-
-    width: 210px;
-    height: 210px;
-
-    top: -115px;
-    right: -35px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.26);
-}
-
-.course-cover.guitar::after {
-    content: "";
-
-    position: absolute;
-
-    width: 135px;
-    height: 135px;
-
-    left: -55px;
-    bottom: -72px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.45);
-}
-
-
-/* =========================================================
-   PIANO
-========================================================= */
 
 .course-cover.piano {
     background:
         linear-gradient(
             135deg,
-            #e1c987 0%,
-            #f0dfb4 55%,
-            #f4e9d0 100%
+            #d8e7e1,
+            #abc7ba
         );
 }
-
-.course-cover.piano::before {
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    top: -125px;
-    right: -65px;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.27);
-}
-
-
-/* =========================================================
-   CANTO
-========================================================= */
 
 .course-cover.voice {
     background:
         linear-gradient(
             135deg,
-            #e5aeb7 0%,
-            #efc5ca 55%,
-            #f3d8da 100%
+            #e2ece7,
+            #c0d8cd
         );
 }
 
-.course-cover.voice::before {
-    content: "";
-
-    position: absolute;
-
-    width: 185px;
-    height: 185px;
-
-    left: -65px;
-    top: -72px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
+.course-cover.battery {
+    background:
+        linear-gradient(
+            135deg,
+            #d8e6df,
+            #aec9bc
+        );
 }
 
-.course-cover.voice::after {
-    content: "";
+.course-cover.guitar-electric {
+    background:
+        linear-gradient(
+            135deg,
+            #d3e5dc,
+            #9fbdaf
+        );
+}
 
-    position: absolute;
+.course-cover.keyboard {
+    background:
+        linear-gradient(
+            135deg,
+            #dcebe3,
+            #b4cec0
+        );
+}
 
-    width: 105px;
-    height: 105px;
+.course-cover.ukulele {
+    background:
+        linear-gradient(
+            135deg,
+            #e0ece6,
+            #bdd5c8
+        );
+}
 
-    right: -35px;
-    bottom: -60px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
+.course-cover.other {
+    background:
+        linear-gradient(
+            135deg,
+            #dce9e3,
+            #b5cec1
+        );
 }
 
 
 /* =========================================================
-   ÍCONE DA CAPA
-========================================================= */
+   SÍMBOLO DA CAPA
+   ========================================================= */
 
-.course-cover > span {
+.course-cover-symbol {
     position: relative;
+
     z-index: 2;
 
+    width: 68px;
+
+    height: 68px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
-    width: 90px;
-    height: 90px;
+    border-radius: 50%;
 
-    color: #155443;
+    background: rgba(255, 255, 255, 0.78);
 
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
+    color: var(--green-dark);
 
-    font-size: 62px;
-    font-weight: 800;
+    font-size: 30px;
 
-    line-height: 1;
-
-    text-shadow:
-        0 2px 1px rgba(0, 0, 0, 0.04);
-
-    transform: translateY(-2px);
-
-    transition:
-        transform 0.3s ease,
-        opacity 0.3s ease;
-}
-
-.course-card:hover .course-cover > span {
-    transform:
-        translateY(-5px)
-        scale(1.05);
+    box-shadow:
+        0 8px 25px rgba(20, 65, 54, 0.10);
 }
 
 
 /* =========================================================
-   STATUS
-========================================================= */
+   STATUS DO CARD
+   ========================================================= */
 
-.course-cover > b {
+.course-status {
     position: absolute;
 
-    top: 12px;
-    right: 12px;
+    top: 14px;
 
-    z-index: 4;
+    right: 14px;
 
-    padding: 7px 11px;
+    z-index: 5;
+
+    padding: 6px 10px;
 
     border-radius: 999px;
 
-    color: #23634f;
+    background: rgba(255, 255, 255, 0.92);
 
-    background:
-        rgba(255, 255, 255, 0.90);
+    color: var(--green);
 
-    border: 1px solid rgba(255, 255, 255, 0.75);
+    font-size: 10px;
 
-    box-shadow:
-        0 2px 8px rgba(20, 40, 30, 0.06);
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 9px;
     font-weight: 800;
 
-    letter-spacing: 0.8px;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-
-/* =========================================================
-   INFORMAÇÕES DO CURSO
-========================================================= */
-
-.course-info {
-    padding: 20px 21px 18px;
-}
-
-
-/* Categoria */
-
-.course-info > p {
-    margin: 0 0 7px;
-
-    color: #788780;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    line-height: 1.4;
-
-    letter-spacing: 1.1px;
+    letter-spacing: 0.7px;
 
     text-transform: uppercase;
+
+    box-shadow:
+        0 5px 15px rgba(20, 60, 50, 0.08);
 }
 
 
 /* =========================================================
-   TÍTULO
-========================================================= */
+   INFORMAÇÕES DO CARD
+   ========================================================= */
 
-.course-info h3 {
-    margin: 0;
+.course-info {
+    padding: 20px 20px 19px;
+}
 
-    color: #102f27;
 
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
+.course-category {
+    display: inline-block;
 
-    font-size: 20px;
+    margin-bottom: 8px;
+
+    font-size: 10px;
+
     font-weight: 800;
 
-    line-height: 1.25;
+    letter-spacing: 1.2px;
 
-    letter-spacing: -0.45px;
+    text-transform: uppercase;
 
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+    color: #668078;
+}
+
+
+.course-title {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 24px;
+
+    line-height: 1.18;
+
+    letter-spacing: -0.3px;
+
+    color: #173f36;
+}
+
+
+.course-description {
+    margin: 9px 0 16px;
+
+    min-height: 40px;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+    color: #687a74;
 }
 
 
 /* =========================================================
    METADADOS
-========================================================= */
+   ========================================================= */
 
 .course-meta {
     display: flex;
+
     align-items: center;
-    flex-wrap: wrap;
 
-    gap: 8px;
+    gap: 18px;
 
-    margin-top: 12px;
+    padding-top: 14px;
 
-    color: #6e7d76;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    line-height: 1.4;
+    border-top: 1px solid rgba(18, 63, 54, 0.09);
 }
 
-.course-meta span:nth-child(2) {
-    color: #a4ada8;
+
+.course-meta-item {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.course-meta-item span {
+    font-size: 10px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    color: #91a09b;
+}
+
+
+.course-meta-item strong {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #294d44;
 }
 
 
 /* =========================================================
-   PROFESSOR
-========================================================= */
+   CLIENTE
+   ========================================================= */
 
-.teacher {
+.course-client {
     display: flex;
+
     align-items: center;
 
     gap: 9px;
 
-    margin-top: 17px;
-    padding-top: 14px;
-
-    border-top:
-        1px solid rgba(25, 45, 37, 0.08);
+    margin-top: 16px;
 }
 
 
-/* Avatar */
-
-.teacher i {
-    flex: 0 0 auto;
-
+.client-avatar {
     width: 31px;
+
     height: 31px;
 
+    flex-shrink: 0;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     border-radius: 50%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #dcebe2,
-            #cfe3d7
-        );
+    background: var(--green-light);
 
-    color: #23634f;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 9px;
-    font-weight: 800;
-
-    font-style: normal;
-
-    box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
-}
-
-
-/* Nome */
-
-.teacher > span {
-    overflow: hidden;
-
-    color: #182c26;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
+    color: var(--green-dark);
 
     font-size: 11px;
-    font-weight: 700;
 
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-/* Link */
-
-.teacher a {
-    margin-left: auto;
-
-    color: #17604b;
-
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
-
-    font-size: 10px;
     font-weight: 800;
+}
 
-    text-decoration: none;
+
+.client-data {
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+
+.client-data span {
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    color: #95a39f;
+}
+
+
+.client-data strong {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
 
     white-space: nowrap;
 
-    transition:
-        color 0.2s ease,
-        transform 0.2s ease;
-}
+    font-size: 12px;
 
-.teacher a:hover {
-    color: #0b3e30;
-
-    transform: translateX(2px);
+    color: #31564c;
 }
 
 
 /* =========================================================
-   CORES DIFERENTES DOS AVATARES
-========================================================= */
+   BOTÃO VER DETALHES
+   ========================================================= */
 
-.course-card:nth-child(2) .teacher i {
-    background:
-        linear-gradient(
-            135deg,
-            #f0dfb2,
-            #ead49b
-        );
-
-    color: #876b27;
+.course-actions {
+    margin-top: 17px;
 }
 
-.course-card:nth-child(3) .teacher i {
-    background:
-        linear-gradient(
-            135deg,
-            #f3d6d9,
-            #ecc4ca
-        );
 
-    color: #9c4654;
+.details-button {
+    width: 100%;
+
+    height: 40px;
+
+    border: 1px solid rgba(24, 95, 80, 0.16);
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: var(--green);
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.details-button:hover {
+    background: var(--green);
+
+    border-color: var(--green);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   ESTADO VAZIO
+   ========================================================= */
+
+.empty-state {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 60px 30px;
+
+    text-align: center;
+
+    border: 1px dashed rgba(24, 95, 80, 0.20);
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.52);
+}
+
+
+.empty-icon {
+    width: 55px;
+
+    height: 55px;
+
+    margin: 0 auto 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+    font-size: 23px;
+}
+
+
+.empty-state h3 {
+    margin: 0 0 8px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 24px;
+
+    color: var(--green-dark);
+}
+
+
+.empty-state p {
+    max-width: 420px;
+
+    margin: 0 auto 20px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: var(--text-soft);
 }
 
 
 /* =========================================================
    AÇÕES RÁPIDAS
-========================================================= */
+   ========================================================= */
+
+.quick-section {
+    margin-top: 50px;
+
+    padding-bottom: 10px;
+}
+
 
 .quick-actions {
     display: grid;
@@ -526,176 +1099,951 @@
     grid-template-columns:
         repeat(3, minmax(0, 1fr));
 
-    gap: 0;
+    gap: 15px;
 
-    margin-top: 20px;
+    margin-top: 18px;
+}
 
-    padding: 10px 0;
 
-    overflow: hidden;
+.quick-actions > button,
+.quick-actions > a {
+    min-height: 92px;
 
-    border:
-        1px solid rgba(25, 42, 35, 0.07);
+    padding: 18px;
 
-    border-radius: 17px;
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    border: 1px solid rgba(18, 63, 54, 0.09);
+
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.76);
+
+    color: var(--text);
+
+    text-decoration: none;
+
+    text-align: left;
+
+    box-shadow:
+        0 5px 16px rgba(24, 66, 57, 0.04);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.quick-actions > button:hover,
+.quick-actions > a:hover {
+    transform: translateY(-3px);
 
     background: #ffffff;
 
     box-shadow:
-        0 8px 25px rgba(20, 35, 29, 0.05);
+        0 12px 25px rgba(24, 66, 57, 0.09);
+}
+
+
+.quick-icon {
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+    font-size: 19px;
+
+    font-weight: 600;
+}
+
+
+.quick-actions strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 13px;
+
+    color: #234b41;
+}
+
+
+.quick-actions small {
+    display: block;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    color: #7c8d87;
 }
 
 
 /* =========================================================
-   BOTÕES / LINKS
-========================================================= */
+   MODAIS
+   ========================================================= */
 
-.quick-actions button,
-.quick-actions a {
-    min-height: 62px;
+.modal-backdrop {
+    position: fixed;
 
-    position: relative;
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        rgba(12, 38, 32, 0.42);
+
+    backdrop-filter: blur(5px);
+}
+
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 110;
 
     display: flex;
+
     align-items: center;
-    justify-content: flex-start;
 
-    gap: 11px;
+    justify-content: center;
 
-    padding: 10px 18px;
+    padding: 24px;
+
+    overflow-y: auto;
+
+    overscroll-behavior: contain;
+}
+
+
+.modal[hidden],
+.modal-backdrop[hidden] {
+    display: none;
+}
+
+
+.modal-card {
+    width: min(680px, 100%);
+
+    max-height: calc(100vh - 48px);
+
+    overflow-y: auto;
+
+    border-radius: 22px;
+
+    background: #ffffff;
+
+    box-shadow: var(--shadow-lg);
+
+    animation:
+        modalAppear 0.22s ease;
+}
+
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   HEADER DO MODAL
+   ========================================================= */
+
+.modal-header {
+    padding: 26px 28px 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-bottom: 1px solid var(--border-light);
+}
+
+
+.modal-header h2 {
+    margin: 0 0 5px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 29px;
+
+    color: var(--green-dark);
+}
+
+
+.modal-header p:not(.eyebrow) {
+    margin: 0;
+
+    font-size: 13px;
+
+    color: var(--text-soft);
+}
+
+
+.modal-close {
+    width: 35px;
+
+    height: 35px;
+
+    flex-shrink: 0;
 
     border: 0;
 
-    color: #173b31;
+    border-radius: 50%;
 
-    background: transparent;
+    background: #f0f4f1;
 
-    font-family:
-        "DM Sans",
-        Arial,
-        sans-serif;
+    color: #526b63;
 
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 22px;
 
-    text-decoration: none;
+    line-height: 1;
 
     cursor: pointer;
 
     transition:
         background 0.2s ease,
-        transform 0.2s ease;
+        color 0.2s ease;
 }
 
 
-/* Divisórias */
+.modal-close:hover {
+    background: var(--green);
 
-.quick-actions button:not(:last-child)::after,
-.quick-actions a:not(:last-child)::after {
-    content: "";
-
-    position: absolute;
-
-    top: 17px;
-    right: 0;
-
-    width: 1px;
-    height: 30px;
-
-    background:
-        rgba(25, 42, 35, 0.09);
-}
-
-
-/* Hover */
-
-.quick-actions button:hover,
-.quick-actions a:hover {
-    background: #f8faf7;
-
-    transform: translateY(-1px);
+    color: #ffffff;
 }
 
 
 /* =========================================================
-   ÍCONE DAS AÇÕES
-========================================================= */
+   FORMULÁRIO
+   ========================================================= */
 
-.quick-actions span {
-    flex: 0 0 auto;
+#course-form {
+    padding: 25px 28px 28px;
+}
 
-    width: 39px;
-    height: 39px;
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 19px;
+}
+
+
+.form-field {
+    min-width: 0;
 
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    border-radius: 11px;
+    flex-direction: column;
 
-    background:
-        linear-gradient(
-            135deg,
-            #dcebe2,
-            #cfe3d7
-        );
+    gap: 7px;
+}
 
-    color: #17604b;
 
-    font-size: 19px;
-    font-weight: 800;
+.form-field.full {
+    grid-column: 1 / -1;
+}
+
+
+.form-field label {
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #35574e;
+}
+
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+    width: 100%;
+
+    border: 1px solid rgba(18, 63, 54, 0.14);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #f8faf8;
+
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.form-field input,
+.form-field select {
+    height: 43px;
+
+    padding: 0 13px;
+}
+
+
+.form-field textarea {
+    min-height: 105px;
+
+    resize: vertical;
+
+    padding: 12px 13px;
+}
+
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+    border-color: rgba(24, 95, 80, 0.42);
+
+    background: #ffffff;
 
     box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+        0 0 0 3px rgba(24, 95, 80, 0.07);
 }
 
 
-/* Segundo */
+.field-hint {
+    margin-top: -2px;
 
-.quick-actions a:nth-child(2) span {
-    background:
-        linear-gradient(
-            135deg,
-            #f1dfb1,
-            #ead39a
-        );
+    font-size: 10px;
 
-    color: #826622;
-}
-
-
-/* Terceiro */
-
-.quick-actions a:nth-child(3) span {
-    background:
-        linear-gradient(
-            135deg,
-            #f3d6d9,
-            #ecc4ca
-        );
-
-    color: #984657;
+    color: #899893;
 }
 
 
 /* =========================================================
-   ACESSIBILIDADE / FOCO
-========================================================= */
+   UPLOAD
+   ========================================================= */
 
-.course-card:focus-within,
-.quick-actions a:focus-visible,
-.quick-actions button:focus-visible,
-.teacher a:focus-visible {
-    outline: 3px solid rgba(31, 102, 79, 0.18);
-    outline-offset: 3px;
+.upload-wrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.upload-area {
+    position: relative;
+
+    min-height: 180px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px dashed rgba(24, 95, 80, 0.28);
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5f9f6,
+            #e9f1ec
+        );
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.upload-area:hover {
+    border-color: var(--green);
+
+    background: #edf6f0;
+}
+
+
+.upload-area input[type="file"] {
+    position: absolute;
+
+    width: 1px;
+
+    height: 1px;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+.cover-placeholder {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    text-align: center;
+}
+
+
+.upload-icon {
+    width: 45px;
+
+    height: 45px;
+
+    margin-bottom: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--green-light);
+
+    color: var(--green);
+
+    font-size: 22px;
+}
+
+
+.cover-placeholder strong {
+    font-size: 13px;
+
+    color: #34584e;
+}
+
+
+.cover-placeholder small {
+    font-size: 10px;
+
+    color: #84948e;
+}
+
+
+#cover-preview-image {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.remove-cover-button {
+    align-self: flex-start;
+
+    border: 0;
+
+    background: transparent;
+
+    color: var(--danger);
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
 }
 
 
 /* =========================================================
-   RESPONSIVO — TABLET
-========================================================= */
+   BOTÕES DO MODAL
+   ========================================================= */
 
-@media (max-width: 1100px) {
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+
+.secondary-action,
+.danger-action {
+    min-height: 42px;
+
+    padding: 0 17px;
+
+    border-radius: 9px;
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.secondary-action {
+    border: 1px solid rgba(18, 63, 54, 0.14);
+
+    background: #ffffff;
+
+    color: #49645b;
+}
+
+
+.secondary-action:hover {
+    background: #f1f5f2;
+}
+
+
+.danger-action {
+    border: 1px solid var(--danger);
+
+    background: var(--danger);
+
+    color: #ffffff;
+}
+
+
+.danger-action:hover {
+    background: #a64343;
+
+    border-color: #a64343;
+}
+
+
+/* =========================================================
+   MODAL DE DETALHES
+   ========================================================= */
+
+.details-modal-card {
+    width: min(650px, 100%);
+
+    overflow: hidden;
+}
+
+
+.details-close {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 18px;
+
+    right: 18px;
+}
+
+
+.details-cover {
+    position: relative;
+
+    width: 100%;
+
+    height: 230px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcebe3,
+            #abc7b9
+        );
+}
+
+
+.details-cover img {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.details-cover span {
+    position: relative;
+
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.80);
+
+    color: var(--green-dark);
+
+    font-size: 28px;
+}
+
+
+.details-cover b {
+    position: absolute;
+
+    left: 20px;
+
+    bottom: 18px;
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.90);
+
+    color: var(--green);
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+
+.details-content {
+    padding: 27px;
+}
+
+
+.details-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+
+.details-category {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    text-transform: uppercase;
+
+    color: #6c837b;
+}
+
+
+.details-content h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 31px;
+
+    line-height: 1.15;
+
+    color: var(--green-dark);
+}
+
+
+.details-description {
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border-light);
+}
+
+
+.details-label {
+    margin: 0 0 7px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    color: #82938d;
+}
+
+
+#details-description {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    color: #63766f;
+}
+
+
+.details-info-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+
+.details-info {
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: #f4f7f4;
+}
+
+
+.details-info span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    color: #8a9994;
+}
+
+
+.details-info strong {
+    display: block;
+
+    font-size: 13px;
+
+    color: #36584f;
+}
+
+
+.details-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+/* =========================================================
+   MODAL DE EXCLUSÃO
+   ========================================================= */
+
+.delete-modal-card {
+    width: min(450px, 100%);
+
+    padding: 30px;
+}
+
+
+.delete-icon {
+    width: 48px;
+
+    height: 48px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #f8e8e8;
+
+    color: var(--danger);
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.delete-content h2 {
+    margin: 0 0 10px;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+
+    color: var(--green-dark);
+}
+
+
+.delete-content > p:not(.eyebrow):not(.delete-warning) {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    color: #64766f;
+}
+
+
+.delete-content strong {
+    color: #294d43;
+}
+
+
+.delete-warning {
+    margin: 9px 0 0;
+
+    font-size: 11px;
+
+    color: var(--danger);
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast {
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    z-index: 200;
+
+    max-width: 350px;
+
+    padding: 13px 17px;
+
+    border-radius: 10px;
+
+    background: var(--green-dark);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    box-shadow: var(--shadow-md);
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.toast.show {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE — 1200px
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .cursos-page {
+        padding-left: 30px;
+
+        padding-right: 30px;
+    }
 
     .course-grid {
         grid-template-columns:
@@ -704,21 +2052,140 @@
 
     .quick-actions {
         grid-template-columns:
-            repeat(3, minmax(0, 1fr));
-    }
-
-    .quick-actions button,
-    .quick-actions a {
-        padding: 10px 14px;
+            repeat(2, minmax(0, 1fr));
     }
 }
 
 
 /* =========================================================
-   RESPONSIVO — CELULAR
-========================================================= */
+   RESPONSIVIDADE — 850px
+   ========================================================= */
 
-@media (max-width: 760px) {
+@media (max-width: 850px) {
+
+    .app {
+        display: block !important;
+
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        width: 100% !important;
+
+        min-width: 100% !important;
+
+        max-width: 100% !important;
+
+        height: auto !important;
+
+        min-height: auto !important;
+
+        overflow: visible;
+    }
+
+    .main-content {
+        width: 100% !important;
+
+        min-height: auto;
+    }
+
+    .topbar {
+        min-height: 95px;
+
+        padding:
+            18px
+            25px
+            20px;
+    }
+
+    .topbar h1 {
+        font-size: 28px;
+    }
+
+    .cursos-page {
+        padding:
+            28px
+            25px
+            50px;
+    }
+
+    .courses-intro h2 {
+        font-size: 42px;
+    }
+
+    .section-title {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .catalog-tools {
+        width: 100%;
+
+        justify-content: space-between;
+    }
+
+    .search-box {
+        width: 250px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE — 600px
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding:
+            18px
+            18px
+            20px;
+    }
+
+    .topbar h1 {
+        font-size: 26px;
+    }
+
+    .cursos-page {
+        padding:
+            25px
+            18px
+            40px;
+    }
+
+    .courses-intro {
+        margin-bottom: 28px;
+    }
+
+    .courses-intro h2 {
+        font-size: 36px;
+
+        letter-spacing: -0.8px;
+    }
+
+    .intro-text {
+        font-size: 13px;
+    }
+
+    .section-title h2 {
+        font-size: 25px;
+    }
+
+    .catalog-tools {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .search-box {
+        width: 100%;
+    }
 
     .course-grid {
         grid-template-columns: 1fr;
@@ -727,80 +2194,97 @@
     }
 
     .course-cover {
-        height: 180px;
+        height: 210px;
     }
 
     .quick-actions {
         grid-template-columns: 1fr;
-
-        gap: 0;
-
-        padding: 6px 0;
     }
 
-    .quick-actions button,
-    .quick-actions a {
-        min-height: 56px;
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .form-field.full {
+        grid-column: auto;
+    }
+
+    .modal {
+        padding: 12px;
+    }
+
+    .modal-card {
+        max-height: calc(100vh - 24px);
+
+        border-radius: 17px;
+    }
+
+    .modal-header {
+        padding: 21px;
+    }
+
+    #course-form {
         padding:
-            8px 15px;
+            20px
+            21px
+            23px;
     }
 
-    .quick-actions button:not(:last-child)::after,
-    .quick-actions a:not(:last-child)::after {
-        top: auto;
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+
+    .details-content {
+        padding: 21px;
+    }
+
+    .details-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .details-actions {
+        flex-direction: column;
+    }
+
+    .details-actions button {
+        width: 100%;
+    }
+
+    .delete-modal-card {
+        padding: 24px;
+    }
+
+    .toast {
+        left: 15px;
+
         right: 15px;
-        bottom: 0;
 
-        width: calc(100% - 30px);
-        height: 1px;
-    }
-}
+        bottom: 15px;
 
-
-/* =========================================================
-   RESPONSIVO — CELULAR PEQUENO
-========================================================= */
-
-@media (max-width: 480px) {
-
-    .course-info {
-        padding: 18px 17px 17px;
-    }
-
-    .course-info h3 {
-        font-size: 19px;
-    }
-
-    .course-cover {
-        height: 175px;
-    }
-
-    .course-cover > span {
-        font-size: 58px;
-    }
-
-    .course-meta {
-        font-size: 10px;
-    }
-
-    .teacher {
-        margin-top: 15px;
+        max-width: none;
     }
 }
 
 
 /* =========================================================
    REDUÇÃO DE MOVIMENTO
-========================================================= */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
-    .course-card,
-    .course-cover > span,
-    .teacher a,
-    .quick-actions button,
-    .quick-actions a {
-        transition: none;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
     }
 }
