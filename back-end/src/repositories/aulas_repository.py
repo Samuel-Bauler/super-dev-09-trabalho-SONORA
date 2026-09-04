@@ -351,8 +351,6 @@ def cadastrar(aula: AulaCadastro):
         duracao=aula.duracao
     )
 
-from src.database.conexao import conectar
-
 
 def apagar(id: int):
     """Responsável por apagar uma aula pelo ID."""

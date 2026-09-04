@@ -285,6 +285,32 @@
 
                     <div class="catalog-tools">
 
+                        <div
+                            class="course-filters"
+                            role="group"
+                            aria-label="Filtrar cursos por status"
+                        >
+
+                            <button
+                                type="button"
+                                class="course-filter active"
+                                data-status-filter="ATIVO"
+                                aria-pressed="true"
+                            >
+                                Ativos
+                            </button>
+
+                            <button
+                                type="button"
+                                class="course-filter"
+                                data-status-filter="INATIVO"
+                                aria-pressed="false"
+                            >
+                                Inativos
+                            </button>
+
+                        </div>
+
                         <span
                             class="course-count"
                             id="course-count"
@@ -608,6 +634,26 @@
                 </div>
 
 
+                <!-- E-MAIL DO CLIENTE -->
+
+                <div class="form-field">
+
+                    <label for="course-client-email">
+                        E-mail do cliente
+                    </label>
+
+                    <input
+                        type="email"
+                        id="course-client-email"
+                        name="clientEmail"
+                        placeholder="cliente@exemplo.com"
+                        maxlength="120"
+                        required
+                    >
+
+                </div>
+
+
                 <!-- INSTRUMENTO -->
 
                 <div class="form-field">
@@ -656,6 +702,36 @@
 
                         <option value="Outro">
                             Outro
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STATUS — DISPONÍVEL AO EDITAR -->
+
+                <div
+                    class="form-field"
+                    id="course-status-field"
+                    hidden
+                >
+
+                    <label for="course-status">
+                        Status
+                    </label>
+
+                    <select
+                        id="course-status"
+                        name="status"
+                    >
+
+                        <option value="ATIVO">
+                            ATIVO
+                        </option>
+
+                        <option value="INATIVO">
+                            INATIVO
                         </option>
 
                     </select>
@@ -811,7 +887,7 @@
                 ♪
             </span>
 
-            <b>
+            <b id="details-status">
                 ATIVO
             </b>
 
@@ -879,6 +955,19 @@
                 <div class="details-info">
 
                     <span>
+                        E-MAIL DO CLIENTE
+                    </span>
+
+                    <strong id="details-client-email">
+                        cliente@exemplo.com
+                    </strong>
+
+                </div>
+
+
+                <div class="details-info">
+
+                    <span>
                         ID DO CURSO
                     </span>
 
@@ -909,7 +998,7 @@
                     class="danger-action"
                     id="details-delete-button"
                 >
-                    Excluir curso
+                    Inativar curso
                 </button>
 
             </div>
@@ -922,7 +1011,7 @@
 
 
 <!-- =========================================================
-     MODAL — CONFIRMAR EXCLUSÃO
+     MODAL — CONFIRMAR INATIVAÇÃO
 ========================================================== -->
 
 <div
@@ -953,12 +1042,12 @@
             </p>
 
             <h2 id="delete-modal-title">
-                Excluir curso?
+                Inativar curso?
             </h2>
 
             <p>
 
-                Você está prestes a excluir o curso
+                Você está prestes a inativar o curso
 
                 <strong id="delete-course-name">
                     Nome do curso
@@ -967,7 +1056,7 @@
             </p>
 
             <p class="delete-warning">
-                Essa ação não poderá ser desfeita.
+                O curso continuará salvo e poderá ser reativado pela edição.
             </p>
 
         </div>
@@ -991,7 +1080,7 @@
                 class="danger-action"
                 id="confirm-delete-button"
             >
-                Sim, excluir
+                Sim, inativar
             </button>
 
         </div>
