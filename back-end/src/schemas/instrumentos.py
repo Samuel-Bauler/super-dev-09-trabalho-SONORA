@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass
-class Instrumentos:
+class Instrumento:
     id: int
     nome: str
 

@@ -4,43 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
        CONFIGURAÇÃO
     ===================================================== */
 
-    const STORAGE_KEY = "sonora_courses_v1";
-
-    const defaultCourses = [
-        {
-            id: "curso-001",
-            name: "Fundamentos do violão",
-            description:
-                "Aprenda os principais acordes, ritmos e técnicas para começar a tocar violão.",
-            client: "Escola Sonora",
-            instrument: "Violão",
-            coverImage: null,
-            status: "ATIVO"
-        },
-
-        {
-            id: "curso-002",
-            name: "Harmonia e improviso",
-            description:
-                "Explore acordes, escalas e conceitos de harmonia para desenvolver sua improvisação.",
-            client: "Instituto Musical",
-            instrument: "Piano",
-            coverImage: null,
-            status: "ATIVO"
-        },
-
-        {
-            id: "curso-003",
-            name: "A voz em movimento",
-            description:
-                "Técnicas de respiração, afinação e interpretação para desenvolver sua voz.",
-            client: "Studio Sonora",
-            instrument: "Canto",
-            coverImage: null,
-            status: "ATIVO"
-        }
-    ];
-
+    const API_URL = "http://localhost:8000/cursos";
 
     /* =====================================================
        ELEMENTOS
@@ -192,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
        ESTADO
     ===================================================== */
 
-    let courses = loadCourses();
+    let courses = [];
 
     let pendingCoverImage = null;
 
@@ -205,88 +169,63 @@ document.addEventListener("DOMContentLoaded", () => {
        NORMALIZAR CURSO
     ===================================================== */
 
-    function normalizeCourse(course, index) {
+    function normalizeCourse(course) {
 
         return {
-            id:
-                course.id ||
-                `curso-${Date.now()}-${index}`,
+            id: course.id,
 
-            name:
-                course.name ||
-                course.title ||
-                "Curso sem nome",
+            name: course.nome || "Curso sem nome",
 
             description:
-                course.description ||
-                course.shortDescription ||
-                "Sem descrição.",
+                course.descricao || "Sem descrição.",
 
             client:
-                course.client ||
-                course.clientName ||
+                course.cliente?.nome ||
                 "Cliente não informado",
 
+            clientId:
+                course.cliente?.id || null,
+
             instrument:
-                course.instrument ||
+                course.instrumento?.nome ||
                 "Outro",
 
-            coverImage:
-                course.coverImage ||
-                course.image ||
-                course.cover ||
-                null,
+            instrumentId:
+                course.instrumento?.id || null,
+
+            coverImage: null,
 
             status:
-                course.status ||
-                "ATIVO"
+                course.status ? "ATIVO" : "INATIVO"
         };
     }
 
 
     /* =====================================================
-       CARREGAR CURSOS
+       CARREGAR CURSOS DO BANCO
     ===================================================== */
 
-    function loadCourses() {
+    async function loadCourses() {
 
         try {
 
-            const saved =
-                localStorage.getItem(STORAGE_KEY);
+            const response =
+                await fetch(API_URL);
 
-            if (!saved) {
+            if (!response.ok) {
 
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(defaultCourses)
+                throw new Error(
+                    "Erro ao buscar cursos."
                 );
-
-                return [...defaultCourses];
             }
 
-            const parsed =
-                JSON.parse(saved);
+            const data =
+                await response.json();
 
-            /*
-             * Se existir um array vazio de uma versão
-             * anterior, recuperamos os cursos padrão.
-             */
+            courses =
+                data.map(normalizeCourse);
 
-            if (
-                !Array.isArray(parsed) ||
-                parsed.length === 0
-            ) {
-
-                localStorage.setItem(
-                    STORAGE_KEY,
-                    JSON.stringify(defaultCourses)
-                );
-
-                return [...defaultCourses];
-            }
-
-            return parsed.map(normalizeCourse);
+            renderCourses();
 
         } catch (error) {
 
@@ -295,38 +234,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 error
             );
 
-            return [...defaultCourses];
-        }
-    }
+            courses = [];
 
-
-    /* =====================================================
-       SALVAR CURSOS
-    ===================================================== */
-
-    function saveCourses() {
-
-        try {
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(courses)
-            );
-
-            return true;
-
-        } catch (error) {
-
-            console.error(
-                "Erro ao salvar cursos:",
-                error
-            );
+            renderCourses();
 
             showToast(
-                "Não foi possível salvar os dados no navegador."
+                "Não foi possível carregar os cursos."
             );
-
-            return false;
         }
     }
 
@@ -347,26 +261,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       GERAR ID
-    ===================================================== */
-
-    function generateCourseId() {
-
-        if (
-            window.crypto &&
-            typeof window.crypto.randomUUID === "function"
-        ) {
-
-            return `curso-${window.crypto.randomUUID()}`;
-        }
-
-        return `curso-${Date.now()}-${Math.random()
-            .toString(36)
-            .substring(2, 8)}`;
-    }
-
-
-    /* =====================================================
        INICIAIS DO CLIENTE
     ===================================================== */
 
@@ -383,6 +277,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (words.length === 1) {
+
             return words[0]
                 .substring(0, 2)
                 .toUpperCase();
@@ -402,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getInstrumentClass(instrument) {
 
         const classes = {
+
             "Violão": "guitar",
             "Piano": "piano",
             "Canto": "voice",
@@ -409,6 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Guitarra": "guitar-electric",
             "Teclado": "keyboard",
             "Ukulele": "ukulele"
+
         };
 
         return classes[instrument] || "other";
@@ -422,6 +319,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getInstrumentSymbol(instrument) {
 
         const symbols = {
+
             "Violão": "♪",
             "Piano": "♫",
             "Canto": "◖",
@@ -429,6 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "Guitarra": "♪",
             "Teclado": "♫",
             "Ukulele": "♪"
+
         };
 
         return symbols[instrument] || "♫";
@@ -450,15 +349,19 @@ document.addEventListener("DOMContentLoaded", () => {
             courses.filter((course) => {
 
                 const searchableText = [
+
                     course.name,
                     course.description,
                     course.client,
                     course.instrument
+
                 ]
                     .join(" ")
                     .toLowerCase();
 
-                return searchableText.includes(searchTerm);
+                return searchableText.includes(
+                    searchTerm
+                );
             });
 
 
@@ -502,13 +405,19 @@ document.addEventListener("DOMContentLoaded", () => {
         filteredCourses.forEach((course) => {
 
             const instrumentClass =
-                getInstrumentClass(course.instrument);
+                getInstrumentClass(
+                    course.instrument
+                );
 
             const symbol =
-                getInstrumentSymbol(course.instrument);
+                getInstrumentSymbol(
+                    course.instrument
+                );
 
             const initials =
-                getInitials(course.client);
+                getInitials(
+                    course.client
+                );
 
 
             const imageHtml =
@@ -529,9 +438,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "";
 
 
-            const card = document.createElement("article");
+            const card =
+                document.createElement("article");
 
-            card.className = "course-card";
+            card.className =
+                "course-card";
 
             card.dataset.courseId =
                 course.id;
@@ -589,7 +500,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </span>
 
                         <span>
-                            Curso ativo
+                            ${course.status === "ATIVO"
+                                ? "Curso ativo"
+                                : "Curso inativo"}
                         </span>
 
                     </div>
@@ -655,7 +568,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add(
             "modal-open"
         );
-
     }
 
 
@@ -680,7 +592,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 "modal-open"
             );
         }
-
     }
 
 
@@ -691,7 +602,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeAllModals() {
 
         courseModal.hidden = true;
+
         detailsModal.hidden = true;
+
         deleteModal.hidden = true;
 
         backdrop.hidden = true;
@@ -699,7 +612,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.remove(
             "modal-open"
         );
-
     }
 
 
@@ -720,7 +632,6 @@ document.addEventListener("DOMContentLoaded", () => {
         coverPlaceholder.hidden = false;
 
         removeCoverButton.hidden = true;
-
     }
 
 
@@ -739,12 +650,11 @@ document.addEventListener("DOMContentLoaded", () => {
         coverPlaceholder.hidden = true;
 
         removeCoverButton.hidden = false;
-
     }
 
 
     /* =====================================================
-       ABRIR MODAL DE NOVO CURSO
+       ABRIR NOVO CURSO
     ===================================================== */
 
     function openNewCourseModal() {
@@ -771,93 +681,97 @@ document.addEventListener("DOMContentLoaded", () => {
             courseName.focus();
 
         }, 100);
-
     }
 
 
     /* =====================================================
-       ABRIR MODAL DE EDIÇÃO
+       ABRIR EDIÇÃO
     ===================================================== */
 
-    function openEditCourseModal(courseId) {
+    async function openEditCourseModal(courseId) {
 
-        const course =
-            courses.find(
-                (item) => item.id === courseId
-            );
+        try {
 
-        if (!course) {
+            const response =
+                await fetch(
+                    `${API_URL}/${courseId}`
+                );
 
-            showToast(
-                "Curso não encontrado."
-            );
+            if (!response.ok) {
 
-            return;
-        }
+                throw new Error(
+                    "Curso não encontrado."
+                );
+            }
 
+            const data =
+                await response.json();
 
-        /* -----------------------------------------------
-           PREENCHER CAMPOS
-        ------------------------------------------------ */
-
-        editingCourseId.value =
-            course.id;
-
-        courseName.value =
-            course.name;
-
-        courseDescription.value =
-            course.description;
-
-        courseClient.value =
-            course.client;
-
-        courseInstrument.value =
-            course.instrument;
+            const course =
+                normalizeCourse(data);
 
 
-        /* -----------------------------------------------
-           ALTERAR TÍTULO
-        ------------------------------------------------ */
+            /* -----------------------------------------------
+               PREENCHER CAMPOS
+            ------------------------------------------------ */
 
-        courseModalTitle.textContent =
-            "Editar curso";
+            editingCourseId.value =
+                course.id;
 
-        courseModalDescription.textContent =
-            "Altere as informações do curso.";
+            courseName.value =
+                course.name;
 
-        saveCourseButton.textContent =
-            "Salvar alterações";
+            courseDescription.value =
+                course.description;
+
+            courseClient.value =
+                course.client;
+
+            courseInstrument.value =
+                course.instrument;
 
 
-        /* -----------------------------------------------
-           FOTO
-        ------------------------------------------------ */
+            /* -----------------------------------------------
+               ALTERAR TÍTULO
+            ------------------------------------------------ */
 
-        if (course.coverImage) {
+            courseModalTitle.textContent =
+                "Editar curso";
 
-            showCoverPreview(
-                course.coverImage
-            );
+            courseModalDescription.textContent =
+                "Altere as informações do curso.";
 
-        } else {
+            saveCourseButton.textContent =
+                "Salvar alterações";
+
+
+            /* -----------------------------------------------
+               FOTO
+            ------------------------------------------------ */
 
             clearCover();
+
+
+            /* -----------------------------------------------
+               ABRIR
+            ------------------------------------------------ */
+
+            openModal(courseModal);
+
+            setTimeout(() => {
+
+                courseName.focus();
+
+            }, 100);
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                "Não foi possível carregar o curso."
+            );
         }
-
-
-        /* -----------------------------------------------
-           ABRIR
-        ------------------------------------------------ */
-
-        openModal(courseModal);
-
-        setTimeout(() => {
-
-            courseName.focus();
-
-        }, 100);
-
     }
 
 
@@ -865,96 +779,91 @@ document.addEventListener("DOMContentLoaded", () => {
        ABRIR DETALHES
     ===================================================== */
 
-    function openDetailsModal(courseId) {
+    async function openDetailsModal(courseId) {
 
-        const course =
-            courses.find(
-                (item) => item.id === courseId
-            );
+        try {
 
-        if (!course) {
+            const response =
+                await fetch(
+                    `${API_URL}/${courseId}`
+                );
 
-            showToast(
-                "Curso não encontrado."
-            );
+            if (!response.ok) {
 
-            return;
-        }
+                throw new Error(
+                    "Curso não encontrado."
+                );
+            }
 
+            const data =
+                await response.json();
 
-        currentDetailsCourseId =
-            course.id;
-
-
-        /* -----------------------------------------------
-           TEXTO
-        ------------------------------------------------ */
-
-        detailsInstrument.textContent =
-            `${course.instrument} · CURSO`;
-
-        detailsName.textContent =
-            course.name;
-
-        detailsDescription.textContent =
-            course.description;
-
-        detailsClient.textContent =
-            course.client;
-
-        detailsId.textContent =
-            course.id;
+            const course =
+                normalizeCourse(data);
 
 
-        /* -----------------------------------------------
-           CAPA
-        ------------------------------------------------ */
-
-        const instrumentClass =
-            getInstrumentClass(
-                course.instrument
-            );
-
-        const symbol =
-            getInstrumentSymbol(
-                course.instrument
-            );
-
-        detailsCover.className =
-            `details-cover ${instrumentClass}`;
+            currentDetailsCourseId =
+                course.id;
 
 
-        detailsCoverSymbol.textContent =
-            symbol;
+            /* -----------------------------------------------
+               TEXTO
+            ------------------------------------------------ */
+
+            detailsInstrument.textContent =
+                `${course.instrument} · CURSO`;
+
+            detailsName.textContent =
+                course.name;
+
+            detailsDescription.textContent =
+                course.description;
+
+            detailsClient.textContent =
+                course.client;
+
+            detailsId.textContent =
+                course.id;
 
 
-        if (course.coverImage) {
+            /* -----------------------------------------------
+               CAPA
+            ------------------------------------------------ */
 
-            detailsCover.classList.add(
-                "has-image"
-            );
+            const instrumentClass =
+                getInstrumentClass(
+                    course.instrument
+                );
 
-            detailsCoverImage.src =
-                course.coverImage;
+            const symbol =
+                getInstrumentSymbol(
+                    course.instrument
+                );
 
-            detailsCoverImage.alt =
-                `Capa do curso ${course.name}`;
 
-            detailsCoverImage.hidden =
-                false;
+            detailsCover.className =
+                `details-cover ${instrumentClass}`;
 
-        } else {
+
+            detailsCoverSymbol.textContent =
+                symbol;
+
 
             detailsCoverImage.src = "";
 
-            detailsCoverImage.hidden =
-                true;
+            detailsCoverImage.hidden = true;
 
+
+            openModal(detailsModal);
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                "Não foi possível carregar os detalhes."
+            );
         }
-
-
-        openModal(detailsModal);
-
     }
 
 
@@ -966,8 +875,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const course =
             courses.find(
-                (item) => item.id === courseId
+                (item) =>
+                    Number(item.id) ===
+                    Number(courseId)
             );
+
 
         if (!course) {
 
@@ -987,52 +899,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         openModal(deleteModal);
-
     }
 
 
     /* =====================================================
-       EXCLUIR CURSO
+       EXCLUIR / INATIVAR CURSO
     ===================================================== */
 
-    function deleteCourse() {
+    async function deleteCourse() {
 
         if (!courseToDeleteId) {
             return;
         }
 
 
-        const course =
-            courses.find(
-                (item) =>
-                    item.id === courseToDeleteId
+        try {
+
+            const response =
+                await fetch(
+                    `${API_URL}/${courseToDeleteId}`,
+                    {
+                        method: "DELETE"
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                const error =
+                    await response.json()
+                        .catch(() => null);
+
+                console.error(error);
+
+                throw new Error(
+                    "Erro ao inativar curso."
+                );
+            }
+
+
+            closeAllModals();
+
+
+            showToast(
+                "Curso inativado com sucesso."
             );
 
 
-        courses =
-            courses.filter(
-                (item) =>
-                    item.id !== courseToDeleteId
+            courseToDeleteId =
+                null;
+
+            currentDetailsCourseId =
+                null;
+
+
+            /* -----------------------------------------------
+               BUSCAR NOVAMENTE NO BANCO
+            ------------------------------------------------ */
+
+            await loadCourses();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                "Não foi possível inativar o curso."
             );
-
-
-        saveCourses();
-
-        renderCourses();
-
-        closeAllModals();
-
-        showToast(
-            `Curso "${course?.name || ""}" excluído com sucesso.`
-        );
-
-
-        courseToDeleteId =
-            null;
-
-        currentDetailsCourseId =
-            null;
-
+        }
     }
 
 
@@ -1040,7 +975,7 @@ document.addEventListener("DOMContentLoaded", () => {
        SALVAR CURSO
     ===================================================== */
 
-    function saveCourse(event) {
+    async function saveCourse(event) {
 
         event.preventDefault();
 
@@ -1055,7 +990,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const description =
             courseDescription.value.trim();
 
-        const client =
+        const clientName =
             courseClient.value.trim();
 
         const instrument =
@@ -1065,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (
             !name ||
             !description ||
-            !client ||
+            !clientName ||
             !instrument
         ) {
 
@@ -1078,115 +1013,279 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         /* -----------------------------------------------
-           EDITAR
+           ENCONTRAR CLIENTE
         ------------------------------------------------ */
 
-        if (editingCourseId.value) {
+        let idCliente = null;
 
-            const index =
-                courses.findIndex(
-                    (course) =>
-                        course.id ===
-                        editingCourseId.value
+
+        try {
+
+            const response =
+                await fetch(
+                    "http://localhost:8000/clientes"
                 );
 
 
-            if (index === -1) {
+            if (!response.ok) {
+
+                throw new Error(
+                    "Erro ao buscar clientes."
+                );
+            }
+
+
+            const clientes =
+                await response.json();
+
+
+            const cliente =
+                clientes.find(
+                    (item) =>
+                        item.nome.toLowerCase() ===
+                        clientName.toLowerCase()
+                );
+
+
+            if (!cliente) {
 
                 showToast(
-                    "Curso não encontrado."
+                    "Cliente não encontrado."
                 );
 
                 return;
             }
 
 
-            const oldCourse =
-                courses[index];
+            idCliente =
+                Number(cliente.id);
 
 
-            courses[index] = {
+        } catch (error) {
 
-                ...oldCourse,
-
-                name,
-                description,
-                client,
-                instrument,
-
-                /*
-                 * Se o usuário escolheu uma nova imagem,
-                 * usamos a nova.
-                 *
-                 * Caso contrário, mantemos a imagem antiga.
-                 */
-
-                coverImage:
-                    pendingCoverImage !== null
-                        ? pendingCoverImage
-                        : oldCourse.coverImage
-
-            };
-
-
-            saveCourses();
-
-            renderCourses();
-
-            closeAllModals();
+            console.error(error);
 
             showToast(
-                "Curso atualizado com sucesso."
+                "Não foi possível buscar os clientes."
             );
-
-
-            currentDetailsCourseId =
-                editingCourseId.value;
-
 
             return;
         }
 
 
         /* -----------------------------------------------
-           NOVO CURSO
+           ENCONTRAR INSTRUMENTO
         ------------------------------------------------ */
 
-        const newCourse = {
+        let idInstrumento = null;
 
-            id: generateCourseId(),
 
-            name,
+        try {
 
-            description,
+            const response =
+                await fetch(
+                    "http://localhost:8000/instrumentos"
+                );
 
-            client,
 
-            instrument,
+            if (!response.ok) {
 
-            coverImage:
-                pendingCoverImage,
+                throw new Error(
+                    "Erro ao buscar instrumentos."
+                );
+            }
 
-            status:
-                "ATIVO"
+
+            const instrumentos =
+                await response.json();
+
+
+            const instrumentoEncontrado =
+                instrumentos.find(
+                    (item) =>
+                        item.nome.toLowerCase() ===
+                        instrument.toLowerCase()
+                );
+
+
+            if (!instrumentoEncontrado) {
+
+                showToast(
+                    "Instrumento não encontrado."
+                );
+
+                return;
+            }
+
+
+            idInstrumento =
+                Number(
+                    instrumentoEncontrado.id
+                );
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                "Não foi possível buscar os instrumentos."
+            );
+
+            return;
+        }
+
+
+        /* -----------------------------------------------
+           DADOS PARA A API
+        ------------------------------------------------ */
+
+        const dados = {
+
+            nome: name,
+
+            descricao: description,
+
+            id_cliente: idCliente,
+
+            id_instrumento: idInstrumento
 
         };
 
 
-        courses.unshift(
-            newCourse
-        );
+        try {
+
+            /* -------------------------------------------
+               EDITAR
+            ------------------------------------------- */
+
+            if (editingCourseId.value) {
+
+                const response =
+                    await fetch(
+                        `${API_URL}/${editingCourseId.value}`,
+                        {
+                            method: "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify(
+                                    dados
+                                )
+                        }
+                    );
 
 
-        saveCourses();
+                if (!response.ok) {
 
-        renderCourses();
+                    const error =
+                        await response.json()
+                            .catch(() => null);
 
-        closeAllModals();
+                    console.error(error);
 
-        showToast(
-            "Curso cadastrado com sucesso."
-        );
+                    throw new Error(
+                        "Erro ao editar curso."
+                    );
+                }
+
+
+                closeAllModals();
+
+                showToast(
+                    "Curso atualizado com sucesso."
+                );
+
+
+                /* ---------------------------------------
+                   RECARREGAR BANCO
+                --------------------------------------- */
+
+                await loadCourses();
+
+
+                currentDetailsCourseId =
+                    editingCourseId.value;
+
+
+                return;
+            }
+
+
+            /* -------------------------------------------
+               NOVO CURSO
+            ------------------------------------------- */
+
+            const dadosCadastro = {
+
+                ...dados,
+
+                status: true
+
+            };
+
+
+            const response =
+                await fetch(
+                    API_URL,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                dadosCadastro
+                            )
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                const error =
+                    await response.json()
+                        .catch(() => null);
+
+                console.error(error);
+
+                throw new Error(
+                    "Erro ao cadastrar curso."
+                );
+            }
+
+
+            closeAllModals();
+
+
+            showToast(
+                "Curso cadastrado com sucesso."
+            );
+
+
+            /* -------------------------------------------
+               RECARREGAR BANCO
+            ------------------------------------------- */
+
+            await loadCourses();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            showToast(
+                error.message ||
+                "Não foi possível salvar o curso."
+            );
+        }
 
     }
 
@@ -1211,7 +1310,9 @@ document.addEventListener("DOMContentLoaded", () => {
                VERIFICAR TIPO
             --------------------------------------------- */
 
-            if (!file.type.startsWith("image/")) {
+            if (
+                !file.type.startsWith("image/")
+            ) {
 
                 showToast(
                     "Selecione um arquivo de imagem."
@@ -1558,6 +1659,6 @@ document.addEventListener("DOMContentLoaded", () => {
        INICIALIZAÇÃO
     ===================================================== */
 
-    renderCourses();
+    loadCourses();
 
 });

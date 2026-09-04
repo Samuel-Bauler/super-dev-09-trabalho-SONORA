@@ -1,9 +1,9 @@
 from typing import Optional
 
 from src.database.conexao import conectar
-from src.schemas.instrumentos import Instrumentos, InstrumentoCadastro, InstrumentoEditar
+from src.schemas.instrumentos import Instrumento, InstrumentoCadastro, InstrumentoEditar
 
-def consultar_todos() -> list[Instrumentos]:
+def consultar_todos() -> list[Instrumento]:
     with conectar() as conexao:
         with conexao.cursor() as cursor:
             cursor.execute("SELECT id, nome FROM instrumentos")
@@ -12,7 +12,7 @@ def consultar_todos() -> list[Instrumentos]:
     instrumentos = []
 
     for registro in registros:
-        instrumento = Instrumentos(
+        instrumento = Instrumento(
             id=registro[0],
             nome=registro[1]
         )
@@ -30,10 +30,10 @@ def cadastrar(instrumento: InstrumentoCadastro):
 
             conexao.commit()
 
-    return Instrumentos(id=novo_id,nome=instrumento.nome )
+    return Instrumento(id=novo_id,nome=instrumento.nome )
 
 
-def consultar_por_id(id) -> Optional[Instrumentos]:
+def consultar_por_id(id) -> Optional[Instrumento]:
     with conectar() as conexao:
         with conexao.cursor() as cursor:
             cursor.execute(
@@ -47,7 +47,7 @@ def consultar_por_id(id) -> Optional[Instrumentos]:
         return None
 
 
-    instrumento = Instrumentos(
+    instrumento = Instrumento(
         id=registro[0],
         nome=registro[1]
     )
