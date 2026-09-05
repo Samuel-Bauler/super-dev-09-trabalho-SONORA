@@ -1,23 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =========================================================
-       CONFIGURAÇÃO
-       ========================================================= */
-
+document.addEventListener("DOMContentLoaded", async () => {
     const API_URL = "http://localhost:8000/cursos";
+    const INSTRUMENTOS_URL = "http://localhost:8000/instrumentos";
     const STORAGE_KEY = "sonora_cursos";
-
-
-    /* =========================================================
-       ELEMENTOS
-       ========================================================= */
 
     const courseGrid = document.getElementById("course-grid");
     const courseCount = document.getElementById("course-count");
     const courseSearch = document.getElementById("course-search");
+
     const courseFilterButtons = document.querySelectorAll(
         "[data-status-filter]"
     );
+
     const emptyState = document.getElementById("empty-state");
     const newCourseButton = document.getElementById("new-course-button");
     const emptyNewCourse = document.getElementById("empty-new-course");
@@ -30,7 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const courseForm = document.getElementById("course-form");
     const courseModalTitle = document.getElementById("course-modal-title");
-    const courseModalDescription = document.getElementById("course-modal-description");
+    const courseModalDescription = document.getElementById(
+        "course-modal-description"
+    );
     const saveCourseButton = document.getElementById("save-course-button");
     const editingCourseId = document.getElementById("editing-course-id");
 
@@ -58,41 +53,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const detailsId = document.getElementById("details-id");
     const detailsStatus = document.getElementById("details-status");
     const detailsEditButton = document.getElementById("details-edit-button");
-    const detailsDeleteButton = document.getElementById("details-delete-button");
+    const detailsDeleteButton = document.getElementById(
+        "details-delete-button"
+    );
 
     const deleteCourseName = document.getElementById("delete-course-name");
-    const confirmDeleteButton = document.getElementById("confirm-delete-button");
+    const confirmDeleteButton = document.getElementById(
+        "confirm-delete-button"
+    );
 
     const toast = document.getElementById("toast");
 
-
-    /* =========================================================
-       VARIÁVEIS
-       ========================================================= */
-
     let courses = [];
+    let instrumentos = [];
     let pendingCoverImage = null;
     let currentDetailsCourseId = null;
     let courseToDeleteId = null;
     let currentStatusFilter = "ATIVO";
 
-
-    /* =========================================================
-       LOCAL STORAGE
-       ========================================================= */
-
     function saveCoursesToStorage() {
-
         localStorage.setItem(
             STORAGE_KEY,
             JSON.stringify(courses)
         );
-
     }
 
-
     function loadCoursesFromStorage() {
-
         const savedCourses =
             localStorage.getItem(STORAGE_KEY);
 
@@ -101,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-
             const parsedCourses =
                 JSON.parse(savedCourses);
 
@@ -110,9 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             return parsedCourses;
-
         } catch (error) {
-
             console.error(
                 "Erro ao ler cursos do localStorage:",
                 error
@@ -122,15 +105,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function loadInstrumentos() {
+        try {
+            const response =
+                await fetch(INSTRUMENTOS_URL);
 
-    /* =========================================================
-       NORMALIZAR CURSO
-       ========================================================= */
+            if (!response.ok) {
+                throw new Error(
+                    "Erro ao buscar instrumentos."
+                );
+            }
+
+            instrumentos =
+                await response.json();
+
+            courseInstrument.innerHTML = `
+                <option value="">
+                    Selecione um instrumento
+                </option>
+            `;
+
+            instrumentos.forEach(instrumento => {
+                const option =
+                    document.createElement("option");
+
+                option.value =
+                    instrumento.id;
+
+                option.textContent =
+                    instrumento.nome;
+
+                courseInstrument.appendChild(option);
+            });
+        } catch (error) {
+            console.error(
+                "Erro ao carregar instrumentos:",
+                error
+            );
+
+            courseInstrument.innerHTML = `
+                <option value="">
+                    Erro ao carregar instrumentos
+                </option>
+            `;
+        }
+    }
 
     function normalizeCourse(course) {
-
         return {
-
             id: course.id,
 
             name:
@@ -181,28 +203,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     : course.status === false
                         ? "INATIVO"
                         : "ATIVO"
-
         };
     }
 
-
-    /* =========================================================
-       CARREGAR CURSOS
-       ========================================================= */
-
     async function loadCourses() {
-
         const savedCourses =
             loadCoursesFromStorage();
 
-
-        /*
-         * Se já existem cursos no localStorage,
-         * não busca novamente no backend.
-         */
-
         if (savedCourses !== null) {
-
             courses =
                 savedCourses.map(normalizeCourse);
 
@@ -211,15 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /*
-         * Primeira vez:
-         * busca os cursos no backend
-         * e salva no localStorage.
-         */
-
         try {
-
             const response =
                 await fetch(API_URL);
 
@@ -238,9 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
             saveCoursesToStorage();
 
             renderCourses();
-
         } catch (error) {
-
             console.error(
                 "Erro ao carregar cursos:",
                 error
@@ -256,13 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-    /* =========================================================
-       SEGURANÇA HTML
-       ========================================================= */
-
     function escapeHtml(value) {
-
         return String(value ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
@@ -271,13 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .replace(/'/g, "&#039;");
     }
 
-
-    /* =========================================================
-       INICIAIS DO CLIENTE
-       ========================================================= */
-
     function getInitials(name) {
-
         const words =
             String(name)
                 .trim()
@@ -300,105 +286,57 @@ document.addEventListener("DOMContentLoaded", () => {
         ).toUpperCase();
     }
 
-
-    /* =========================================================
-       CLASSE DO INSTRUMENTO
-       ========================================================= */
-
     function getInstrumentClass(instrument) {
-
         const classes = {
-
             "Violão": "guitar",
-
             "Piano": "piano",
-
             "Canto": "voice",
-
             "Bateria": "battery",
-
             "Guitarra": "guitar-electric",
-
             "Teclado": "keyboard",
-
             "Ukulele": "ukulele"
-
         };
 
         return classes[instrument] || "other";
     }
 
-
-    /* =========================================================
-       SÍMBOLO DO INSTRUMENTO
-       ========================================================= */
-
     function getInstrumentSymbol(instrument) {
-
         const symbols = {
-
             "Violão": "♪",
-
             "Piano": "♫",
-
             "Canto": "◖",
-
             "Bateria": "◉",
-
             "Guitarra": "♪",
-
             "Teclado": "♫",
-
             "Ukulele": "♪"
-
         };
 
         return symbols[instrument] || "♫";
     }
 
-
-    /* =========================================================
-       RENDERIZAR CURSOS
-       ========================================================= */
-
     function renderCourses() {
-
         const searchTerm =
             courseSearch.value
                 .trim()
                 .toLowerCase();
 
-
         const filteredCourses =
-            courses.filter((course) => {
-
+            courses.filter(course => {
                 const searchableText = [
-
                     course.name,
-
                     course.description,
-
                     course.client,
-
                     course.instrument,
-
                     course.status
-
                 ]
                     .join(" ")
                     .toLowerCase();
-
 
                 return (
                     course.status === currentStatusFilter &&
                     searchableText.includes(searchTerm)
                 );
             });
-
-
-        /* =====================================================
-           CONTADOR
-           ===================================================== */
 
         courseCount.textContent =
             `${filteredCourses.length} ${
@@ -407,52 +345,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     : "cursos"
             }`;
 
-
         courseGrid.innerHTML = "";
 
-
-        /* =====================================================
-           ESTADO VAZIO
-           ===================================================== */
-
         if (filteredCourses.length === 0) {
-
             emptyState.hidden = false;
 
             return;
         }
 
-
         emptyState.hidden = true;
 
-
-        /* =====================================================
-           CRIAR CARDS
-           ===================================================== */
-
-        filteredCourses.forEach((course) => {
-
+        filteredCourses.forEach(course => {
             const instrumentClass =
                 getInstrumentClass(
                     course.instrument
                 );
-
 
             const symbol =
                 getInstrumentSymbol(
                     course.instrument
                 );
 
-
             const initials =
                 getInitials(
                     course.client
                 );
-
-
-            /* =================================================
-               IMAGEM
-               ================================================= */
 
             const imageHtml =
                 course.coverImage
@@ -465,35 +382,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     `
                     : "";
 
-
             const coverClass =
                 course.coverImage
                     ? "has-image"
                     : "";
 
-
-            /* =================================================
-               CARD
-               ================================================= */
-
             const card =
                 document.createElement("article");
-
 
             card.className =
                 "course-card";
 
-
             card.dataset.courseId =
                 course.id;
 
-
             card.innerHTML = `
-
                 <div
                     class="course-cover ${instrumentClass} ${coverClass}"
                 >
-
                     ${imageHtml}
 
                     <span class="cover-symbol">
@@ -503,9 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <b class="course-status">
                         ${escapeHtml(course.status)}
                     </b>
-
                 </div>
-
 
                 <div class="course-info">
 
@@ -514,16 +418,13 @@ document.addEventListener("DOMContentLoaded", () => {
                         · CURSO
                     </p>
 
-
                     <h3 class="course-title">
                         ${escapeHtml(course.name)}
                     </h3>
 
-
                     <p class="course-description">
                         ${escapeHtml(course.description)}
                     </p>
-
 
                     <div class="course-meta">
 
@@ -540,17 +441,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         </span>
 
                         <span>
-
                             ${
                                 course.status === "ATIVO"
                                     ? "Curso ativo"
                                     : "Curso inativo"
                             }
-
                         </span>
 
                     </div>
-
 
                     <div class="course-bottom">
 
@@ -559,7 +457,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             <span class="client-avatar">
                                 ${escapeHtml(initials)}
                             </span>
-
 
                             <div class="client-data">
 
@@ -575,7 +472,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         </div>
 
-
                         <button
                             type="button"
                             class="details-button"
@@ -589,20 +485,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `;
 
-
             courseGrid.appendChild(card);
-
         });
-
     }
 
-
-    /* =========================================================
-       MODAIS
-       ========================================================= */
-
     function openModal(modal) {
-
         closeAllModals();
 
         modal.hidden = false;
@@ -614,20 +501,15 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-
     function closeModal(modal) {
-
         modal.hidden = true;
-
 
         const anyOpen =
             !courseModal.hidden ||
             !detailsModal.hidden ||
             !deleteModal.hidden;
 
-
         if (!anyOpen) {
-
             backdrop.hidden = true;
 
             document.body.classList.remove(
@@ -636,9 +518,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     function closeAllModals() {
-
         courseModal.hidden = true;
 
         detailsModal.hidden = true;
@@ -652,13 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     }
 
-
-    /* =========================================================
-       CAPA DO CURSO
-       ========================================================= */
-
     function clearCover() {
-
         pendingCoverImage = null;
 
         courseCover.value = "";
@@ -672,9 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
         removeCoverButton.hidden = true;
     }
 
-
     function showCoverPreview(image) {
-
         pendingCoverImage = image;
 
         coverPreviewImage.src = image;
@@ -686,13 +558,7 @@ document.addEventListener("DOMContentLoaded", () => {
         removeCoverButton.hidden = false;
     }
 
-
-    /* =========================================================
-       NOVO CURSO
-       ========================================================= */
-
     function openNewCourseModal() {
-
         courseForm.reset();
 
         editingCourseId.value = "";
@@ -701,49 +567,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         courseStatusField.hidden = true;
 
-
         courseModalTitle.textContent =
             "Novo curso";
-
 
         courseModalDescription.textContent =
             "Cadastre um novo curso no catálogo.";
 
-
         saveCourseButton.textContent =
             "Cadastrar curso";
 
-
         clearCover();
-
 
         openModal(courseModal);
 
-
         setTimeout(() => {
-
             courseName.focus();
-
         }, 100);
     }
 
-
-    /* =========================================================
-       EDITAR CURSO
-       ========================================================= */
-
     function openEditCourseModal(courseId) {
-
         const course =
             courses.find(
-                (item) =>
+                item =>
                     Number(item.id) ===
                     Number(courseId)
             );
 
-
         if (!course) {
-
             showToast(
                 "Curso não encontrado."
             );
@@ -751,18 +601,14 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         editingCourseId.value =
             course.id;
-
 
         courseName.value =
             course.name;
 
-
         courseDescription.value =
             course.description;
-
 
         courseClient.value =
             course.client;
@@ -770,66 +616,47 @@ document.addEventListener("DOMContentLoaded", () => {
         courseClientEmail.value =
             course.clientEmail || "";
 
-
         courseInstrument.value =
-            course.instrument;
+            course.instrumentId || "";
 
         courseStatus.value =
             course.status || "ATIVO";
 
         courseStatusField.hidden = false;
 
-
         courseModalTitle.textContent =
             "Editar curso";
-
 
         courseModalDescription.textContent =
             "Altere as informações do curso.";
 
-
         saveCourseButton.textContent =
             "Salvar alterações";
 
-
         clearCover();
 
-
         if (course.coverImage) {
-
             showCoverPreview(
                 course.coverImage
             );
         }
 
-
         openModal(courseModal);
 
-
         setTimeout(() => {
-
             courseName.focus();
-
         }, 100);
     }
 
-
-    /* =========================================================
-       DETALHES DO CURSO
-       ========================================================= */
-
     function openDetailsModal(courseId) {
-
         const course =
             courses.find(
-                (item) =>
+                item =>
                     Number(item.id) ===
                     Number(courseId)
             );
 
-
         if (!course) {
-
             showToast(
                 "Curso não encontrado."
             );
@@ -837,29 +664,23 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         currentDetailsCourseId =
             course.id;
-
 
         detailsInstrument.textContent =
             `${course.instrument} · CURSO`;
 
-
         detailsName.textContent =
             course.name;
 
-
         detailsDescription.textContent =
             course.description;
-
 
         detailsClient.textContent =
             course.client;
 
         detailsClientEmail.textContent =
             course.clientEmail || "Não informado";
-
 
         detailsId.textContent =
             course.id;
@@ -872,110 +693,79 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? "Ativar curso"
                 : "Inativar curso";
 
-
         const instrumentClass =
             getInstrumentClass(
                 course.instrument
             );
-
 
         const symbol =
             getInstrumentSymbol(
                 course.instrument
             );
 
-
         detailsCover.className =
             `details-cover ${instrumentClass}`;
-
 
         detailsCoverSymbol.textContent =
             symbol;
 
-
         if (course.coverImage) {
-
             detailsCoverImage.src =
                 course.coverImage;
-
 
             detailsCoverImage.alt =
                 `Capa do curso ${course.name}`;
 
-
             detailsCoverImage.hidden =
                 false;
-
         } else {
-
             detailsCoverImage.src = "";
 
             detailsCoverImage.hidden =
                 true;
         }
 
-
         openModal(detailsModal);
     }
 
-
-    /* =========================================================
-       MODAL DE INATIVAR
-       ========================================================= */
-
     function openDeleteModal(courseId) {
-
         const course =
             courses.find(
-                (item) =>
+                item =>
                     Number(item.id) ===
                     Number(courseId)
             );
 
-
         if (!course) {
-
             showToast(
                 "Curso não encontrado."
             );
 
             return;
         }
-
 
         courseToDeleteId =
             course.id;
 
-
         deleteCourseName.textContent =
             course.name;
-
 
         openModal(deleteModal);
     }
 
-
-    /* =========================================================
-       INATIVAR CURSO
-       ========================================================= */
-
     function deleteCourse() {
-
         if (!courseToDeleteId) {
             return;
         }
 
-
         const courseIndex =
             courses.findIndex(
-                (item) =>
+                item =>
                     Number(item.id) ===
                     Number(courseToDeleteId)
             );
 
-
         if (courseIndex === -1) {
-
             showToast(
                 "Curso não encontrado."
             );
@@ -983,52 +773,32 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /*
-         * Não apaga o curso.
-         * Apenas muda o status para INATIVO.
-         */
-
         courses[courseIndex].status =
             "INATIVO";
 
-
         saveCoursesToStorage();
 
-
         closeAllModals();
-
 
         showToast(
             "Curso inativado com sucesso."
         );
 
-
         courseToDeleteId = null;
-
         currentDetailsCourseId = null;
-
 
         renderCourses();
     }
 
-
-    /* =========================================================
-       ATIVAR CURSO
-       ========================================================= */
-
     function activateCourse(courseId) {
-
         const courseIndex =
             courses.findIndex(
-                (item) =>
+                item =>
                     Number(item.id) ===
                     Number(courseId)
             );
 
-
         if (courseIndex === -1) {
-
             showToast(
                 "Curso não encontrado."
             );
@@ -1036,73 +806,49 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         courses[courseIndex].status =
             "ATIVO";
 
-
         saveCoursesToStorage();
 
-
         closeAllModals();
-
 
         showToast(
             "Curso ativado com sucesso."
         );
 
-
         currentDetailsCourseId = null;
-
 
         renderCourses();
     }
 
-
-    /* =========================================================
-       GERAR ID LOCAL
-       ========================================================= */
-
     function generateCourseId() {
-
         const numericIds =
             courses
-                .map((course) =>
+                .map(course =>
                     Number(course.id)
                 )
-                .filter((id) =>
+                .filter(id =>
                     Number.isFinite(id)
                 );
 
-
         if (numericIds.length === 0) {
-
             return 1;
         }
-
 
         return (
             Math.max(...numericIds) + 1
         );
     }
 
-
-    /* =========================================================
-       SALVAR CURSO
-       ========================================================= */
-
     function saveCourse(event) {
-
         event.preventDefault();
-
 
         const name =
             courseName.value.trim();
 
-
         const description =
             courseDescription.value.trim();
-
 
         const clientName =
             courseClient.value.trim();
@@ -1110,17 +856,23 @@ document.addEventListener("DOMContentLoaded", () => {
         const clientEmail =
             courseClientEmail.value.trim();
 
+        const instrumentId =
+            Number(courseInstrument.value);
+
+        const selectedInstrument =
+            instrumentos.find(
+                instrumento =>
+                    Number(instrumento.id) ===
+                    instrumentId
+            );
 
         const instrument =
-            courseInstrument.value;
+            selectedInstrument
+                ? selectedInstrument.nome
+                : "";
 
         const status =
             courseStatus.value;
-
-
-        /* =====================================================
-           VALIDAÇÃO
-           ===================================================== */
 
         if (
             !name ||
@@ -1129,7 +881,6 @@ document.addEventListener("DOMContentLoaded", () => {
             !clientEmail ||
             !instrument
         ) {
-
             showToast(
                 "Preencha todos os campos obrigatórios."
             );
@@ -1137,23 +888,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
-        /* =====================================================
-           EDITAR CURSO
-           ===================================================== */
-
         if (editingCourseId.value) {
-
             const courseIndex =
                 courses.findIndex(
-                    (item) =>
+                    item =>
                         Number(item.id) ===
                         Number(editingCourseId.value)
                 );
 
-
             if (courseIndex === -1) {
-
                 showToast(
                     "Curso não encontrado."
                 );
@@ -1161,9 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-
             courses[courseIndex] = {
-
                 ...courses[courseIndex],
 
                 name: name,
@@ -1176,45 +917,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 instrument: instrument,
 
+                instrumentId: instrumentId,
+
                 coverImage:
                     pendingCoverImage || null,
 
                 status: status
-
             };
-
 
             saveCoursesToStorage();
 
-
             closeAllModals();
-
 
             showToast(
                 "Curso atualizado com sucesso."
             );
 
-
             currentDetailsCourseId =
                 editingCourseId.value;
 
-
             editingCourseId.value = "";
 
-
             renderCourses();
-
 
             return;
         }
 
-
-        /* =====================================================
-           CRIAR NOVO CURSO
-           ===================================================== */
-
         const newCourse = {
-
             id: generateCourseId(),
 
             name: name,
@@ -1229,221 +958,126 @@ document.addEventListener("DOMContentLoaded", () => {
 
             instrument: instrument,
 
-            instrumentId: null,
+            instrumentId: instrumentId,
 
             coverImage:
                 pendingCoverImage || null,
 
             status: "ATIVO"
-
         };
-
-
-        /*
-         * IMPORTANTE:
-         *
-         * unshift() coloca o novo curso
-         * no começo da lista.
-         *
-         * Assim, o curso criado aparece
-         * primeiro na tela.
-         */
 
         courses.unshift(newCourse);
 
-
-        /*
-         * Salva a nova ordem no localStorage.
-         */
-
         saveCoursesToStorage();
 
-
         closeAllModals();
-
 
         showToast(
             "Curso cadastrado com sucesso."
         );
 
-
         renderCourses();
     }
 
-
-    /* =========================================================
-       SELECIONAR IMAGEM
-       ========================================================= */
-
     courseCover.addEventListener(
         "change",
-        (event) => {
-
+        event => {
             const file =
                 event.target.files[0];
-
 
             if (!file) {
                 return;
             }
 
-
-            /* =================================================
-               VERIFICAR SE É IMAGEM
-               ================================================= */
-
-            if (
-                !file.type.startsWith("image/")
-            ) {
-
+            if (!file.type.startsWith("image/")) {
                 showToast(
                     "Selecione um arquivo de imagem."
                 );
 
-
                 courseCover.value = "";
 
                 return;
             }
-
-
-            /* =================================================
-               LIMITE DE 2 MB
-               ================================================= */
 
             const maxSize =
                 2 * 1024 * 1024;
 
-
             if (file.size > maxSize) {
-
                 showToast(
                     "A imagem deve ter no máximo 2 MB."
                 );
-
 
                 courseCover.value = "";
 
                 return;
             }
 
-
-            /* =================================================
-               LER IMAGEM
-               ================================================= */
-
             const reader =
                 new FileReader();
 
-
             reader.onload = () => {
-
                 showCoverPreview(
                     reader.result
                 );
             };
 
-
             reader.onerror = () => {
-
                 showToast(
                     "Não foi possível carregar a imagem."
                 );
             };
 
-
             reader.readAsDataURL(file);
-
         }
     );
 
-
-    /* =========================================================
-       REMOVER IMAGEM
-       ========================================================= */
-
     removeCoverButton.addEventListener(
         "click",
-        (event) => {
-
+        event => {
             event.preventDefault();
 
             event.stopPropagation();
 
-
             pendingCoverImage = null;
 
-
             courseCover.value = "";
-
 
             coverPreviewImage.src = "";
 
             coverPreviewImage.hidden = true;
 
-
             coverPlaceholder.hidden = false;
 
-
             removeCoverButton.hidden = true;
-
         }
     );
-
-
-    /* =========================================================
-       BOTÃO NOVO CURSO
-       ========================================================= */
 
     newCourseButton.addEventListener(
         "click",
         openNewCourseModal
     );
 
-
-    /* =========================================================
-       BOTÃO NOVO CURSO - ESTADO VAZIO
-       ========================================================= */
-
     emptyNewCourse.addEventListener(
         "click",
         openNewCourseModal
     );
-
-
-    /* =========================================================
-       BOTÃO CRIAÇÃO RÁPIDA
-       ========================================================= */
 
     quickCreateCourse.addEventListener(
         "click",
         openNewCourseModal
     );
 
-
-    /* =========================================================
-       PESQUISA
-       ========================================================= */
-
     courseSearch.addEventListener(
         "input",
         renderCourses
     );
 
-
-    /* =========================================================
-       FILTRO DE STATUS
-       ========================================================= */
-
-    courseFilterButtons.forEach((button) => {
-
+    courseFilterButtons.forEach(button => {
         button.addEventListener("click", () => {
-
             currentStatusFilter =
                 button.dataset.statusFilter;
 
-            courseFilterButtons.forEach((filterButton) => {
-
+            courseFilterButtons.forEach(filterButton => {
                 const isActive =
                     filterButton === button;
 
@@ -1462,103 +1096,68 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-    /* =========================================================
-       FORMULÁRIO
-       ========================================================= */
-
     courseForm.addEventListener(
         "submit",
         saveCourse
     );
 
-
-    /* =========================================================
-       BOTÃO VER DETALHES
-       ========================================================= */
-
     courseGrid.addEventListener(
         "click",
-        (event) => {
-
+        event => {
             const detailsButton =
                 event.target.closest(
                     "[data-details-id]"
                 );
 
-
             if (!detailsButton) {
                 return;
             }
 
-
             const courseId =
                 detailsButton.dataset.detailsId;
-
 
             openDetailsModal(courseId);
         }
     );
 
-
-    /* =========================================================
-       EDITAR PELOS DETALHES
-       ========================================================= */
-
     detailsEditButton.addEventListener(
         "click",
         () => {
-
             if (!currentDetailsCourseId) {
                 return;
             }
-
 
             const courseId =
                 currentDetailsCourseId;
 
-
             closeModal(detailsModal);
 
-
             setTimeout(() => {
-
                 openEditCourseModal(
                     courseId
                 );
-
             }, 100);
-
         }
     );
-
-
-    /* =========================================================
-       INATIVAR PELOS DETALHES
-       ========================================================= */
 
     detailsDeleteButton.addEventListener(
         "click",
         () => {
-
             if (!currentDetailsCourseId) {
                 return;
             }
-
 
             const courseId =
                 currentDetailsCourseId;
 
             const course =
                 courses.find(
-                    (item) =>
+                    item =>
                         Number(item.id) ===
                         Number(courseId)
                 );
 
-
             if (!course) {
-
                 showToast(
                     "Curso não encontrado."
                 );
@@ -1566,138 +1165,87 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-
             if (course.status === "INATIVO") {
-
                 activateCourse(courseId);
 
                 return;
             }
 
-
             closeModal(detailsModal);
 
-
             setTimeout(() => {
-
                 openDeleteModal(
                     courseId
                 );
-
             }, 100);
-
         }
     );
-
-
-    /* =========================================================
-       CONFIRMAR INATIVAÇÃO
-       ========================================================= */
 
     confirmDeleteButton.addEventListener(
         "click",
         deleteCourse
     );
 
-
-    /* =========================================================
-       FECHAR MODAL
-       ========================================================= */
-
     document.addEventListener(
         "click",
-        (event) => {
-
+        event => {
             const closeButton =
                 event.target.closest(
                     "[data-close-modal]"
                 );
 
-
             if (!closeButton) {
                 return;
             }
 
-
             closeAllModals();
         }
     );
-
-
-    /* =========================================================
-       FECHAR CLICANDO NO BACKDROP
-       ========================================================= */
 
     backdrop.addEventListener(
         "click",
         closeAllModals
     );
 
-
-    /* =========================================================
-       ESC FECHA MODAL
-       ========================================================= */
-
     document.addEventListener(
         "keydown",
-        (event) => {
-
+        event => {
             if (event.key === "Escape") {
-
                 closeAllModals();
             }
         }
     );
 
-
-    /* =========================================================
-       TOAST
-       ========================================================= */
-
     let toastTimeout;
 
-
     function showToast(message) {
-
         if (
             window.Sonora &&
-            typeof window.Sonora.toast ===
-                "function"
+            typeof window.Sonora.toast === "function"
         ) {
-
             window.Sonora.toast(message);
 
             return;
         }
 
-
         clearTimeout(toastTimeout);
-
 
         toast.textContent =
             message;
-
 
         toast.classList.add(
             "show"
         );
 
-
         toastTimeout =
             setTimeout(() => {
-
                 toast.classList.remove(
                     "show"
                 );
-
             }, 3000);
     }
 
-
-    /* =========================================================
-       INICIAR
-       ========================================================= */
+    await loadInstrumentos();
 
     loadCourses();
-
 });

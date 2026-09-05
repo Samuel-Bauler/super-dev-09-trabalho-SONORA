@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "http://localhost:8000/aulas";
+    const HOUR_HEIGHT = 96;
 
     const days = [
         "Segunda",
@@ -10,11 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Sábado",
         "Domingo"
     ];
-
-    const times = Array.from(
-        { length: 12 },
-        (_, index) => `${String(8 + index).padStart(2, "0")}:00`
-    );
 
     const styleByInstrument = {
         "Violão": "guitar",
@@ -38,6 +34,59 @@ document.addEventListener("DOMContentLoaded", () => {
     let classes = [];
     let selectedId = null;
     let toastTimeout;
+
+    // Ajustes restritos ao alinhamento do calendário.
+    const calendarStyle = document.createElement("style");
+
+    calendarStyle.textContent = `
+        .weekly-calendar {
+            grid-template-rows: 82px auto;
+        }
+
+        #calendar-grid {
+            position: relative;
+            gap: 0;
+            padding: 0;
+            align-content: start;
+        }
+
+        #calendar-grid > .time-label,
+        #calendar-grid > .slot {
+            box-sizing: border-box;
+            height: ${HOUR_HEIGHT}px;
+            min-height: 0;
+            margin: 0;
+        }
+
+        #calendar-grid > .class-card {
+            position: absolute;
+            box-sizing: border-box;
+            min-width: 0;
+            min-height: 0;
+            margin: 0;
+            padding: 8px;
+            transform: none;
+            overflow: hidden;
+            transition: box-shadow .15s ease;
+        }
+
+        #calendar-grid > .class-card:hover {
+            transform: none;
+        }
+
+        #calendar-grid > .class-card strong,
+        #calendar-grid > .class-card span,
+        #calendar-grid > .class-card small {
+            min-width: 0;
+            flex-shrink: 0;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    `;
+
+    document.head.appendChild(calendarStyle);
 
     function escapeHtml(value) {
         return String(value ?? "")
@@ -72,53 +121,74 @@ document.addEventListener("DOMContentLoaded", () => {
         ][value.getDay()];
     }
 
+    function formatMinutes(minutes) {
+        const hour = Math.floor(minutes / 60);
+        const minute = minutes % 60;
+
+        return `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`;
+    }
+
     function normalizeTime(time) {
-    if (!time) {
-        return "08:00";
+        const value = String(time ?? "").trim();
+
+        if (!value) {
+            return "";
+        }
+
+        // Horários numéricos retornados em segundos.
+        if (/^\d+(\.\d+)?$/.test(value)) {
+            const seconds = Number(value);
+
+            if (seconds < 0 || seconds >= 86400) {
+                return "";
+            }
+
+            return formatMinutes(Math.floor(seconds / 60));
+        }
+
+        // Aceita HH:mm, HH:mm:ss e horário dentro de uma data ISO.
+        const match = value.match(
+            /(?:^|T|\s)(\d{1,2}):(\d{2})(?::\d{2})?/
+        );
+
+        if (
+            !match ||
+            Number(match[1]) > 23 ||
+            Number(match[2]) > 59
+        ) {
+            return "";
+        }
+
+        return `${match[1].padStart(2, "0")}:${match[2]}`;
     }
-
-    const value = String(time);
-
-    const match = value.match(/(\d{1,2}):(\d{2})/);
-
-    if (!match) {
-        return "08:00";
-    }
-
-    return `${match[1].padStart(2, "0")}:${match[2]}`;
-}
 
     function normalizeDuration(duration) {
-    if (typeof duration === "number") {
+        const value = String(duration ?? "").trim();
+        const match = value.match(/^(\d+):(\d{2})(?::(\d{2}))?$/);
+
+        let minutes;
+
+        if (match) {
+            minutes = Number(match[1]) * 60 + Number(match[2]);
+        } else {
+            const numericDuration = Number(value);
+
+            minutes = numericDuration > 240
+                ? Math.round(numericDuration / 60)
+                : numericDuration;
+        }
+
         return String(
-            duration > 240
-                ? Math.round(duration / 60)
-                : duration
+            Number.isFinite(minutes) && minutes > 0
+                ? minutes
+                : 60
         );
     }
 
-    const value = String(duration || "");
-    const match = value.match(/^(\d{1,2}):(\d{2})/);
-
-    if (match) {
-        return String(
-            Number(match[1]) * 60 +
-            Number(match[2])
-        );
+    function timeToMinutes(time) {
+        const [hour, minute] = time.split(":").map(Number);
+        return hour * 60 + minute;
     }
-
-    const numericDuration = Number(value);
-
-    if (!Number.isFinite(numericDuration)) {
-        return "60";
-    }
-
-    return String(
-        numericDuration > 240
-            ? Math.round(numericDuration / 60)
-            : numericDuration
-    );
-}
 
     function durationToApiTime(duration) {
         const totalMinutes = Number(duration);
@@ -131,50 +201,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
             id: Number(item.id),
-
             student:
                 item.cliente?.nome ||
                 item.student ||
                 "Aluno não informado",
-
             email:
                 item.cliente?.email ||
                 item.email ||
                 "E-mail não informado",
-
             instrument:
                 item.curso?.instrumento?.nome ||
                 item.instrument ||
                 "Outro",
-
             courseName:
                 item.curso?.nome ||
                 item.courseName ||
                 "Curso não informado",
-
             teacher:
                 item.professor?.nome ||
                 item.teacher ||
                 "Professor não informado",
-
             date,
-
-            day:
-                getDayFromDate(date) ||
-                item.day ||
-                "",
-
-            time:
-                normalizeTime(
-                    item.hora_inicio ||
-                    item.time
-                ),
-
-            duration:
-                normalizeDuration(
-                    item.duracao ||
-                    item.duration
-                )
+            day: getDayFromDate(date) || item.day || "",
+            time: normalizeTime(item.hora_inicio ?? item.time),
+            duration: normalizeDuration(item.duracao ?? item.duration)
         };
     }
 
@@ -208,38 +258,71 @@ document.addEventListener("DOMContentLoaded", () => {
                 .filter((item) => days.includes(item.day));
 
             renderCalendar();
-
         } catch (error) {
             console.error("Erro ao carregar aulas:", error);
 
             classes = [];
-
             renderCalendar();
 
-            showToast(
-                "Não foi possível carregar as aulas do servidor."
-            );
+            showToast("Não foi possível carregar as aulas do servidor.");
         }
     }
 
-    function getSlotIndex(time) {
-        const [hour, minute] = time.split(":").map(Number);
+    // Distribui aulas simultâneas em colunas dentro do mesmo dia.
+    function arrangeClasses(items) {
+        const entries = items
+            .map((item) => ({
+                item,
+                start: timeToMinutes(item.time),
+                end: timeToMinutes(item.time) + Number(item.duration),
+                column: 0,
+                columnCount: 1
+            }))
+            .sort((a, b) => a.start - b.start || a.end - b.end);
 
-        return Math.max(
-            0,
-            Math.min(
-                11,
-                Math.floor(
-                    ((hour - 8) * 60 + minute) / 60
-                )
-            )
-        );
+        let group = [];
+        let groupEnd = -1;
+        let columnEnds = [];
+
+        function finishGroup() {
+            group.forEach((entry) => {
+                entry.columnCount = columnEnds.length;
+            });
+        }
+
+        entries.forEach((entry) => {
+            if (group.length && entry.start >= groupEnd) {
+                finishGroup();
+                group = [];
+                columnEnds = [];
+                groupEnd = -1;
+            }
+
+            let column = columnEnds.findIndex(
+                (end) => end <= entry.start
+            );
+
+            if (column === -1) {
+                column = columnEnds.length;
+            }
+
+            entry.column = column;
+            columnEnds[column] = entry.end;
+            groupEnd = Math.max(groupEnd, entry.end);
+            group.push(entry);
+        });
+
+        finishGroup();
+
+        return entries;
     }
 
     function renderCalendar() {
         const term = search.value.trim().toLowerCase();
 
-        const visibleClasses = classes.filter((item) =>
+        const validClasses = classes.filter((item) => item.time);
+
+        const visibleClasses = validClasses.filter((item) =>
             [
                 item.student,
                 item.email,
@@ -255,19 +338,42 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         counter.textContent = `${visibleClasses.length} ${
-            visibleClasses.length === 1
-                ? "aula"
-                : "aulas"
+            visibleClasses.length === 1 ? "aula" : "aulas"
         }`;
 
-        grid.innerHTML = "";
+        // Mantém 08:00–20:00 e amplia quando uma aula exige.
+        let startMinutes = 8 * 60;
+        let endMinutes = 20 * 60;
 
-        times.forEach((time, row) => {
+        validClasses.forEach((item) => {
+            const start = timeToMinutes(item.time);
+            const end = start + Number(item.duration);
+
+            startMinutes = Math.min(
+                startMinutes,
+                Math.floor(start / 60) * 60
+            );
+
+            endMinutes = Math.max(
+                endMinutes,
+                Math.ceil(end / 60) * 60
+            );
+        });
+
+        const rowCount = (endMinutes - startMinutes) / 60;
+
+        grid.innerHTML = "";
+        grid.style.gridTemplateRows =
+            `repeat(${rowCount}, ${HOUR_HEIGHT}px)`;
+        grid.style.height = `${rowCount * HOUR_HEIGHT}px`;
+
+        for (let row = 0; row < rowCount; row++) {
+            const time = formatMinutes(startMinutes + row * 60);
             const label = document.createElement("div");
 
             label.className = "time-label";
             label.style.gridColumn = "1";
-            label.style.gridRow = row + 1;
+            label.style.gridRow = String(row + 1);
             label.textContent = time;
 
             grid.append(label);
@@ -277,73 +383,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 slot.type = "button";
                 slot.className = "slot";
-                slot.style.gridColumn = dayIndex + 2;
-                slot.style.gridRow = row + 1;
+                slot.style.gridColumn = String(dayIndex + 2);
+                slot.style.gridRow = String(row + 1);
                 slot.dataset.day = day;
                 slot.dataset.time = time;
+                slot.setAttribute("aria-label", `${day}, ${time}`);
 
                 grid.append(slot);
             });
-        });
+        }
 
-        visibleClasses.forEach((item) => {
-            const dayIndex = days.indexOf(item.day);
+        days.forEach((day, dayIndex) => {
+            const entries = arrangeClasses(
+                visibleClasses.filter((item) => item.day === day)
+            );
 
-            if (dayIndex === -1) {
-                return;
-            }
+            entries.forEach((entry) => {
+                const { item, start, end, column, columnCount } = entry;
+                const card = document.createElement("button");
 
-            const card = document.createElement("button");
+                card.type = "button";
+                card.className = `class-card ${
+                    styleByInstrument[item.instrument] || ""
+                }`;
 
-            card.type = "button";
-            card.className = `class-card ${
-                styleByInstrument[item.instrument] || ""
-            }`;
+                // A coluna do grid mantém o cartão alinhado ao dia.
+                card.style.gridColumn = String(dayIndex + 2);
 
-            card.style.gridColumn = dayIndex + 2;
-            card.style.gridRow = getSlotIndex(item.time) + 1;
+                // A linha automática usa o calendário como referência vertical.
+                card.style.gridRow = "auto";
 
-            card.style.height = `calc(${
-                (Number(item.duration) / 60) * 96
-            }px - 8px)`;
+                card.style.top = `${
+                    ((start - startMinutes) / 60) * HOUR_HEIGHT + 4
+                }px`;
 
-            card.style.transform = `translateY(${
-                (
-                    (Number(item.time.split(":")[1]) || 0) /
-                    60
-                ) * 96
-            }px)`;
+                card.style.height = `${
+                    Math.max(1, ((end - start) / 60) * HOUR_HEIGHT - 8)
+                }px`;
 
-            card.dataset.id = item.id;
+                card.style.left =
+                    `calc(${(column / columnCount) * 100}% + 5px)`;
 
-            card.innerHTML = `
-                <strong>
-                    ${escapeHtml(item.student)}
-                </strong>
+                card.style.width =
+                    `calc(${100 / columnCount}% - 10px)`;
 
-                <span>
-                    ${escapeHtml(item.instrument)}
-                </span>
+                card.dataset.id = item.id;
 
-                <small>
-                    ${escapeHtml(item.time)}
-                    ·
-                    ${escapeHtml(item.duration)} min
-                </small>
-            `;
+                card.title =
+                    `${item.student} · ${item.instrument} · ` +
+                    `${item.time} · ${item.duration} min`;
 
-            grid.append(card);
+                card.innerHTML = `
+                    <strong>${escapeHtml(item.student)}</strong>
+                    <span>${escapeHtml(item.instrument)}</span>
+                    <small>
+                        ${escapeHtml(item.time)}
+                        · ${escapeHtml(item.duration)} min
+                    </small>
+                `;
+
+                grid.append(card);
+            });
         });
     }
 
     function openModal(modal) {
         backdrop.hidden = false;
 
-        [
-            detailsModal,
-            formModal,
-            deleteModal
-        ].forEach((item) => {
+        [detailsModal, formModal, deleteModal].forEach((item) => {
             item.hidden = item !== modal;
         });
     }
@@ -351,11 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function closeModal() {
         backdrop.hidden = true;
 
-        [
-            detailsModal,
-            formModal,
-            deleteModal
-        ].forEach((item) => {
+        [detailsModal, formModal, deleteModal].forEach((item) => {
             item.hidden = true;
         });
     }
@@ -374,69 +477,46 @@ document.addEventListener("DOMContentLoaded", () => {
     function showDetails(id) {
         selectedId = Number(id);
 
-        const item = classes.find(
-            (entry) => entry.id === selectedId
-        );
+        const item = classes.find((entry) => entry.id === selectedId);
 
         if (!item) {
             return;
         }
 
-        document.querySelector(
-            "#details-title"
-        ).textContent = `Aula de ${
-            item.instrument.toLowerCase()
-        }`;
+        document.querySelector("#details-title").textContent =
+            `Aula de ${item.instrument.toLowerCase()}`;
 
-        document.querySelector(
-            "#details-content"
-        ).innerHTML = `
+        document.querySelector("#details-content").innerHTML = `
             <div class="details-list">
-
                 <div class="detail-row">
                     <div>
                         <small>ALUNO</small>
-
-                        <strong>
-                            ${escapeHtml(item.student)}
-                        </strong>
-
-                        <small>
-                            ${escapeHtml(item.email)}
-                        </small>
+                        <strong>${escapeHtml(item.student)}</strong>
+                        <small>${escapeHtml(item.email)}</small>
                     </div>
                 </div>
 
                 <div class="detail-row">
                     <div>
                         <small>CURSO</small>
-
-                        <strong>
-                            ${escapeHtml(item.courseName)}
-                        </strong>
+                        <strong>${escapeHtml(item.courseName)}</strong>
                     </div>
                 </div>
 
                 <div class="detail-row">
                     <div>
                         <small>INSTRUMENTO</small>
-
-                        <strong>
-                            ${escapeHtml(item.instrument)}
-                        </strong>
+                        <strong>${escapeHtml(item.instrument)}</strong>
                     </div>
                 </div>
 
                 <div class="detail-row">
                     <div>
                         <small>DATA E HORÁRIO</small>
-
                         <strong>
                             ${escapeHtml(item.date)}
-                            ·
-                            ${escapeHtml(item.time)}
-                            ·
-                            ${escapeHtml(item.duration)} min
+                            · ${escapeHtml(item.time)}
+                            · ${escapeHtml(item.duration)} min
                         </strong>
                     </div>
                 </div>
@@ -444,13 +524,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="detail-row">
                     <div>
                         <small>PROFESSOR(A)</small>
-
-                        <strong>
-                            ${escapeHtml(item.teacher)}
-                        </strong>
+                        <strong>${escapeHtml(item.teacher)}</strong>
                     </div>
                 </div>
-
             </div>
         `;
 
@@ -460,9 +536,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getDateForDay(day) {
         const monday = new Date("2026-08-31T12:00:00");
 
-        monday.setDate(
-            monday.getDate() + days.indexOf(day)
-        );
+        monday.setDate(monday.getDate() + days.indexOf(day));
 
         return monday.toISOString().slice(0, 10);
     }
@@ -470,18 +544,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function openForm(item = null, defaults = {}) {
         form.reset();
 
-        document.querySelector("#class-id").value =
-            item?.id ?? "";
-
+        document.querySelector("#class-id").value = item?.id ?? "";
         document.querySelector("#student-name").value =
             item?.student ?? "";
-
         document.querySelector("#student-email").value =
             item?.email ?? "";
-
         document.querySelector("#class-course").value =
             item?.courseName ?? "";
-
         document.querySelector("#class-teacher").value =
             item?.teacher ?? "";
 
@@ -491,43 +560,30 @@ document.addEventListener("DOMContentLoaded", () => {
             getDateForDay(defaults.day || "Segunda");
 
         document.querySelector("#class-time").value =
-            item?.time ??
-            defaults.time ??
-            "09:00";
+            item?.time ?? defaults.time ?? "09:00";
 
         document.querySelector("#class-duration").value =
-            item?.duration ??
-            "60";
+            item?.duration ?? "60";
 
         document.querySelector("#form-title").textContent =
-            item
-                ? "Editar aula"
-                : "Cadastrar aula";
+            item ? "Editar aula" : "Cadastrar aula";
 
         document.querySelector("#form-kicker").textContent =
-            item
-                ? "EDITAR AULA"
-                : "NOVA AULA";
+            item ? "EDITAR AULA" : "NOVA AULA";
 
         openModal(formModal);
     }
 
-    document
-        .querySelector("#new-class-button")
+    document.querySelector("#new-class-button")
         .addEventListener("click", () => {
             openForm();
         });
 
-    document
-        .querySelectorAll(".day-header")
-        .forEach((button) => {
-            button.addEventListener("click", () => {
-                openForm(
-                    null,
-                    { day: button.dataset.day }
-                );
-            });
+    document.querySelectorAll(".day-header").forEach((button) => {
+        button.addEventListener("click", () => {
+            openForm(null, { day: button.dataset.day });
         });
+    });
 
     grid.addEventListener("click", (event) => {
         const card = event.target.closest(".class-card");
@@ -539,23 +595,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (slot) {
-            openForm(
-                null,
-                {
-                    day: slot.dataset.day,
-                    time: slot.dataset.time
-                }
-            );
+            openForm(null, {
+                day: slot.dataset.day,
+                time: slot.dataset.time
+            });
         }
     });
 
     search.addEventListener("input", renderCalendar);
 
-    document
-        .querySelectorAll("[data-close-modal]")
-        .forEach((button) => {
-            button.addEventListener("click", closeModal);
-        });
+    document.querySelectorAll("[data-close-modal]").forEach((button) => {
+        button.addEventListener("click", closeModal);
+    });
 
     backdrop.addEventListener("click", (event) => {
         if (event.target === backdrop) {
@@ -563,56 +614,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    document
-        .querySelector("#open-edit")
-        .addEventListener("click", () => {
-            const item = classes.find(
-                (entry) => entry.id === selectedId
-            );
+    document.querySelector("#open-edit").addEventListener("click", () => {
+        const item = classes.find((entry) => entry.id === selectedId);
 
-            if (item) {
-                openForm(item);
-            }
-        });
+        if (item) {
+            openForm(item);
+        }
+    });
 
-    document
-        .querySelector("#open-delete")
-        .addEventListener("click", () => {
-            openModal(deleteModal);
-        });
+    document.querySelector("#open-delete").addEventListener("click", () => {
+        openModal(deleteModal);
+    });
 
-    document
-        .querySelector("#confirm-delete")
+    document.querySelector("#confirm-delete")
         .addEventListener("click", async () => {
             if (!selectedId) {
                 return;
             }
 
             try {
-                await request(
-                    `${API_URL}/${selectedId}`,
-                    { method: "DELETE" }
-                );
+                await request(`${API_URL}/${selectedId}`, {
+                    method: "DELETE"
+                });
 
                 closeModal();
-
-                showToast(
-                    "Aula excluída com sucesso."
-                );
+                showToast("Aula excluída com sucesso.");
 
                 selectedId = null;
 
                 await loadClasses();
-
             } catch (error) {
-                console.error(
-                    "Erro ao excluir aula:",
-                    error
-                );
+                console.error("Erro ao excluir aula:", error);
 
                 showToast(
-                    error.message ||
-                    "Não foi possível excluir a aula."
+                    error.message || "Não foi possível excluir a aula."
                 );
             }
         });
@@ -623,54 +658,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const id = document.querySelector("#class-id").value;
 
         const payload = {
-            professor: document
-                .querySelector("#class-teacher")
-                .value
-                .trim(),
-
-            cliente: document
-                .querySelector("#student-name")
-                .value
-                .trim(),
-
-            curso: document
-                .querySelector("#class-course")
-                .value
-                .trim(),
-
-            data: document
-                .querySelector("#class-date")
-                .value,
-
-            hora_inicio: document
-                .querySelector("#class-time")
-                .value + ":00",
-
+            professor: document.querySelector("#class-teacher").value.trim(),
+            cliente: document.querySelector("#student-name").value.trim(),
+            curso: document.querySelector("#class-course").value.trim(),
+            data: document.querySelector("#class-date").value,
+            hora_inicio:
+                document.querySelector("#class-time").value + ":00",
             duracao: durationToApiTime(
-                document
-                    .querySelector("#class-duration")
-                    .value
+                document.querySelector("#class-duration").value
             )
         };
 
         try {
-            await request(
-                id
-                    ? `${API_URL}/${id}`
-                    : API_URL,
-                {
-                    method: id
-                        ? "PUT"
-                        : "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body: JSON.stringify(payload)
-                }
-            );
+            await request(id ? `${API_URL}/${id}` : API_URL, {
+                method: id ? "PUT" : "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
 
             closeModal();
 
@@ -681,16 +687,11 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             await loadClasses();
-
         } catch (error) {
-            console.error(
-                "Erro ao salvar aula:",
-                error
-            );
+            console.error("Erro ao salvar aula:", error);
 
             showToast(
-                error.message ||
-                "Não foi possível salvar a aula."
+                error.message || "Não foi possível salvar a aula."
             );
         }
     });

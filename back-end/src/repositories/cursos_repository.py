@@ -61,16 +61,34 @@ def cadastrar(curso: CursoCadastro) -> CursoCadastro:
     VALUES (%s, %s, %s, %s, %s)
     """
 
-    with conectar() as conexao:
+    with conectar() as conexao: 
         with conexao.cursor() as cursor:
 
-            cursor.execute(sql,(
-                    curso.nome,
-                    curso.descricao,
-                    curso.id_cliente,
-                    curso.id_instrumento,
-                    curso.status
-                ))
+            cursor.execute(
+                """
+                SELECT id, nome, email
+                FROM clientes
+                WHERE nome = %s AND email = %s
+                """,
+                (curso.nome_cliente, curso.email_cliente)
+            )
+
+            cliente = cursor.fetchone()
+
+            if not cliente:
+                raise ValueError("Nome e email não correspondem ao mesmo cliente")
+
+            # ID do cliente encontrado
+            id_cliente = cliente[0]
+
+            # Cadastra o curso
+            cursor.execute(sql, (
+                curso.nome,
+                curso.descricao,
+                id_cliente,
+                curso.id_instrumento,
+                curso.status
+            ))
 
             novo_id = cursor.lastrowid
 
